@@ -3,23 +3,23 @@ import React, { useState } from 'react'
 import Header from '../UI/Header';
 
 function Login() {
-    const [Username , setUserName] = useState('');
+    const [Email , setEmail] = useState('');
     const [Password, setPassword] =useState('');
-    const [userErr , setUserErr] = useState('');
+    const [emailErr , setEmailErr] = useState('');
     const [passErr, setPassErr] =useState('');
-    const handleChangeUsername=(e)=>{
-        setUserName(e.target.value);
+    const handleChangeEmail=(e)=>{
+        setEmail(e.target.value);
     }
     const handleChangePassword=(e)=>{
         setPassword(e.target.value);
     }
     const checkLogin = ()=>{
         let isValid = true;
-        if(Username!=="thehuy"){
+        if(Email!=="thehuy@gmail.com"){
           isValid = false;
-          setUserErr("User is not correct");
+          setEmailErr("User is not correct");
         }else{
-          setUserErr("");
+          setEmailErr("");
         }
         if(Password!=="123456"){
           isValid = false;
@@ -52,16 +52,16 @@ function Login() {
                 <form action='#' method='post' onSubmit={handleSubmit}>
                     <h5><b>Đăng nhập:</b></h5>
                     <TextField 
-                    label='Username' 
+                    label='Email' 
                     id="outlined-size-small" 
-                    value={Username} 
-                    placeholder='Enter Username' 
-                    type='text' 
+                    value={Email} 
+                    placeholder='Enter Email' 
+                    type='Email' 
                     fullWidth 
                     required 
-                    onChange={handleChangeUsername}
+                    onChange={handleChangeEmail}
                     />
-                    <small className="text-danger">{userErr}</small>
+                    <small className="text-danger">{emailErr}</small>
                     <TextField 
                     label='Password' 
                     id="outlined-size-small" 
