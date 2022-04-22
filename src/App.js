@@ -1,11 +1,22 @@
 import './App.css';
-import CarouselUI from './components/CarouselUI';
-import Category from './components/Category';
-
+import Category from './components/Category/Category';
+import HomePage from "./components/Home/HomePage";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Payment from './components/Payment/Payment';
 function App() {
   return (
-    // <Category/>
-    <CarouselUI/>
+    <>
+    <Router>
+      <div id="main-ct" className="p-child-dkr">
+        
+            <Routes>
+              <Route path="/" element={<HomePage/>} />
+              <Route path="/category" element={<Category/>} />
+              <Route path="/payment" element={<Payment/>} />
+            </Routes>
+      </div>
+    </Router>
+    </>
   );
 }
 
