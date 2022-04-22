@@ -1,4 +1,5 @@
 import './App.css';
+import Address from './components/Address/Address';
 import Category from './components/Category';
 import HomePage from "./components/Home/HomePage";
 import Login from './components/Login/Login';
@@ -14,7 +15,8 @@ function App() {
     {/* <Login/> */}
     {/* <Register/> */}
     {/* <Shipping/> */}
-    <OrderHistory/>
+    {/* <OrderHistory/> */}
+    <Address/>
     </>
   );
 }

@@ -8,7 +8,8 @@ import HomePage from './components/Home/HomePage';
 import Register from './components/Register/Register';
 import { Login } from '@mui/icons-material';
 import Shipping from './components/Shipping/Shipping';
-
+import OrderHistory from './components/Order/OrderHistory';
+import Address from './components/Address/Address';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -19,6 +20,8 @@ root.render(
             <Route path="/Login" element={<Login/>}></Route>
             <Route path="/Register" element={<Register/>}></Route>
             <Route path="/Shipping" element={<Shipping/>}></Route>
+            <Route path="/OrderHistory" element={<OrderHistory/>}></Route>
+            <Route path="/Address" element={<Address/>}></Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
