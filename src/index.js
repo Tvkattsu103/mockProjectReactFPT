@@ -8,22 +8,21 @@ import HomePage from "./components/Home/HomePage";
 import Search from "./components/Search/Search";
 import { render } from "react-dom";
 import OrderConfirmation from "./components/OrderConfirmation/OrderConfirmationPage";
+import PaymentMethods from "./components/PaymentMethods/PaymentMethods";
 
-const root = document.getElementById("root");
-render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="HomePage" element={<HomePage />} />
-      <Route path="Search" element={<Search />} />
-      <Route path="OrderConfirmation" element={<OrderConfirmation />} />
-    </Routes>
-  </BrowserRouter>,
-  root
-
-  // <React.StrictMode>
-  //   <App />
-  // </React.StrictMode>
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="HomePage" element={<HomePage />} />
+        <Route path="Search" element={<Search />} />
+        <Route path="OrderConfirmation" element={<OrderConfirmation />} />
+        <Route path="PaymentMethods" element={<PaymentMethods />} />
+      </Routes>
+    </BrowserRouter>
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

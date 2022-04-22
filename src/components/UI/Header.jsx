@@ -15,7 +15,9 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import LoginIcon from "@mui/icons-material/Login";
 import { Link } from "react-router-dom";
+import { Login } from "@mui/icons-material";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -100,7 +102,12 @@ export default function Header() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <Link
+        to="/PaymentMethods"
+        style={{ textDecoration: "none", color: "black" }}
+      >
+        <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      </Link>
     </Menu>
   );
 
@@ -199,7 +206,7 @@ export default function Header() {
               style={{ textDecoration: "none", color: "white" }}
             >
               <StyledInputBase
-                placeholder="Search…" 
+                placeholder="Search…"
                 inputProps={{ "aria-label": "search" }}
                 value={keyword}
                 onChange={handleKeyword}
@@ -242,6 +249,15 @@ export default function Header() {
             >
               <AccountCircle />
             </IconButton>
+            <Link to='/Login' sx={{textDecoration: 'none'}}>
+            <IconButton
+              size="large"
+              edge="end"
+              aria-haspopup="true"
+            >
+              <LoginIcon sx={{color: 'white'}}/>
+            </IconButton>
+            </Link>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
