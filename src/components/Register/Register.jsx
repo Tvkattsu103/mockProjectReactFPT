@@ -1,4 +1,4 @@
-import { Button, Grid, TextField } from '@mui/material';
+import { Button, Container, Grid, TextField } from '@mui/material';
 import React, { useState } from 'react'
 import Header from '../UI/Header';
 function Register() {
@@ -66,10 +66,8 @@ function Register() {
     return (
     <div>
         <Header/>
+        <Container>
         <Grid container spacing={2}>
-            <Grid item xs={2}>
-                
-            </Grid>
             <Grid item xs={6}>
                 <form method='post' onSubmit={handleSubmit}>
                 <Grid item xs={12}>
@@ -182,6 +180,7 @@ function Register() {
            </Grid>
             
         </Grid>
+        </Container>
     </div>
     )
 }

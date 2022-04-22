@@ -1,5 +1,9 @@
 import { Button, Grid, TextField } from '@mui/material';
+import { height } from '@mui/system';
 import React, { useState } from 'react'
+import { Route, Routes , Link } from 'react-router-dom';
+import HomePage from '../Home/HomePage';
+import Register from '../Register/Register';
 import Header from '../UI/Header';
 
 function Login() {
@@ -39,8 +43,11 @@ function Login() {
     }
     const handleSubmit2=(e)=>{
         e.preventDefault();
-        //link to Register.js 
+        //link to Register.js
+        
+        
     }
+    
     return (
     <div>
         <Header/>
@@ -82,14 +89,15 @@ function Login() {
             <Grid item xs={3}>
                 <form action='#' method='post' onSubmit={handleSubmit2}>
                     <h5><b>Đăng ký:</b></h5>
-                    <p>NẾU QUÝ KHÁCH VẪN CHƯA CÓ TÀI KHOẢN TRÊN ZARA.COM, HÃY SỬ DỤNG TÙY CHỌN NÀY ĐỂ TRUY CẬP BIỂU MẪU ĐĂNG KÝ.
-                        BẰNG CÁCH CUNG CẤP CHO CHÚNG TÔI THÔNG TIN CHI TIẾT CỦA QUÝ KHÁCH, QUÁ TRÌNH MUA HÀNG TRÊN ZARA.COM SẼ LÀ MỘT TRẢI NGHIỆM THÚ VỊ VÀ NHANH CHÓNG HƠN.
+                    <p>NẾU QUÝ KHÁCH VẪN CHƯA CÓ TÀI KHOẢN TRÊN GAP.COM, HÃY SỬ DỤNG TÙY CHỌN NÀY ĐỂ TRUY CẬP BIỂU MẪU ĐĂNG KÝ.
+                        BẰNG CÁCH CUNG CẤP CHO CHÚNG TÔI THÔNG TIN CHI TIẾT CỦA QUÝ KHÁCH, QUÁ TRÌNH MUA HÀNG TRÊN GAP.COM SẼ LÀ MỘT TRẢI NGHIỆM THÚ VỊ VÀ NHANH CHÓNG HƠN.
                     </p>
-                    <Button type='submit' color='primary' fullWidth style={{backgroundColor:'black',color:'white'}}><b>Register now</b></Button>
-                </form>
+                    {/* <Button type='submit' color='primary' fullWidth style={{backgroundColor:'black',color:'white'}}><b>Register now</b></Button> */}
+                    <Link to="/Register" fullWidth style={{backgroundColor:'black',color:'white',textDecoration:'none'}}>Register now</Link>
+                </form>    
             </Grid>
         </Grid>
-
+        
     </div>
 
     )
