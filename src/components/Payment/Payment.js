@@ -1,12 +1,58 @@
-import { Grid, Box, Typography, Collapse, ListItem, ListItemText, ListItemIcon, List } from '@mui/material'
-import React from 'react'
+import { Box, Button, Collapse, Divider, Grid, List, ListItem, ListItemText, Typography, InputBase, Badge } from '@mui/material';
+import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import * as React from 'react';
+import { styled, alpha } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
+import { CardContent } from '@mui/material';
+import { Card } from '@mui/material';
+import { CardMedia } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+
+const Search = styled('div')(({ theme }) => ({
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    '&:hover': {
+        backgroundColor: alpha(theme.palette.common.white, 0.25),
+    },
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+        marginLeft: theme.spacing(3),
+        width: 'auto',
+    },
+}));
+
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+    color: 'inherit',
+    '& .MuiInputBase-input': {
+        padding: theme.spacing(1, 1, 1, 0),
+        // vertical padding + font size from searchIcon
+        // paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+        padding: '12px 5px',
+        transition: theme.transitions.create('width'),
+        width: '100%',
+        [theme.breakpoints.up('md')]: {
+            width: '20ch',
+        },
+    },
+}));
 
 function Payment() {
     const [open, setOpen] = React.useState(true);
@@ -108,10 +154,199 @@ function Payment() {
                             </ListItem>
                         </List>
                     </Collapse>
-
+                    <Grid container justifyContent="space-between" alignItems="center" sx={{ mt: 2 }}>
+                        <Grid item>
+                            <Typography variant="h7" sx={{ color: '#9bdbb9' }}>Return to shipping</Typography>
+                        </Grid>
+                        <Grid item>
+                            <Link to="" className="Button">
+                                <Button sx={{ padding: 2, bgcolor: 'black', color: 'white' }} >Pay now</Button>
+                            </Link>
+                        </Grid>
+                    </Grid>
+                    <Divider sx={{ mt: 7 }} />
+                    <Typography variant="caption" sx={{ color: '#9bdbb9', mt: 2, mb: 3, display: 'block' }}>Subscription policy</Typography>
                 </Grid>
             </Grid>
-            <Grid item xs={5} sx={{ bgcolor: '#efefef' }}></Grid>
+            <Grid container xs={5} sx={{ bgcolor: '#efefef' }} >
+                <Grid xs={10} sx={{ pt: 6, pl: 10 }} >
+                    <Card sx={{ display: 'flex', bgcolor: 'transparent', boxShadow: 'none', pt: 1.5 }}>
+                        <Badge badgeContent={4} color="primary">
+                            <CardMedia
+                                component="img"
+                                sx={{ width: '70px', height: '70px', borderRadius: '10px' }}
+                                image="https://www3.assets-gap.com/webcontent/0028/965/940/cn28965940.jpg"
+                                alt="Live from space album cover"
+                            />
+                        </Badge>
+                        <CardContent sx={{ display: 'flex', alignItems: 'center', width: '90%' }}>
+                            <Grid
+                                justifyContent="space-between"
+                                alignItems="center"
+                                container
+                            >
+                                <Grid item>
+                                    <Typography component="div" variant="h7" fontWeight="bold">
+                                        The Weekend Spring Dress
+                                    </Typography>
+                                </Grid>
+                                <Grid item>
+                                    $24.99
+                                </Grid>
+                            </Grid>
+                        </CardContent>
+                    </Card>
+                    <Divider sx={{ mt: 3 }} />
+                    <Grid justifyContent="space-between"
+                        alignItems="center"
+                        container
+                        sx={{ mt: 3 }}
+                    >
+                        <Grid item>
+                            <Search sx={{ border: 1, borderColor: '#ccc', bgcolor: 'white', width: '335px!important', ml: '0px!important', height: '52px' }}>
+                                {/* <SearchIconWrapper>
+                                    <SearchIcon />
+                                </SearchIconWrapper> */}
+                                <StyledInputBase
+                                    placeholder="Gift card or discount code"
+                                    inputProps={{ 'aria-label': 'search' }}
+                                />
+                            </Search>
+                        </Grid>
+                        <Grid item>
+                            <Link to="" className="Button">
+                                <Button sx={{ padding: 1.5, bgcolor: 'text.disabled', color: 'white' }} >Pay now</Button>
+                            </Link>
+                        </Grid>
+                    </Grid>
+                    <Divider sx={{ mt: 3 }} />
+                    <Grid justifyContent="space-between"
+                        alignItems="center"
+                        container
+                        sx={{ mt: 2 }}
+                    >
+                        <Grid item>
+                            <Typography component="div" variant="h7">
+                                Subtotal
+                            </Typography>
+                        </Grid>
+                        <Grid item>
+                            $24.99
+                        </Grid>
+                    </Grid>
+                    <Grid justifyContent="space-between"
+                        alignItems="center"
+                        container
+                        sx={{ mt: 1 }}
+                    >
+                        <Grid item>
+                            <Typography component="div" variant="h7">
+                                Shipping
+                            </Typography>
+                        </Grid>
+                        <Grid item>
+                            $12.99
+                        </Grid>
+                    </Grid>
+                    <Grid justifyContent="space-between"
+                        alignItems="center"
+                        container
+                        sx={{ mt: 1 }}
+                    >
+                        <Grid item>
+                            <Typography component="div" variant="h7">
+                                Taxes
+                            </Typography>
+                        </Grid>
+                        <Grid item>
+                            $3.18
+                        </Grid>
+                    </Grid>
+                    <Divider sx={{ mt: 3 }} />
+                    <Grid justifyContent="space-between"
+                        alignItems="center"
+                        container
+                        sx={{ mt: 1, mb: 4 }}
+                    >
+                        <Grid item>
+                            <Typography component="div" variant="h7">
+                                Total
+                            </Typography>
+                        </Grid>
+                        <Grid item alignItems={'center'} display='flex'>
+                            <Typography component="span" variant="caption" sx={{ mr: 1 }}>
+                                USD
+                            </Typography>
+                            <Typography component="span" variant="h5">
+                                $41.16
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                    <Typography component="span" variant="h7" fontWeight={'bold'} sx={{ mr: 1, textTransform: 'uppercase' }}>
+                        We think you'd like these too
+                    </Typography>
+                    <Card sx={{ display: 'flex', bgcolor: 'transparent', boxShadow: 'none', mt: 2.5 }}>
+                        <CardMedia
+                            component="img"
+                            sx={{ width: 110, height: 110 }}
+                            image="https://www3.assets-gap.com/webcontent/0028/965/940/cn28965940.jpg"
+                            alt="Live from space album cover"
+                        />
+                        <CardContent sx={{ flex: '1 0 auto' }}>
+                            <Typography component="div" variant="button" fontWeight={'bold'} sx={{ textTransform: 'uppercase', lineHeight: '0px', mb: 0.5 }}>
+                                Dew Point - Full Size 2 FL. 0Z.
+                            </Typography>
+                            <Typography component="div" variant="overline" sx={{ textTransform: 'uppercase' }}>
+                                Moisturizing gel-cream
+                            </Typography>
+                            <Typography component="div" variant="h7" fontWeight={'bold'} sx={{ textTransform: 'uppercase' }}>
+                                $14.19
+                            </Typography>
+                            <Button sx={{ padding: 0.5, bgcolor: 'black', color: 'white', textTransform: 'uppercase' }} fullWidth>Add to bag</Button>
+                        </CardContent>
+                    </Card>
+                    <Card sx={{ display: 'flex', bgcolor: 'transparent', boxShadow: 'none', mt: 2.5 }}>
+                        <CardMedia
+                            component="img"
+                            sx={{ width: 110, height: 110 }}
+                            image="https://www3.assets-gap.com/webcontent/0028/965/940/cn28965940.jpg"
+                            alt="Live from space album cover"
+                        />
+                        <CardContent sx={{ flex: '1 0 auto' }}>
+                            <Typography component="div" variant="button" fontWeight={'bold'} sx={{ textTransform: 'uppercase', lineHeight: '0px', mb: 0.5 }}>
+                                Dew Point - Full Size 2 FL. 0Z.
+                            </Typography>
+                            <Typography component="div" variant="overline" sx={{ textTransform: 'uppercase' }}>
+                                Moisturizing gel-cream
+                            </Typography>
+                            <Typography component="div" variant="h7" fontWeight={'bold'} sx={{ textTransform: 'uppercase' }}>
+                                $14.19
+                            </Typography>
+                            <Button sx={{ padding: 0.5, bgcolor: 'black', color: 'white', textTransform: 'uppercase' }} fullWidth>Add to bag</Button>
+                        </CardContent>
+                    </Card>
+                    <Card sx={{ display: 'flex', bgcolor: 'transparent', boxShadow: 'none', mt: 2.5 }}>
+                        <CardMedia
+                            component="img"
+                            sx={{ width: 110, height: 110 }}
+                            image="https://www3.assets-gap.com/webcontent/0028/965/940/cn28965940.jpg"
+                            alt="Live from space album cover"
+                        />
+                        <CardContent sx={{ flex: '1 0 auto' }}>
+                            <Typography component="div" variant="button" fontWeight={'bold'} sx={{ textTransform: 'uppercase', lineHeight: '0px', mb: 0.5 }}>
+                                Dew Point - Full Size 2 FL. 0Z.
+                            </Typography>
+                            <Typography component="div" variant="overline" sx={{ textTransform: 'uppercase' }}>
+                                Moisturizing gel-cream
+                            </Typography>
+                            <Typography component="div" variant="h7" fontWeight={'bold'} sx={{ textTransform: 'uppercase' }}>
+                                $14.19
+                            </Typography>
+                            <Button sx={{ padding: 0.5, bgcolor: 'black', color: 'white', textTransform: 'uppercase' }} fullWidth>Add to bag</Button>
+                        </CardContent>
+                    </Card>
+                </Grid>
+            </Grid>
         </Grid>
     )
 }

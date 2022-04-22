@@ -21,3 +21,12 @@
   border-top: none;
   border-bottom: none;
 }
+
+a {
+  text-decoration: none;
+}
+
+.Button :hover{
+  background-color: rgb(62, 62, 62)!important;
+  color: white;
+}
