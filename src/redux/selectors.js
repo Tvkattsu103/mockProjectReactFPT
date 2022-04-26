@@ -93,3 +93,4 @@ export const listProductSearchSelector = createSelector(
     return listProduct.filter((p) => p.name.includes(key));
   }
 );
+export const stateMiniCart = ( state ) => state.miniCart.open;

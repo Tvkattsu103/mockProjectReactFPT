@@ -1,15 +1,11 @@
-// import { createStore } from 'redux';
-// import rootReducer from './reducer';
-
-// const store = createStore(rootReducer);
-
-// export default store;
 import { configureStore } from "@reduxjs/toolkit";
 import searchSlide from "../components/Search/searchSlide";
+import miniCartReducer from "../components/MiniCart/miniCartSlice";
 
 const store = configureStore({
   reducer: {
     search: searchSlide.reducer,
+    miniCart: miniCartReducer.reducer,
   },
 });
 

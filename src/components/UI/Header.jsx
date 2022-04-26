@@ -25,6 +25,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LoginIcon from "@mui/icons-material/Login";
 import { Link } from "react-router-dom";
 import { Login } from "@mui/icons-material";
+import miniCartSlice from '../MiniCart/miniCartSlice';
 
 import searchSlide from '../Search/searchSlide'
 
@@ -189,7 +190,8 @@ const Header = () => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
-    //dispatch(changeStateMiniCart(open))
+    dispatch(miniCartSlice.actions.changeState(open))
+    // console.log(miniCartSlice.actions.changeState(open))
   };
 
   return (
@@ -280,7 +282,7 @@ const Header = () => {
             >
               <ShoppingCartIcon />
             </IconButton>
-            {/* <MiniCart toggleMiniCart={toggleMiniCart}/> */}
+            <MiniCart toggleMiniCart={toggleMiniCart}/>
             <Link to='/Login' sx={{textDecoration: 'none'}}>
             <IconButton
               size="large"
