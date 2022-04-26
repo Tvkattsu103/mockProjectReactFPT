@@ -209,7 +209,7 @@ export default function Header() {
             sx={{ display: { xs: "none", sm: "block" } }}
           >
             <Link
-              to="/HomePage"
+              to="/"
               style={{ textDecoration: "none", color: "white" }}
             >
               GAP

@@ -1,3 +1,6 @@
+body{
+  background-color: #EFEFEF;
+}
 .category-container {
   max-width: 1440px;
   margin: 1rem auto 2.7rem;

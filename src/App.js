@@ -8,6 +8,12 @@ import Search from "./components/Search/Search";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Payment from './components/Payment/Payment';
 import EmailSignUp from './components/EmailSignUp/EmailSignUp';
+import Address from './components/Address/Address';
+import Login from './components/Login/Login';
+import OrderHistory from './components/Order/OrderHistory';
+import Register from './components/Register/Register';
+import Shipping from './components/Shipping/Shipping';
+
 function App() {
 
   return (
@@ -22,9 +28,16 @@ function App() {
             <Route path="/emailsignup" element={<EmailSignUp />} />
             {/* <Route path="/" element={<><HomePage /><Outlet /></>} /> */}
             {/* <Route path="HomePage" element={<HomePage />} /> */}
-            <Route path="Search" element={<Search />} />
-            <Route path="OrderConfirmation" element={<OrderConfirmation />} />
-            <Route path="PaymentMethods" element={<PaymentMethods />} />
+            <Route path="/Search" element={<Search />} />
+            <Route path="/OrderConfirmation" element={<OrderConfirmation />} />
+            <Route path="/PaymentMethods" element={<PaymentMethods />} />
+            {/* <Route path="/" exact element={<App/>}></Route> */}
+            <Route path="/Login" element={<Login/>}></Route>
+            <Route path="/Register" element={<Register/>}></Route>
+            <Route path="/Shipping" element={<Shipping/>}></Route>
+            <Route path="/OrderHistory" element={<OrderHistory/>}></Route>
+            <Route path="/Address" element={<Address/>}></Route>
+            Category
           </Routes>
         </div>
       </Router>
