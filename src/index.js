@@ -1,26 +1,20 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from "./components/Home/HomePage";
-import Search from "./components/Search/Search";
-import OrderConfirmation from "./components/OrderConfirmation/OrderConfirmationPage";
-import PaymentMethods from "./components/PaymentMethods/PaymentMethods";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import store from './redux/store';
+import { Provider } from 'react-redux';
+import { render } from "react-dom";
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="HomePage" element={<HomePage />} />
-        <Route path="Search" element={<Search />} />
-        <Route path="OrderConfirmation" element={<OrderConfirmation />} />
-        <Route path="PaymentMethods" element={<PaymentMethods />} />
-      </Routes>
-    </BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 

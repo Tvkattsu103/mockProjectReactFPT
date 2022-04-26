@@ -7,6 +7,11 @@ import Carousel from "./Carousel";
 import SpacingGrid from "./SpacingGrid";
 import MonthBest from "./MonthBest";
 
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import {  FormControl, InputLabel, Input } from '@mui/material';
+import EmailSignUp from "../EmailSignUp/EmailSignUp";
+
 const HomePage = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [itemHover, setItemHover] = React.useState(null);
@@ -41,8 +46,9 @@ const HomePage = () => {
   return (
     <>
       <Header></Header>
+      <EmailSignUp/>
       <Grid container spacing={2}>
-        <Grid item xs={12}>
+        <Grid item xs={12} >
           <Box sx={{ backgroundColor: "#81d4fa" }}>
             <ButtonGroup
               variant="text"
@@ -55,10 +61,9 @@ const HomePage = () => {
                     key={ca.id}
                     aria-owns={open ? "mouse-over-popover" : undefined}
                     aria-haspopup="true"
-                    onMouseEnter={handlePopoverOpen}
-                    onMouseLeave={handlePopoverClose}
+                    onMouseOver={handlePopoverOpen}
                   >
-                    <Button>{ca.name}</Button>
+                    <Button >{ca.name}</Button>
                   </Box>
                 );
               })}
@@ -77,18 +82,16 @@ const HomePage = () => {
                   vertical: "top",
                   horizontal: "left",
                 }}
-                onClose={handlePopoverClose}
-                onMouseLeave={handlePopoverClose}
-                disableRestoreFocus
+                onMouseOver={handlePopoverClose}
               >
-                <Typography sx={{ p: 2 }}>{itemHover} use Popover.</Typography>
+                <Typography sx={{ p: 2 }} >{itemHover} use Popover.</Typography>
               </Popover>
             </ButtonGroup>
           </Box>
         </Grid>
         <Grid item xs={12}>
           <Box sx={{ backgroundColor: "#81d4fa" }}>
-            <Carousel></Carousel>
+            <Carousel ></Carousel>
           </Box>
         </Grid>
         <Grid item xs={12}>

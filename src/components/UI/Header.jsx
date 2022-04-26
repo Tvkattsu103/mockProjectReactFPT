@@ -1,23 +1,32 @@
 import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import InputBase from "@mui/material/InputBase";
-import Badge from "@mui/material/Badge";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
+import {
+  AppBar,
+  Box,
+  Menu,
+  MenuItem,
+  Badge,
+  InputBase,
+  Toolbar,
+  Typography,
+  IconButton
+} from '@mui/material';
 import SearchIcon from "@mui/icons-material/Search";
+import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
+import { ShoppingCart } from '@mui/icons-material'
+import MiniCart from "../MiniCart/MiniCart";
+
+import { useDispatch } from "react-redux";
+import { changeStateMiniCart } from '../../redux/actions';
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LoginIcon from "@mui/icons-material/Login";
 import { Link } from "react-router-dom";
 import { Login } from "@mui/icons-material";
+
+import searchSlide from '../Search/searchSlide'
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -59,7 +68,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function Header() {
+const Header = () => {
+  const dispatch = useDispatch();
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [keyword, setKeyword] = React.useState("");
@@ -168,9 +179,19 @@ export default function Header() {
     </Menu>
   );
 
+
   const handleKeyword = (e) => {
     setKeyword(e.currentTarget.value);
+    dispatch(searchSlide.actions.searchKeyChange(e.currentTarget.value));
+  }
+
+  const toggleMiniCart = (open) => (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+    //dispatch(changeStateMiniCart(open))
   };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -191,7 +212,7 @@ export default function Header() {
             sx={{ display: { xs: "none", sm: "block" } }}
           >
             <Link
-              to="/HomePage"
+              to="/"
               style={{ textDecoration: "none", color: "white" }}
             >
               GAP
@@ -240,7 +261,6 @@ export default function Header() {
             </IconButton>
             <IconButton
               size="large"
-              edge="end"
               aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
@@ -249,10 +269,26 @@ export default function Header() {
             >
               <AccountCircle />
             </IconButton>
-            <Link to="/Login" sx={{ textDecoration: "none" }}>
-              <IconButton size="large" edge="end" aria-haspopup="true">
-                <LoginIcon sx={{ color: "white" }} />
-              </IconButton>
+            <IconButton
+              size="large"
+              edge="end"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              color="inherit"
+              onClick={toggleMiniCart(true)}
+            >
+              <ShoppingCartIcon />
+            </IconButton>
+            {/* <MiniCart toggleMiniCart={toggleMiniCart}/> */}
+            <Link to='/Login' sx={{textDecoration: 'none'}}>
+            <IconButton
+              size="large"
+              edge="end"
+              aria-haspopup="true"
+            >
+              <LoginIcon sx={{color: 'white'}}/>
+            </IconButton>
             </Link>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
@@ -274,3 +310,4 @@ export default function Header() {
     </Box>
   );
 }
+export default Header;
