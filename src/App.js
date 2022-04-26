@@ -14,6 +14,13 @@ import OrderHistory from './components/Order/OrderHistory';
 import Register from './components/Register/Register';
 import Shipping from './components/Shipping/Shipping';
 
+import CardPage from './components/UICartPage/CardPage';
+import Main from './components/UICheckOut/Main';
+import UIMyProfile from './components/UIMyProfile/Main';
+import Product from './components/UIProduct/Product.js';
+import MainReturn from './components/UIReturns/MainReturn';
+// import Product from "./components/UIProduct/TestGird.js";
+
 function App() {
 
   return (
@@ -37,12 +44,20 @@ function App() {
             <Route path="/Shipping" element={<Shipping/>}></Route>
             <Route path="/OrderHistory" element={<OrderHistory/>}></Route>
             <Route path="/Address" element={<Address/>}></Route>
-            Category
+            
+            <Route path="CardPage" element={<CardPage />} />
+            <Route path="Product" element={<Product />} />
+            <Route path="MyProfile" element={<UIMyProfile />} />
+            <Route path="Main" element={<Main/>} />
+            <Route path="MainReturn" element={<MainReturn/>} />
           </Routes>
         </div>
       </Router>
       {/* <HomePage />
       <Outlet /> */}
+    {/* <Category/> */}
+    {/* <HomePage /> */}
+    {/* <Product/> */}
     </>
   );
 }
