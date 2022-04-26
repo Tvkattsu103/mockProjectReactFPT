@@ -20,6 +20,7 @@ import { stateMiniCart } from './../../redux/selectors';
 
 export default function MiniCart({ toggleMiniCart }) {
   const open = useSelector(stateMiniCart)
+  // console.log(open)
   const list = () => (
     <Box
       sx={{ width: 550, height: '100%' }}

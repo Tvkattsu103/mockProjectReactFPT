@@ -25,6 +25,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LoginIcon from "@mui/icons-material/Login";
 import { Link } from "react-router-dom";
 import { Login } from "@mui/icons-material";
+import miniCartSlice from '../MiniCart/miniCartSlice';
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -186,7 +187,8 @@ export default function Header() {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
-    dispatch(changeStateMiniCart(open))
+    // dispatch(miniCartSlice.actions.changeState(open))
+    console.log(miniCartSlice.actions.changeState(open))
   };
 
   return (
