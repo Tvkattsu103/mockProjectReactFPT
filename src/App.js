@@ -1,10 +1,9 @@
-import { Link, Outlet } from 'react-router-dom';
+// import { Link, Outlet } from 'react-router-dom';
 import './App.css';
 import Category from './components/Category/Category';
 import HomePage from "./components/Home/HomePage";
 import OrderConfirmation from "./components/OrderConfirmation/OrderConfirmationPage";
 import PaymentMethods from "./components/PaymentMethods/PaymentMethods";
-import HomePage from "./components/Home/HomePage";
 import Search from "./components/Search/Search";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Payment from './components/Payment/Payment';
