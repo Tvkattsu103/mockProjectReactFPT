@@ -1,6 +1,7 @@
 import './App.css';
 import Address from './components/Address/Address';
 import Category from './components/Category';
+import Help from './components/Help/Help';
 import HomePage from "./components/Home/HomePage";
 import Login from './components/Login/Login';
 import OrderHistory from './components/Order/OrderHistory';
@@ -16,7 +17,8 @@ function App() {
     {/* <Register/> */}
     {/* <Shipping/> */}
     {/* <OrderHistory/> */}
-    <Address/>
+    {/* <Address/> */}
+    <Help/>
     </>
   );
 }
