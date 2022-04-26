@@ -22,7 +22,7 @@ import { red } from '@mui/material/colors';
 import UnderlineLink from './Link';
 
 
-export default function Product() {
+export default function CardPage() {
     return (
         <div style={{ marginLeft: '200px', marginTop: '50px' }} >
             <Grid container spacing={2}>

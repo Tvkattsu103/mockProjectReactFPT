@@ -9,7 +9,7 @@ import HalfRating from './Rating';
 import SpacingGrid from './ImageThuNho';
 import BoxSize from './BoxSize';
 import BoxWidth from './BoxWidth';
-import ContainedButtons from './Button';
+import ContainedButtons from './ContainedButtons';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -19,7 +19,7 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
 }));
 
-export default function BasicGrid() {
+export default function Product() {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={20}>
