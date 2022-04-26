@@ -1,3 +1,4 @@
+import { useDispatch } from 'react-redux';
 import { Button, Grid, TextField } from '@mui/material';
 import { height } from '@mui/system';
 import React, { useState } from 'react'
@@ -5,12 +6,15 @@ import { Route, Routes , Link } from 'react-router-dom';
 import HomePage from '../Home/HomePage';
 import Register from '../Register/Register';
 import Header from '../UI/Header';
+import { login } from './userSlice';
 
 function Login() {
     const [Email , setEmail] = useState('');
     const [Password, setPassword] =useState('');
     const [emailErr , setEmailErr] = useState('');
     const [passErr, setPassErr] =useState('');
+
+    const dispatch = useDispatch();
     const handleChangeEmail=(e)=>{
         setEmail(e.target.value);
     }
@@ -40,6 +44,11 @@ function Login() {
         }else{
             alert("Login fail")
         }
+        // dispatch(login({
+        //     Email:Email,
+        //     Password:Password,
+        //     loggedIn:true
+        // }));
     }
     const handleSubmit2=(e)=>{
         e.preventDefault();

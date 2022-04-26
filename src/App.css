@@ -18,3 +18,21 @@ body{
 .Box:hover {
   color: black;
 }
+
+.list-category{
+  border: 1px solid rgb(18, 35, 68);
+  border-top: none;
+  border-bottom: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.Button :hover{
+  background-color: rgb(62, 62, 62)!important;
+  color: white;
+}
+body{
+  background-color: #efefef;
+}

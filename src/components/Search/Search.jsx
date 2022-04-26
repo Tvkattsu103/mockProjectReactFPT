@@ -1,71 +1,45 @@
-import React from "react";
+import { Button, Card, CardActions, CardContent, CardMedia, Container, Grid, Typography } from "@mui/material";
+import React, { useState, useEffect } from "react";
 import Header from "../UI/Header";
+import listProduct from "../../data/listProduct";
 
 const Search = () => {
+
+  const [list, setList] = useState(listProduct);
+
   return (
     <>
       <Header></Header>
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <Box sx={{ backgroundColor: "#81d4fa" }}>
-            <ButtonGroup
-              variant="text"
-              aria-label="text button group"
-              size="large"
-            >
-              {categories.map((ca) => {
-                return (
-                  <Box
-                    key={ca.id}
-                    aria-owns={open ? "mouse-over-popover" : undefined}
-                    aria-haspopup="true"
-                    onMouseEnter={handlePopoverOpen}
-                    onMouseLeave={handlePopoverClose}
-                  >
-                    <Button>{ca.name}</Button>
-                  </Box>
-                );
-              })}
-              <Popover
-                id="mouse-over-popover"
-                sx={{
-                  pointerEvents: "none",
-                }}
-                open={open}
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
-                }}
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
-                }}
-                onClose={handlePopoverClose}
-                onMouseLeave={handlePopoverClose}
-                disableRestoreFocus
-              >
-                <Typography sx={{ p: 2 }}>{itemHover} use Popover.</Typography>
-              </Popover>
-            </ButtonGroup>
-          </Box>
+      <Container maxWidth="" sx={{marginTop: 3}}>
+        <Grid container spacing={2}>
+          {list.map((p) => {
+            return (
+              <Grid item xs={3} key={p.id}>
+                <Card>
+                  <CardMedia
+                    component="img"
+                    height="400"
+                    image={p.image}
+                    alt={p.name}
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                      {p.type}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {p.description}
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small">Share</Button>
+                    <Button size="small">Learn More</Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+            );
+          })}
         </Grid>
-        <Grid item xs={12}>
-          <Box sx={{ backgroundColor: "#81d4fa" }}>
-            <Carousel></Carousel>
-          </Box>
-        </Grid>
-        <Grid item xs={12}>
-          <Box sx={{ backgroundColor: "#81d4fa" }}>
-            <SpacingGrid></SpacingGrid>
-          </Box>
-        </Grid>
-        <Grid item xs={12}>
-          <Box sx={{ backgroundColor: "#81d4fa" }}>
-            <MonthBest></MonthBest>
-          </Box>
-        </Grid>
-      </Grid>
+      </Container>
     </>
   );
 };
