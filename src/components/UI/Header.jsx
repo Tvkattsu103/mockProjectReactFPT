@@ -249,14 +249,10 @@ export default function Header() {
             >
               <AccountCircle />
             </IconButton>
-            <Link to='/Login' sx={{textDecoration: 'none'}}>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-haspopup="true"
-            >
-              <LoginIcon sx={{color: 'white'}}/>
-            </IconButton>
+            <Link to="/Login" sx={{ textDecoration: "none" }}>
+              <IconButton size="large" edge="end" aria-haspopup="true">
+                <LoginIcon sx={{ color: "white" }} />
+              </IconButton>
             </Link>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
