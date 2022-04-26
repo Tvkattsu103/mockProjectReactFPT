@@ -7,6 +7,11 @@ import Carousel from "./Carousel";
 import SpacingGrid from "./SpacingGrid";
 import MonthBest from "./MonthBest";
 
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import {  FormControl, InputLabel, Input } from '@mui/material';
+import EmailSignUp from "../EmailSignUp/EmailSignUp";
+
 const HomePage = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [itemHover, setItemHover] = React.useState(null);
@@ -41,6 +46,7 @@ const HomePage = () => {
   return (
     <>
       <Header></Header>
+      <EmailSignUp/>
       <Grid container spacing={2}>
         <Grid item xs={12} >
           <Box sx={{ backgroundColor: "#81d4fa" }}>
