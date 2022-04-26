@@ -5,7 +5,7 @@ export default createSlice({
     initialState: {
         open: false,
     },
-    reducer: {
+    reducers: {
         changeState: (state, action) => {
             state.open = action.payload;
         }

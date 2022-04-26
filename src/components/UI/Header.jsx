@@ -187,8 +187,8 @@ export default function Header() {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
-    // dispatch(miniCartSlice.actions.changeState(open))
-    console.log(miniCartSlice.actions.changeState(open))
+    dispatch(miniCartSlice.actions.changeState(open))
+    // console.log(miniCartSlice.actions.changeState(open))
   };
 
   return (
