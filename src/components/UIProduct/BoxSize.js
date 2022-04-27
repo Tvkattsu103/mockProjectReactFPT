@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import { Button } from '@mui/material';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -12,44 +13,59 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
 }));
 
-export default function BoxSize() {
+export default function BoxSize(props) {
     return (
         <div>
             <h3>Chọn loại size</h3>
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={0}>
                     <Grid item xs={2} md={2}>
-                        <Item>50</Item>
+                        <Button onClick={(size) => props.getDataSize(50)}>
+                            <Item>50</Item>
+                        </Button>
                     </Grid>
                     <Grid item xs={2} md={2}>
-                        <Item>51</Item>
-                    </Grid>        <Grid item xs={2} md={2}>
-                        <Item>52</Item>
-                    </Grid>        <Grid item xs={2} md={2}>
-                        <Item>53</Item>
-                    </Grid>        <Grid item xs={2} md={2}>
-                        <Item>54</Item>
-                    </Grid>        <Grid item xs={2} md={2}>
-                        <Item>55</Item>
-                    </Grid>
+                        <Button onClick={(size) => props.getDataSize(51)}>
+                            <Item>51</Item>
+                        </Button>                    </Grid>        <Grid item xs={2} md={2}>
+                        <Button onClick={(size) => props.getDataSize(52)}>
+                            <Item>52</Item>
+                        </Button>                    </Grid>        <Grid item xs={2} md={2}>
+                        <Button onClick={(size) => props.getDataSize(53)}>
+                            <Item>53</Item>
+                        </Button>                    </Grid>        <Grid item xs={2} md={2}>
+                        <Button onClick={(size) => props.getDataSize(54)}>
+                            <Item>54</Item>
+                        </Button>                    </Grid>        <Grid item xs={2} md={2}>
+                        <Button onClick={(size) => props.getDataSize(55)}>
+                            <Item>55</Item>
+                        </Button>                    </Grid>
                     <Grid item xs={2} md={2}>
-                        <Item>56</Item>
-                    </Grid>        <Grid item xs={2} md={2}>
-                        <Item>57</Item>
-                    </Grid>        <Grid item xs={2} md={2}>
-                        <Item>58</Item>
-                    </Grid>        <Grid item xs={2} md={2}>
-                        <Item>59</Item>
-                    </Grid>        <Grid item xs={2} md={2}>
-                        <Item>60</Item>
-                    </Grid>
+                        <Button onClick={(size) => props.getDataSize(56)}>
+                            <Item>56</Item>
+                        </Button>                    </Grid>        <Grid item xs={2} md={2}>
+                        <Button onClick={(size) => props.getDataSize(57)}>
+                            <Item>57</Item>
+                        </Button>                    </Grid>        <Grid item xs={2} md={2}>
+                        <Button onClick={(size) => props.getDataSize(58)}>
+                            <Item>58</Item>
+                        </Button>                    </Grid>        <Grid item xs={2} md={2}>
+                        <Button onClick={(size) => props.getDataSize(59)}>
+                            <Item>59</Item>
+                        </Button>                    </Grid>        <Grid item xs={2} md={2}>
+                        <Button onClick={(size) => props.getDataSize(60)}>
+                            <Item>60</Item>
+                        </Button>                    </Grid>
                     <Grid item xs={2} md={2}>
-                        <Item>61</Item>
-                    </Grid>        <Grid item xs={2} md={2}>
-                        <Item>62</Item>
-                    </Grid>        <Grid item xs={2} md={2}>
-                        <Item>63</Item>
-                    </Grid>
+                        <Button onClick={(size) => props.getDataSize(61)}>
+                            <Item>61</Item>
+                        </Button>                    </Grid>        <Grid item xs={2} md={2}>
+                        <Button onClick={(size) => props.getDataSize(62)}>
+                            <Item>62</Item>
+                        </Button>                    </Grid>        <Grid item xs={2} md={2}>
+                        <Button onClick={(size) => props.getDataSize(63)}>
+                            <Item>63</Item>
+                        </Button>                    </Grid>
                 </Grid>
             </Box>
         </div>
