@@ -3,6 +3,7 @@ import { createSelector } from "@reduxjs/toolkit";
 // export const stateMiniCart = (state) => state.miniCart.open;
 
 export const searchSelector = (state) => state.search.key;
+export const orderConfirmSelector = (state) => state.orderConfirm;
 
 const listProduct = [
   {
@@ -91,5 +92,12 @@ export const listProductSearchSelector = createSelector(
   searchSelector,
   (key) => {
     return listProduct.filter((p) => p.name.includes(key));
+  }
+);
+
+export const currentOrderConfirmSelector = createSelector(
+  orderConfirmSelector,
+  (list) => {
+    return list;
   }
 );

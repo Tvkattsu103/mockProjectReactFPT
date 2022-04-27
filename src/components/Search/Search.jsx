@@ -11,8 +11,6 @@ const Search = () => {
 
   const listProductSearch = useSelector(listProductSearchSelector);
 
-  console.log(listProductSearch);
-
   return (
     <>
       <Header></Header>
