@@ -1,4 +1,3 @@
-// import { Link, Outlet } from 'react-router-dom';
 import './App.css';
 import Category from './components/Category/Category';
 import HomePage from "./components/Home/HomePage";
@@ -19,7 +18,6 @@ import Main from './components/UICheckOut/Main';
 import UIMyProfile from './components/UIMyProfile/Main';
 import Product from './components/UIProduct/Product.js';
 import MainReturn from './components/UIReturns/MainReturn';
-// import Product from "./components/UIProduct/TestGird.js";
 
 function App() {
 
