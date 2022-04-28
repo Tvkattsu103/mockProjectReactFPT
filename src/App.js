@@ -22,12 +22,10 @@ import Product from './components/UIProduct/Product.js';
 import MainReturn from './components/UIReturns/MainReturn';
 
 function App() {
-
   return (
     <>
       <Router>
         <div id="main-ct" className="p-child-dkr">
-
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/category" element={<Category />} />
@@ -39,30 +37,33 @@ function App() {
             <Route path="/OrderConfirmation" element={<OrderConfirmation />} />
             <Route path="/PaymentMethods" element={<PaymentMethods />} />
             {/* <Route path="/" exact element={<App/>}></Route> */}
-            <Route path="/Login" element={<Login/>}></Route>
-            <Route path="/Register" element={<Register/>}></Route>
-            <Route path="/Shipping" element={<Shipping/>}></Route>
-            <Route path="/OrderHistory" element={<OrderHistory/>}></Route>
-            <Route path="/Address" element={<Address/>}></Route>
-            
+            <Route path="/Login" element={<Login />}></Route>
+            <Route path="/Register" element={<Register />}></Route>
+            <Route path="/Shipping" element={<Shipping />}></Route>
+            <Route path="/OrderHistory" element={<OrderHistory />}></Route>
+            <Route path="/Address" element={<Address />}></Route>
+
             <Route path="CardPage" element={<CardPage />} />
             <Route path="Product" element={<Product />} />
             <Route path="MyProfile" element={<UIMyProfile />} />
-            <Route path="Main" element={<Main/>} />
-            <Route path="MainReturn" element={<MainReturn/>} />
+            <Route path="Main" element={<Main />} />
+            <Route path="MainReturn" element={<MainReturn />} />
           </Routes>
         </div>
       </Router>
       {/* <HomePage />
       <Outlet /> */}
-    {/* <Category/> */}
-    {/* <HomePage /> */}
-    {/* <Login/> */}
-    {/* <Register/> */}
-    {/* <Shipping/> */}
-    {/* <OrderHistory/> */}
-    {/* <Address/> */}
-    
+      {/* <Category/> */}
+      {/* <HomePage /> */}
+      {/* <Login/> */}
+      {/* <Register/> */}
+      {/* <Shipping/> */}
+      {/* <OrderHistory/> */}
+      {/* <Address/> */}
+
+      {/* <Category/> */}
+      {/* <HomePage /> */}
+      {/* <Product/> */}
     </>
   );
 }

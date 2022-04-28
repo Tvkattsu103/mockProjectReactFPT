@@ -1,38 +1,12 @@
 [
     {
         "id": 1,
-        "image": "https://cdn.pixabay.com/photo/2016/03/27/22/16/fashion-1284496__340.jpg",
-        "name": "Giày cao gót",
-        "use": "Giày cao gót là một loại giày trong đó gót chân, so với ngón chân, cao hơn đáng kể so với mặt đất. Chúng làm cho người mặc có vẻ cao hơn, làm nổi bật cơ bắp chân và chiều dài của tổng thể chân. Có nhiều loại giày cao gót, có nhiều kiểu dáng, màu sắc và chất liệu khác nhau, và có thể được tìm thấy trên khắp thế giới",
-        "color": "Black",
-        "Size": "S",
-        "Price": "50$"
-    },
-    {
-        "id": 2,
-        "image": "https://cdn.hoang-phuc.com/media/catalog/product/cache/3243173bfa4021eba79889ede7b15407/3/3/33191kw-a0a-1.jpg",
-        "name": "Giày chạy bộ",
-        "use": "Giày Running là giày được sử dụng cho mục đích chạy bộ. Được thiết kế cho chuyển động gót-đến-mũi của bàn chân và thường chiều cao chênh lệch giữa gót và mũi khá lớn là do những công nghệ hỗ trợ và tạo đệm dưới gót chân.",
-        "color": "Red",
-        "Size": "M",
-        "Price": "50$"
-    },
-    {
-        "id": 3,
-        "image": "https://cdn.hoang-phuc.com/media/catalog/product/cache/3243173bfa4021eba79889ede7b15407/3/3/33191kw-a0a-1.jpg",
-        "name": "Giày chạy bộ",
-        "use": "Giày Running là giày được sử dụng cho mục đích chạy bộ. Được thiết kế cho chuyển động gót-đến-mũi của bàn chân và thường chiều cao chênh lệch giữa gót và mũi khá lớn là do những công nghệ hỗ trợ và tạo đệm dưới gót chân.",
-        "color": "Yellow",
-        "Size": "XL",
-        "Price": "50$"
-    },
-    {
-        "id": 4,
         "image": "https://cdn.hoang-phuc.com/media/catalog/product/cache/3243173bfa4021eba79889ede7b15407/3/3/33191kw-a0a-1.jpg",
         "name": "Giày chạy bộ",
         "use": "Giày Running là giày được sử dụng cho mục đích chạy bộ. Được thiết kế cho chuyển động gót-đến-mũi của bàn chân và thường chiều cao chênh lệch giữa gót và mũi khá lớn là do những công nghệ hỗ trợ và tạo đệm dưới gót chân.",
         "color": "Green",
         "Size": "XXL",
-        "Price": "50$"
+        "Price": "50$",
+        "Type": "https://www.brooksrunning.com/dw/image/v2/BGPF_PRD/on/demandware.static/-/Sites-brooks-master-catalog/default/dwc5b364b1/original/120353/120353-043-l-adrenaline-gts-22-womens-cushion-running-shoe.png?sw=58&sh=58&sm=fit"
     }
 ]
