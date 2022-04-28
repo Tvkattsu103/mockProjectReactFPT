@@ -1,6 +1,10 @@
 import { Button, Container, Grid, TextField } from '@mui/material';
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+
 import Header from '../UI/Header';
+import registerSlice from './registerSlice';
+import { listUser } from '../../redux/selectors';
 function Register() {
     const [Email , setEmail] = useState('');
     const [Password, setPassword] =useState('');
@@ -19,6 +23,10 @@ function Register() {
     const [errProvince, setErrProvince] = useState('');
     const [errCity, setErrCity] = useState('');
     const [errAddress, setErrAddress] = useState('');
+
+    const dispatch = useDispatch();
+    const listUser1 = useSelector(listUser);
+    
     const handleChangeEmail=(e)=>{
         setEmail(e.target.value);
     }
@@ -57,10 +65,17 @@ function Register() {
       }
     const handleSubmit =(e)=>{
         e.preventDefault();
-        if(checkValid==true){
-            alert("Register Successful")
-        }else{
-            alert("Register Fail")
+        // if(checkValid==true){
+        //     alert("Register Successful")
+        // }else{
+        //     alert("Register Fail")
+        // }
+        
+        if(listUser1.find(user=> user.email===Email)){
+            alert("Email đã tồn tại")
+        }
+        else{
+            dispatch(registerSlice.actions.addUser({email:Email,password:Password,name:Name,surname:Surname,province:Province,city:City,address:Address}));
         }
     }
     return (

@@ -1,20 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
-export const userSlice = createSlice({
-    name:"user",
-    initialState:{
-        user:null
+import { LineAxisOutlined } from "@mui/icons-material";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import axios from "axios";
+
+
+export default createSlice({
+    name: "user",
+    initialState: {email:'',password:''},
+    reducers: {
+      loginSuccess: (state, action)=>{
+         state.email=action.payload.email;
+         state.password=action.payload.password;
+      },
+      logout:(state)=>{
+        state=undefined;
+      }
     },
-    reducers:{
-        login: (state,action)=>{
-            state.user=action.payload;
-        },
-        logout: (state)=>{
-            state.user=null;
-        }
-    }
-})
-export const { login ,logout } = userSlice.actions;
+});
 
-export const selectUser = (state) => state.user.user;
-
-export default userSlice.reducer;

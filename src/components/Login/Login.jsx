@@ -1,4 +1,3 @@
-import { useDispatch } from 'react-redux';
 import { Button, Grid, TextField } from '@mui/material';
 import { height } from '@mui/system';
 import React, { useState } from 'react'
@@ -6,7 +5,10 @@ import { Route, Routes , Link } from 'react-router-dom';
 import HomePage from '../Home/HomePage';
 import Register from '../Register/Register';
 import Header from '../UI/Header';
-import { login } from './userSlice';
+import userSlice  from './userSlice';
+import { useDispatch, useSelector } from "react-redux";
+import {checkUserSelector} from '../../redux/selectors'
+
 
 function Login() {
     const [Email , setEmail] = useState('');
@@ -14,6 +16,11 @@ function Login() {
     const [emailErr , setEmailErr] = useState('');
     const [passErr, setPassErr] =useState('');
 
+    const checkUser = useSelector(checkUserSelector);
+    console.log(checkUser);
+    if(checkUser){
+        alert("Đăng nhập thành công");
+    }
     const dispatch = useDispatch();
     const handleChangeEmail=(e)=>{
         setEmail(e.target.value);
@@ -39,16 +46,12 @@ function Login() {
       }
     const handleSubmit=(e)=>{
         e.preventDefault();
-        if(checkLogin()==true){
-            alert("Login successful")
-        }else{
-            alert("Login fail")
-        }
-        // dispatch(login({
-        //     Email:Email,
-        //     Password:Password,
-        //     loggedIn:true
-        // }));
+        // if(checkLogin()==true){
+        //     alert("Login successful")
+        // }else{
+        //     alert("Login fail")
+        // }
+        dispatch(userSlice.actions.loginSuccess({email:Email,password:Password}));
     }
     const handleSubmit2=(e)=>{
         e.preventDefault();
@@ -102,7 +105,7 @@ function Login() {
                         BẰNG CÁCH CUNG CẤP CHO CHÚNG TÔI THÔNG TIN CHI TIẾT CỦA QUÝ KHÁCH, QUÁ TRÌNH MUA HÀNG TRÊN GAP.COM SẼ LÀ MỘT TRẢI NGHIỆM THÚ VỊ VÀ NHANH CHÓNG HƠN.
                     </p>
                     {/* <Button type='submit' color='primary' fullWidth style={{backgroundColor:'black',color:'white'}}><b>Register now</b></Button> */}
-                    <Link to="/Register" fullWidth style={{backgroundColor:'black',color:'white',textDecoration:'none'}}>Register now</Link>
+                    <Link to="/Register" fullWidth style={{backgroundColor:'black',color:'white',textDecoration:'none', border:'1px solid black',padding:'10px',display:'flex',justifyContent:'center'}}><b>Register now</b></Link>
                 </form>    
             </Grid>
         </Grid>

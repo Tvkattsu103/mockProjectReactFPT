@@ -1,25 +1,25 @@
-const initialState = {
-    miniCart: {
-        open: false,
-    },
-}
+// const initialState = {
+//     miniCart: {
+//         open: false,
+//     },
+// }
 
-const rootReducer = (state = initialState, { type, payload }) => {
-    console.log(state);
-    switch (type) {
+// const rootReducer = (state = initialState, { type, payload }) => {
+//     console.log(state);
+//     switch (type) {
 
-        case 'miniCart/changeState':
-            return {
-                ...state,
-                miniCart: {
-                    ...state.miniCart,
-                    open: payload
-                }
-            }
+//         case 'miniCart/changeState':
+//             return {
+//                 ...state,
+//                 miniCart: {
+//                     ...state.miniCart,
+//                     open: payload
+//                 }
+//             }
 
-        default:
-            return state;
-    }
-}
+//         default:
+//             return state;
+//     }
+// }
 
-export default rootReducer;
+// export default rootReducer;

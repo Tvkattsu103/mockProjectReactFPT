@@ -1,4 +1,4 @@
-export const changeStateMiniCart = (miniCartState) => {
+export const changeState = (miniCartState) => {
     return {
         type: 'miniCart/changeState',
         payload: miniCartState
