@@ -105,4 +105,7 @@ export const checkUserSelector = createSelector(
     return listUser.find((p) => p.email===user.email && p.password===user.password);
   }
 );
+// phan cua anh HuyHt8 address
+export const listAddress = (state) => state.address;
+
 
