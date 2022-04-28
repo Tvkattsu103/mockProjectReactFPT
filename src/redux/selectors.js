@@ -101,3 +101,5 @@ export const currentOrderConfirmSelector = createSelector(
     return list;
   }
 );
+
+export const listPaymentMethod = (state) => state.paymentMethod;
