@@ -26,7 +26,7 @@ function Register() {
 
     const dispatch = useDispatch();
     const listUser1 = useSelector(listUser);
-    
+
     const handleChangeEmail=(e)=>{
         setEmail(e.target.value);
     }
@@ -51,37 +51,35 @@ function Register() {
     const handleChangeAddress=(e)=>{
         setAddress(e.target.value);
     }
-    const checkValid = ()=>{
+    const checkValid = () =>{
         let isValid = true;
-        const regexEmail = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
+        //const regexEmail = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
         
         
         if(RePassword!==Password){
             setErrRePassword("RePassword is not same Password");
+            isValid = false;
         }else{
             setErrRePassword("");
+            
         }
         return isValid;
       }
     const handleSubmit =(e)=>{
         e.preventDefault();
-        // if(checkValid==true){
-        //     alert("Register Successful")
-        // }else{
-        //     alert("Register Fail")
-        // }
-        
-        if(listUser1.find(user=> user.email===Email)){
-            alert("Email đã tồn tại")
-        }
-        else{
-            dispatch(registerSlice.actions.addUser({email:Email,password:Password,name:Name,surname:Surname,province:Province,city:City,address:Address}));
+        if(checkValid()===true){
+            if(listUser1.find(user=> user.email===Email)){
+                alert("Email đã tồn tại")
+            }
+            else{
+                dispatch(registerSlice.actions.addUser({email:Email,password:Password,name:Name,surname:Surname,province:Province,city:City,address:Address}));
+            }
         }
     }
     return (
     <div>
         <Header/>
-        <Container>
+        <Container >
         <Grid container spacing={2}>
             <Grid item xs={6}>
                 <form method='post' onSubmit={handleSubmit}>
@@ -89,7 +87,7 @@ function Register() {
                     <h5><b>PERSONAL DETAILS</b></h5>
                 </Grid>
                 <Grid item xs={12}>
-                    <TextField 
+                    <TextField
                     label='Email' 
                     id="outlined-size-small" 
                     value={Email} 
@@ -98,6 +96,8 @@ function Register() {
                     fullWidth 
                     required 
                     onChange={handleChangeEmail}
+                    error={errEmail!==""}
+                    helperText={errEmail!==""?errEmail:null}
                     />
                 </Grid>
                 <Grid container item xs={12}>
@@ -111,6 +111,8 @@ function Register() {
                         fullWidth 
                         required
                         onChange={handleChangePassword}
+                        error={errPassword!==""}
+                        helperText={errPassword!==""?errPassword:null}
                         />
                     </Grid>
                     <Grid item xs={6}>
@@ -123,6 +125,8 @@ function Register() {
                         fullWidth 
                         required
                         onChange={handleChangeRePassword}
+                        error={errRePassword!==""}
+                        helperText={errRePassword!==""?errRePassword:null}
                         />
                     </Grid>
                 </Grid>
@@ -137,6 +141,8 @@ function Register() {
                         fullWidth 
                         required
                         onChange={handleChangeName}
+                        error={errName!==""}
+                        helperText={errName!==""?errName:null}
                         />
                     </Grid>
                     <Grid item xs={6}>
@@ -149,6 +155,8 @@ function Register() {
                         fullWidth 
                         required
                         onChange={handleChangeSurname}
+                        error={errSurname!==""}
+                        helperText={errSurname!==""?errSurname:null}
                         />
                     </Grid>
                 </Grid>
@@ -163,6 +171,8 @@ function Register() {
                         fullWidth 
                         required
                         onChange={handleChangeProvince}
+                        error={errProvince!==""}
+                        helperText={errProvince!==""?errProvince:null}
                         />
                     </Grid>
                     <Grid item xs={6}>
@@ -175,6 +185,8 @@ function Register() {
                         fullWidth 
                         required
                         onChange={handleChangeCity}
+                        error={errCity!==""}
+                        helperText={errCity!==""?errCity:null}
                         />
                     </Grid>
                 </Grid>
@@ -188,6 +200,8 @@ function Register() {
                     fullWidth 
                     required
                     onChange={handleChangeAddress}
+                    error={errAddress!==""}
+                    helperText={errAddress!==""?errAddress:null}
                     />
                 </Grid>
                 <Button type='submit' color='primary' fullWidth style={{backgroundColor:'black',color:'white'}}><b>Register</b></Button>

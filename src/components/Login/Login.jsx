@@ -46,11 +46,7 @@ function Login() {
       }
     const handleSubmit=(e)=>{
         e.preventDefault();
-        // if(checkLogin()==true){
-        //     alert("Login successful")
-        // }else{
-        //     alert("Login fail")
-        // }
+
         dispatch(userSlice.actions.loginSuccess({email:Email,password:Password}));
     }
     const handleSubmit2=(e)=>{
@@ -80,7 +76,7 @@ function Login() {
                     required 
                     onChange={handleChangeEmail}
                     />
-                    <small className="text-danger">{emailErr}</small>
+                    <small >{emailErr}</small>
                     <TextField 
                     label='Password' 
                     id="outlined-size-small" 
@@ -91,7 +87,7 @@ function Login() {
                     required 
                     onChange={handleChangePassword}
                     />
-                    <small className="text-danger">{passErr}</small>
+                    <small >{passErr}</small>
                     <Button type='submit' color='primary' fullWidth style={{backgroundColor:'black',color:'white'}}><b>Login in</b></Button>
                 </form>
             </Grid>
