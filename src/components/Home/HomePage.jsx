@@ -6,10 +6,6 @@ import { Popover, Typography } from "@mui/material";
 import Carousel from "./Carousel";
 import SpacingGrid from "./SpacingGrid";
 import MonthBest from "./MonthBest";
-
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
-import {  FormControl, InputLabel, Input } from '@mui/material';
 import EmailSignUp from "../EmailSignUp/EmailSignUp";
 
 const HomePage = () => {

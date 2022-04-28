@@ -93,4 +93,10 @@ export const listProductSearchSelector = createSelector(
     return listProduct.filter((p) => p.name.includes(key));
   }
 );
+//miniCart
 export const stateMiniCart = ( state ) => state.miniCart.open;
+//emailSignUp
+export const emailErrSelector = ( state ) => state.emailSignUp.emailErr;
+export const stateEmailSignUp = ( state ) => state.emailSignUp.open;
+export const showOffCodeSelector = ( state ) => state.emailSignUp.showOffCode;
+export const emailInputSelector = ( state ) => state.emailSignUp.emailInput;

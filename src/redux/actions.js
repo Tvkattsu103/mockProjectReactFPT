@@ -1,6 +1,6 @@
-export const changeState = (miniCartState) => {
-    return {
-        type: 'miniCart/changeState',
-        payload: miniCartState
-    }
-}
+// export const changeState = (miniCartState) => {
+//     return {
+//         type: 'miniCart/changeState',
+//         payload: miniCartState
+//     }
+// }
