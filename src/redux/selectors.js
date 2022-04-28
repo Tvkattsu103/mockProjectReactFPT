@@ -93,6 +93,7 @@ export const listProductSearchSelector = createSelector(
     return listProduct.filter((p) => p.name.includes(key));
   }
 );
+//miniCart
 export const stateMiniCart = ( state ) => state.miniCart.open;
 
 // phan cua anh HuyHt8
@@ -109,3 +110,8 @@ export const checkUserSelector = createSelector(
 export const listAddress = (state) => state.address;
 
 
+//emailSignUp
+export const emailErrSelector = ( state ) => state.emailSignUp.emailErr;
+export const stateEmailSignUp = ( state ) => state.emailSignUp.open;
+export const showOffCodeSelector = ( state ) => state.emailSignUp.showOffCode;
+export const emailInputSelector = ( state ) => state.emailSignUp.emailInput;
