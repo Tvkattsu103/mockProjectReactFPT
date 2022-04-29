@@ -1,5 +1,5 @@
 import './App.css';
-import Category from './components/Category/Category';
+import Category from './components/CategoryOverview/Category';
 import Help from './components/Help/Help';
 // import { Link, Outlet } from 'react-router-dom';
 import "bootstrap-icons/font/bootstrap-icons.css";

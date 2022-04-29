@@ -26,7 +26,7 @@ function Register() {
 
     const dispatch = useDispatch();
     const listUser1 = useSelector(listUser);
-
+    
     const handleChangeEmail = (e) => {
         setEmail(e.target.value);
     }
@@ -74,7 +74,7 @@ function Register() {
             }
             else {
                 dispatch(registerSlice.actions.addUser({ email: Email, password: Password, name: Name, surname: Surname, province: Province, city: City, address: Address }));
-                navigate('/');
+                navigate('/Login');
             }
         }
     }

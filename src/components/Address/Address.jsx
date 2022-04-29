@@ -18,6 +18,7 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { listAddress } from '../../redux/selectors';
 import { useSelector } from 'react-redux';
+import MenuLeft from '../UI/MenuLeft';
 function Address() {
   const listAddress1 = useSelector(listAddress);
   return (
@@ -28,7 +29,8 @@ function Address() {
           MY ACCOUNT
         </Typography>
         <Grid container spacing={2}>
-          <Grid item xs={4}>
+          <MenuLeft />
+          {/* <Grid item xs={4}>
             <Grid container spacing={0.5}>
               <Grid item xs={12}>
                 <Box component={"div"} sx={{ backgroundColor: "white", p: 2 }}>
@@ -216,7 +218,7 @@ function Address() {
                 </Box>
               </Grid>
             </Grid>
-          </Grid>
+          </Grid> */}
           <Grid item xs={8}>
             <Grid container spacing={1}>
               <Grid item xs={12}>
