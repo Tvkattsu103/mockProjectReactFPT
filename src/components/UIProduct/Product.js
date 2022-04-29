@@ -43,7 +43,7 @@ export default function Product() {
         <>
             <Header />
             <Box sx={{ flexGrow: 1 }}>
-            <Grid container spacing={20}>
+            <Grid container spacing={2}>
                 <Grid item xs={1}>
                     {/* Content nam ben trai */}
                 </Grid>

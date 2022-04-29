@@ -6,6 +6,8 @@ import userSlice from "../components/Login/userSlice";
 import registerSlice from "../components/Register/registerSlice";
 import addressSlice from "../components/Address/addressSlice";
 import productSlice from "../components/UIProduct/ProductSlice";
+import orderConfirmSlide from "../components/OrderConfirmation/orderConfirmSlide";
+import paymentMethodSlide from "../components/PaymentMethods/paymentMethodSlice";
 const store = configureStore({
   reducer: {
     search: searchSlide.reducer,
@@ -15,6 +17,8 @@ const store = configureStore({
     address: addressSlice.reducer,
     emailSignUp: emailSignUpSlice.reducer,
     product: productSlice.reducer,
+    orderConfirm: orderConfirmSlide.reducer,
+    paymentMethod: paymentMethodSlide.reducer,
   },
 });
 

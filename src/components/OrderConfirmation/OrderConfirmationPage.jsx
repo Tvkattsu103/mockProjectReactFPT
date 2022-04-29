@@ -1,97 +1,144 @@
-import {
-  Button,
-  Container,
-  FormControl,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-  Typography,
-} from "@mui/material";
-import { Box, height } from "@mui/system";
+import { Button, Container, Grid, Typography, Divider } from "@mui/material";
+import { Box } from "@mui/system";
 import React from "react";
 import Header from "../UI/Header";
-import ClearIcon from "@mui/icons-material/Clear";
-import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
-import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
-import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import adventure from "../../images/adventure.png";
+import more from "../../images/more.png";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { currentOrderConfirmSelector } from "../../redux/selectors";
+import OrderItem from "./OrderItem";
+
 const OrderConfirmation = () => {
+  const currentOrederConfirm = useSelector(currentOrderConfirmSelector);
+
   return (
     <>
       <Header></Header>
       <Container maxWidth="lg" sx={{ marginTop: 2 }}>
         <Grid container spacing={1}>
-          <Grid item xs={7}>
+          <Grid item xs={8}>
             <Grid container spacing={1}>
               <Grid item xs={12}>
                 <Box
                   component={"div"}
                   sx={{
                     backgroundColor: "white",
-                    display: "flex",
-                    justifyContent: "center",
                     padding: 3,
                   }}
                 >
-                  <Typography variant="h5" sx={{ color: "BLACK", fontFamily: "fantasy" }}>MY CART</Typography>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                      <Typography variant="h5">
+                        <strong>THANK YOU FOR YOUR ORDER</strong>
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Typography variant="inherit" color={"#757575"}>
+                        Please check your inbox, as a confirmation email is on
+                        its way
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={4}>
+                      <Typography variant="body1" color={"#757575"}>
+                        <strong>ORDER TOTAL:</strong>
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={8}>
+                      <Typography variant="body1">
+                        ${currentOrederConfirm.orderTotal}
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={4}>
+                      <Typography variant="body1" color={"#757575"}>
+                        <strong>ORDER REFERENCE:</strong>
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={8}>
+                      <Typography variant="body1">
+                        {currentOrederConfirm.orderReference}
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={4}>
+                      <Typography variant="body1" color={"#757575"}>
+                        <strong>DELIVERY:</strong>
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={8}>
+                      <Typography variant="body1">
+                        {currentOrederConfirm.delivery}
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={4}>
+                      <Typography variant="body1" color={"#757575"}>
+                        <strong>ORDER STATUS:</strong>
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={8}>
+                      <Typography variant="body1">
+                        {currentOrederConfirm.orderStatus}
+                      </Typography>
+                    </Grid>
+                  </Grid>
                 </Box>
               </Grid>
               <Grid item xs={12}>
                 <Box
                   component={"div"}
-                  sx={{ backgroundColor: "white", padding: 2 }}
+                  sx={{ backgroundColor: "white", padding: 3 }}
                 >
-                  <Grid container spacing={1}>
-                    <Grid item xs={4}>
-                      <Box
-                        sx={{ height: 200 }}
-                        component={"img"}
-                        src="https://images.asos-media.com/products/converse-run-star-hike-hi-canvas-platform-sneakers-in-black/200525037-1-black?$n_480w$&wid=476&fit=constrain"
-                      ></Box>
-                    </Grid>
-                    <Grid item xs={7} sx={{ verticalAlign: "center" }}>
-                      <Typography
-                        variant="h5"
-                        sx={{ color: "red", fontFamily: "fantasy" }}
-                      >
-                        $ 16.50
-                      </Typography>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12}>
                       <Typography variant="h6">
-                        Truffle Collection pool slides in black
+                        {currentOrederConfirm.orderList.length} ITEM
                       </Typography>
-                      <Typography variant="h6">Black</Typography>
-                      <FormControl variant="standard" sx={{ minWidth: 70 }}>
-                        <InputLabel id="demo-simple-select-standard-label">
-                          Size
-                        </InputLabel>
-                        <Select
-                          labelId="demo-simple-select-standard-label"
-                          id="demo-simple-select-standard"
-                          label="Size"
-                        >
-                          <MenuItem value="S">S</MenuItem>
-                          <MenuItem value="M">M</MenuItem>
-                          <MenuItem value="L">L</MenuItem>
-                          <MenuItem value="XL">XL</MenuItem>
-                        </Select>
-                      </FormControl>
-                      <FormControl
-                        variant="standard"
-                        sx={{ width: 100, ml: 1 }}
-                      >
-                        <TextField
-                          id="standard-basic"
-                          label="Quantity"
-                          variant="standard"
-                          type="number"
-                        />
-                      </FormControl>
                     </Grid>
-                    <Grid item xs={1}>
-                      <Button>
-                        <ClearIcon sx={{ fontSize: 30, color: "black" }} />
-                      </Button>
+                    <Grid item xs={12}>
+                      <Divider></Divider>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Grid container spacing={2}>
+                        {currentOrederConfirm.orderList.map((p) => {
+                          return (
+                            <OrderItem
+                              key={p.id}
+                              id={p.id}
+                              name={p.name}
+                              image={p.image}
+                              description={p.description}
+                              type={p.type}
+                              size={p.size}
+                              price={p.price}
+                              quantity={p.quantity}
+                            />
+                          );
+                        })}
+                        <Grid item xs={12}>
+                          <Grid container rowSpacing={3}>
+                            <Grid item xs={12}>
+                              <Link to={"#"} sx={{ TextDecoder: "none" }}>
+                                <Typography variant="body1" color="black">
+                                  Cancel this order
+                                </Typography>
+                              </Link>
+                            </Grid>
+                            <Grid item xs={12}>
+                              <Link to={"#"} sx={{ TextDecoder: "none" }}>
+                                <Typography variant="body1" color="black">
+                                  My account
+                                </Typography>
+                              </Link>
+                            </Grid>
+                            <Grid item xs={12}>
+                              <Link to={"#"} sx={{ TextDecoder: "none" }}>
+                                <Typography variant="body1" color="black">
+                                  Return Policy
+                                </Typography>
+                              </Link>
+                            </Grid>
+                          </Grid>
+                        </Grid>
+                      </Grid>
                     </Grid>
                   </Grid>
                 </Box>
@@ -102,143 +149,116 @@ const OrderConfirmation = () => {
                   sx={{
                     backgroundColor: "white",
                     p: 3,
-                    justifyContent: "right",
-                    display: "flex",
                   }}
                 >
-                  <Typography
-                    variant="h5"
-                    sx={{ color: "black", fontFamily: "fantasy" }}
-                  >
-                    SUB-TOTAL&nbsp;&nbsp;&nbsp;$16.50
-                  </Typography>
-                </Box>
-              </Grid>
-              <Grid item xs={12}>
-                <Box
-                  component={"div"}
-                  sx={{ backgroundColor: "#2d2d2d", padding: 4 }}
-                >
-                  <Grid container sx={{ color: "white" }}>
-                    <Grid item xs={3}>
-                      <WorkspacePremiumIcon sx={{ fontSize: 60 }} />
-                    </Grid>
-                    <Grid item xs={9}>
-                      <Typography variant="h6" sx={{ fontFamily: "inherit" }}>
-                        PREMIER DELIVERY USA
+                  <Grid container>
+                    <Grid item xs={1}>
+                      <Typography variant="body1">
+                        <strong>
+                          <i className="bi bi-recycle"></i>
+                        </strong>
                       </Typography>
-                      <Typography variant="h6" sx={{ fontSize: 18 }}>
-                        Enjoy unlimited Next-Day Delivery on all orders of $50+
-                        and Express Shipping on all others for a whole year!
-                        Ts&Cs apply.
+                    </Grid>
+                    <Grid item xs={11}>
+                      <Typography variant="body1">
+                        Our plastic bags and cardboard boxes are 100% recylable
                       </Typography>
                     </Grid>
                   </Grid>
                 </Box>
               </Grid>
               <Grid item xs={12}>
-                <Box
-                  component={"div"}
-                  sx={{ backgroundColor: "white", padding: 4 }}
-                >
-                  <Grid container sx={{ color: "black" }}>
-                    <Grid item xs={3}>
-                      <LocalShippingIcon sx={{ fontSize: 60 }} />
-                    </Grid>
-                    <Grid item xs={9}>
-                      <Typography variant="h6" sx={{ fontFamily: "inherit" }}>
-                        FREE* STANDARD SHIPPING
-                      </Typography>
-                      <Typography variant="h6" sx={{ fontSize: 18 }}>
-                        Faster delivery options available to most countries
-                      </Typography>
-                      <a href="https://www.asos.com/us/customer-service/delivery/">
-                        More info
-                      </a>
-                    </Grid>
+                <Grid container>
+                  <Grid item xs={2}></Grid>
+                  <Grid item xs={8}>
+                    <Link to={"/"}>
+                      <Box
+                        sx={{
+                          backgroundColor: "#424242",
+                          color: "white",
+                          mt: 3,
+                          p: 1,
+                        }}
+                        fullWidth="lg"
+                      >
+                        <Typography variant="h6" textAlign={"center"}>
+                          <strong>CONTINUE SHOPPING</strong>
+                        </Typography>
+                      </Box>
+                    </Link>
                   </Grid>
-                </Box>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={5}>
-            <Box component={"div"} sx={{ backgroundColor: "white", p: 3 }}>
-              <Grid spacing={5}>
-                <Grid item xs={12}>
-                  <Typography
-                    variant="h5"
-                    sx={{ color: "BLACK", fontFamily: "fantasy" }}
-                  >
-                    TOTAL
-                  </Typography>
-                </Grid>
-                <hr></hr>
-                <Grid container>
-                  <Grid item xs={9.5}>
-                    <Typography variant="h5" sx={{ color: "BLACK" }}>
-                      Sub-total
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={2.5}>
-                    <Typography variant="h5" sx={{ color: "BLACK" }}>
-                      $16.50
-                    </Typography>
-                  </Grid>
-                </Grid>
-                <Grid container>
-                  <Grid item xs={10}>
-                    <Typography variant="h5" sx={{ color: "BLACK" }}>
-                      Shipping
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={2}>
-                    <ErrorOutlineIcon />
-                  </Grid>
-                </Grid>
-                <Grid container>
-                  <Grid item xs={10}>
-                    <Typography variant="h5" sx={{ color: "BLACK" }}>
-                      Sales tax
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={2}>
-                    <ErrorOutlineIcon />
-                  </Grid>
-                </Grid>
-              </Grid>
-              <Grid
-                container
-                sx={{
-                  justifyContent: "center",
-                }}
-              >
-                <Button
-                  variant="contained"
-                  color="success"
-                  size="large"
-                  fullWidth
+          <Grid item xs={4}>
+            <Grid
+              container
+              direction="column"
+              justifyContent="center"
+              alignItems="center"
+              spacing={2}
+            >
+              <Grid item xs={12}>
+                <Box
+                  component={"div"}
+                  sx={{
+                    backgroundColor: "#4fc3f7",
+                    display: "flex",
+                  }}
                 >
-                  CHECKOUT
-                </Button>
+                  <Grid
+                    container
+                    rowSpacing={2}
+                    p={3}
+                    direction="column"
+                    justifyContent="center"
+                    alignItems="center"
+                  >
+                    <Grid item sx={12}>
+                      <Typography variant="h5">
+                        <strong>HAVE YOU SAY</strong>
+                      </Typography>
+                    </Grid>
+                    <Grid item sx={12}>
+                      <Typography variant="inherit" textAlign="center">
+                        Take our two-minutes survey and tell us what you
+                        think...
+                      </Typography>
+                    </Grid>
+                    <Grid item sx={12}>
+                      <Button
+                        sx={{
+                          backgroundColor: "white",
+                          color: "black",
+                          border: 2,
+                        }}
+                      >
+                        <Typography variant="h5">
+                          <strong>LET'S GO</strong>
+                        </Typography>
+                      </Button>
+                    </Grid>
+                  </Grid>
+                </Box>
               </Grid>
               <Grid item xs={12}>
-                <Typography variant="h6" sx={{ color: "BLACK" }}>
-                  WE ACCEPT:
+                <Box sx={{ backgroundColor: "white", p: 3 }} fullWidth>
+                  <Box component={"img"} src={adventure} width={320} />
+                </Box>
+              </Grid>
+              <Grid item xs={12}>
+                <Typography variant="h5" textAlign="center">
+                  <strong>GET MORE US ON:</strong>
                 </Typography>
               </Grid>
-              <Grid container xs={12}>
-                <Box
-                  component={"img"}
-                  src="https://assets.asosservices.com/asos-finance/images/marketing/single.png"
-                  sx={{ height: 20 }}
-                ></Box>
+              <Grid item xs={12}>
+                AAAAAAAAAAAAAA
               </Grid>
-              <Grid container xs={12}>
-                <Typography variant="h6" sx={{ color: "BLACK", fontSize: 15 }}>
-                  Got a discount code? Add it in the next step.
-                </Typography>
+              <Grid item xs={12}>
+                <Box component={"img"} src={more} />
               </Grid>
-            </Box>
+            </Grid>
           </Grid>
         </Grid>
       </Container>
