@@ -13,7 +13,7 @@ import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
 import FilterNoneOutlinedIcon from "@mui/icons-material/FilterNoneOutlined";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import CreditCardOutlinedIcon from "@mui/icons-material/CreditCardOutlined";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const MenuLeft = () => {
   return (
@@ -95,13 +95,15 @@ const MenuLeft = () => {
               </Grid>
             </Box>
           </Grid>
-
+      
           <Grid item xs={12}>
-            <Box sx={{ backgroundColor: "white", p: 1 }}>
-              <Link
-                to="/Address"
-                style={{ textDecoration: "none", color: "black" }}
-              >
+            <NavLink
+              to="/Address"
+              style={({isActive}) => ({
+                color: isActive ? "blue" : "black",
+              })}
+            >
+              <Box sx={{ backgroundColor: "white", p: 1 }}>
                 <Grid container alignItems={"center"}>
                   <Grid item xs={3}>
                     <HouseOutlinedIcon fontSize="large" />
@@ -110,29 +112,27 @@ const MenuLeft = () => {
                     <Typography>Address book</Typography>
                   </Grid>
                 </Grid>
-              </Link>
-            </Box>
+              </Box>
+            </NavLink>
           </Grid>
-
           <Grid item xs={12}>
-            <Box
-              sx={{
-                backgroundColor: "#e8eaf6",
-                p: 1,
-                display: "flex",
-                borderLeft: 5,
-                borderLeftColor: "blue",
-              }}
+            <NavLink
+              to="/PaymentMethods"
+              style={({isActive}) => ({
+                color: isActive ? "blue" : "black",
+              })}
             >
-              <Grid container alignItems={"center"}>
-                <Grid item xs={3}>
-                  <CreditCardOutlinedIcon fontSize="large" />
+              <Box sx={{ backgroundColor: "white", p: 1 }}>
+                <Grid container alignItems={"center"}>
+                  <Grid item xs={3}>
+                    <CreditCardOutlinedIcon fontSize="large" />
+                  </Grid>
+                  <Grid item xs={9}>
+                    <Typography>Payment methods</Typography>
+                  </Grid>
                 </Grid>
-                <Grid item xs={9}>
-                  <Typography>Payment methods</Typography>
-                </Grid>
-              </Grid>
-            </Box>
+              </Box>
+            </NavLink>
           </Grid>
           <Grid item xs={12}>
             <Box sx={{ backgroundColor: "white", p: 1 }}>

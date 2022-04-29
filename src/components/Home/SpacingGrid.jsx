@@ -33,7 +33,7 @@ export default function SpacingGrid() {
                 </CardContent>
                 <CardActions>
                   <Button size="small"><AddShoppingCartIcon/></Button>
-                  <Button size="small">Learn More</Button>
+                  <Button size="small">Buy now</Button>
                 </CardActions>
               </Card>
             </Grid>

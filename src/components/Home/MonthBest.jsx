@@ -8,6 +8,7 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 export default function MonthBest() {
   const bests = [
@@ -17,7 +18,7 @@ export default function MonthBest() {
       image:
         "https://media.everlane.com/image/upload/c_scale,dpr_1.0,f_auto,q_auto,w_auto/c_limit,w_800/v1/i/dd73d486_3caf.png",
       type: "MEN'S",
-      description: "abcabc"
+      description: "abcabc",
     },
     {
       id: 2,
@@ -25,7 +26,7 @@ export default function MonthBest() {
       image:
         "https://media.everlane.com/image/upload/c_scale,dpr_1.0,f_auto,q_auto,w_auto/c_limit,w_800/v1/i/dd73d486_3caf.png",
       type: "WOMEN'S",
-      description: "abcabc"
+      description: "abcabc",
     },
     {
       id: 3,
@@ -33,7 +34,7 @@ export default function MonthBest() {
       image:
         "https://media.everlane.com/image/upload/c_scale,dpr_1.0,f_auto,q_auto,w_auto/c_limit,w_800/v1/i/dd73d486_3caf.png",
       type: "BABY'S",
-      description: "abcabc"
+      description: "abcabc",
     },
     {
       id: 4,
@@ -41,7 +42,7 @@ export default function MonthBest() {
       image:
         "https://media.everlane.com/image/upload/c_scale,dpr_1.0,f_auto,q_auto,w_auto/c_limit,w_800/v1/i/dd73d486_3caf.png",
       type: "MOM'S",
-      description: "abcabc"
+      description: "abcabc",
     },
     {
       id: 5,
@@ -49,7 +50,7 @@ export default function MonthBest() {
       image:
         "https://media.everlane.com/image/upload/c_scale,dpr_1.0,f_auto,q_auto,w_auto/c_limit,w_800/v1/i/dd73d486_3caf.png",
       type: "TEEN'S",
-      description: "abcabc"
+      description: "abcabc",
     },
   ];
 
@@ -62,7 +63,7 @@ export default function MonthBest() {
       </Grid>
       <Grid item xs={12}>
         <Grid container justifyContent="center" spacing={2}>
-          {bests.map((p,index) => (
+          {bests.map((p, index) => (
             <Grid key={p.id} item>
               <Card sx={{ maxWidth: 250 }}>
                 <CardMedia
@@ -80,8 +81,8 @@ export default function MonthBest() {
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button size="small">Share</Button>
-                  <Button size="small">Learn More</Button>
+                  <Button size="small"><AddShoppingCartIcon /></Button>
+                  <Button size="small">Buy now</Button>
                 </CardActions>
               </Card>
             </Grid>

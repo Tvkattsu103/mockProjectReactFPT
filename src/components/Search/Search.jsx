@@ -2,6 +2,7 @@ import { Button, Card, CardActions, CardContent, CardMedia, Container, Grid, Typ
 import React, { useState, useEffect } from "react";
 import Header from "../UI/Header";
 import { useDispatch, useSelector } from "react-redux";
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 //import listProduct from "../../data/listProduct";
 import {listProductSearchSelector} from '../../redux/selectors'
 
@@ -35,8 +36,8 @@ const Search = () => {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small">Share</Button>
-                    <Button size="small">Learn More</Button>
+                    <Button size="small"><AddShoppingCartIcon /></Button>
+                    <Button size="small">Buy now</Button>
                   </CardActions>
                 </Card>
               </Grid>
