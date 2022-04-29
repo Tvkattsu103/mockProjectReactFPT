@@ -1,7 +1,7 @@
 import { Button, Grid, TextField } from '@mui/material';
 import { height } from '@mui/system';
 import React, { useState } from 'react'
-import { Route, Routes , Link } from 'react-router-dom';
+import { Route, Routes , Link , useNavigate} from 'react-router-dom';
 import HomePage from '../Home/HomePage';
 import Register from '../Register/Register';
 import Header from '../UI/Header';
@@ -17,7 +17,12 @@ function Login() {
     const [passErr, setPassErr] =useState('');
 
     const checkUser = useSelector(checkUserSelector);
-   
+    console.log(checkUser);
+    let navigate = useNavigate();
+    if(checkUser){
+        alert("Đăng nhập thành công");
+        navigate('/');
+    }
     const dispatch = useDispatch();
     const handleChangeEmail=(e)=>{
         setEmail(e.target.value);
