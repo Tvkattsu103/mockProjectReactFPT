@@ -1,7 +1,8 @@
+import './App.css';
+import Category from './components/CategoryOverview/Category';
+import Help from './components/Help/Help';
 // import { Link, Outlet } from 'react-router-dom';
-import "./App.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import Category from "./components/Category/Category";
 import HomePage from "./components/Home/HomePage";
 import OrderConfirmation from "./components/OrderConfirmation/OrderConfirmationPage";
 import PaymentMethods from "./components/PaymentMethods/PaymentMethods";
@@ -52,11 +53,6 @@ function App() {
           </Routes>
         </div>
       </Router>
-      {/* <HomePage />
-      <Outlet /> */}
-      {/* <Category/> */}
-      {/* <HomePage /> */}
-      {/* <Product/> */}
     </>
   );
 }

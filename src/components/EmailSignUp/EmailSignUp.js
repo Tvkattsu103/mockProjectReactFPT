@@ -9,6 +9,9 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import { Grid, Box, FormControl, InputLabel, Input, TextField } from '@mui/material';
+import { useSelector, useDispatch } from 'react-redux';
+import emailSignUpSlice from './emailSignUpSlice';
+import { emailErrSelector, stateEmailSignUp, showOffCodeSelector, emailInputSelector } from './../../redux/selectors';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -57,27 +60,54 @@ BootstrapDialogTitle.propTypes = {
 };
 
 export default function EmailSignUp() {
-    const [open, setOpen] = React.useState(false);
-    const [emailInput, setEmailInput] = useState("");
+    const dispatch = useDispatch();
+    const open = useSelector(stateEmailSignUp);
+    console.log(open)
+    const emailErr = useSelector(emailErrSelector);
+    const showOffCode = useSelector(showOffCodeSelector);
+    const emailInput = useSelector(emailInputSelector);
+    
 
     const handleChange = (e) => {
-        setEmailInput(e.target.value);
+        dispatch(emailSignUpSlice.actions.changeEmailInput(e.target.value));
     }
     const handleClickOpen = () => {
-        setOpen(true);
+        dispatch(emailSignUpSlice.actions.changeState(true));
     };
     const handleClose = () => {
-        setOpen(false);
+        dispatch(emailSignUpSlice.actions.changeState(false));
     };
     React.useEffect(() => {
         handleClickOpen();
     }, [])
 
+    const checkValid = () => {
+        let valid = true;
+        const regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (!emailInput.match(regexEmail)) {
+            dispatch(emailSignUpSlice.actions.changeEmailErrState(true));
+            valid = false;
+        } else {
+            dispatch(emailSignUpSlice.actions.changeEmailErrState(false));
+        }
+        return valid;
+    }
+
+    const handleSubmit = () => {
+        if (checkValid() === true) {
+            dispatch(emailSignUpSlice.actions.changeShowOffCodeState(true));
+        }
+    }
+
+    const handleCopyOffCode = () => {
+        const offcode = document.getElementById("offcode");
+        navigator.clipboard.writeText(offcode.textContent);
+    }
+
     return (
         <div>
             <BootstrapDialog
                 onClose={handleClose}
-                // aria-labelledby="customized-dialog-title"
                 open={open}
                 sx={{ p: '20px', height: '500px' }}
             >
@@ -85,13 +115,36 @@ export default function EmailSignUp() {
                 <DialogContent >
                     <Grid container>
                         <Grid item xs={6} sx={{ bgcolor: '#fffbf6', pl: 3, pr: 5 }}>
-                            <Typography variant='h3' sx={{ lineHeight: '90%', mb: 1, mt: 20 }}>Get $10 off your order.</Typography>
-                            <Typography variant='h6' sx={{ lineHeight: '130%' }}>You'll also get early access to special offers and new products.</Typography>
-                            <FormControl variant='standard' fullWidth sx={{ mt: 10 }}>
-                            {/* <InputLabel htmlFor="component-simple">Name</InputLabel> */}
-                            <Input id="component-simple" value={emailInput} placeholder='Your email' sx={{ fontSize: '20px' }} onChange={handleChange} />
-                                <Button sx={{ position: 'absolute', right: '0' }}>Submit</Button>
-                            </FormControl>
+                            {
+                                !showOffCode ? (
+                                    <>
+                                        <Typography variant='h3' sx={{ lineHeight: '90%', mb: 1, mt: 20 }}>Get $10 off your order.</Typography>
+                                        <Typography variant='h6' sx={{ lineHeight: '130%' }}>You'll also get early access to special offers and new products.</Typography>
+                                        <FormControl variant='standard' fullWidth sx={{ mt: 10 }}>
+                                            <TextField
+                                                id="standard-error-helper-text"
+                                                label="Email"
+                                                value={emailInput}
+                                                variant="standard"
+                                                onChange={handleChange}
+                                                error={emailErr}
+                                                helperText={emailErr && 'Email không đúng định dạng'}
+                                            />
+                                            {/* <Input error helperText="Incorrect entry." id="component-simple" value={emailInput} placeholder='Your email' sx={{ fontSize: '20px' }} onChange={handleChange} /> */}
+                                            <Button sx={{ position: 'absolute', right: '0', marginTop: '10px' }} onClick={handleSubmit}>Submit</Button>
+                                        </FormControl>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Typography variant='h3' sx={{ lineHeight: '90%', mb: 1, mt: 20 }}>Thank You.</Typography>
+                                        <Typography variant='h6' sx={{ lineHeight: '130%' }}>Here's your $10 off code:</Typography>
+                                        <Typography variant='h3' id="offcode" sx={{ lineHeight: '130%', mt: 15 }}>WELCOME10</Typography>
+                                        <Typography variant='subtitle1' color="#9e9e9e" fontStyle="italic" sx={{ lineHeight: '130%', cursor:'pointer' }} onClick={handleCopyOffCode}>Click to copy</Typography>
+                                        
+                                    </>
+                                )
+                            }
+
                         </Grid>
                         <Grid item xs={6}>
                             <Box component="img"

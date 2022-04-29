@@ -114,10 +114,10 @@ function Shipping() {
                         <CardContent>
                             <Typography sx={{ fontSize: 18 }} color="black" gutterBottom>
                                 <Grid container>
-                                    <Grid item xs={8}>
+                                    <Grid item xs={7}>
                                         <b>Payment Method</b>
                                     </Grid>
-                                    <Grid item xs={4} align="right">                                       
+                                    <Grid item xs={5} align="right">                                       
                                         <a href='# '
                                         style={{border: '2px solid black',
                                         color: 'black',

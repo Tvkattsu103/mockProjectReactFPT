@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import ImgMediaCard from './Image';
 import data from "./DataImg.json"
@@ -9,20 +7,43 @@ import HalfRating from './Rating';
 import SpacingGrid from './ImageThuNho';
 import BoxSize from './BoxSize';
 import BoxWidth from './BoxWidth';
-import ContainedButtons from './ContainedButtons';
-
-const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-}));
+import ContainedButtons from './Button';
+import { Button } from '@mui/material';
+import { useDispatch } from 'react-redux';
+import Header from '../UI/Header';
+import {addToCartPage} from './ProductSlice'
 
 export default function Product() {
+    const [image, setImage] = React.useState("https://cdn.hoang-phuc.com/media/catalog/product/cache/3243173bfa4021eba79889ede7b15407/3/3/33191kw-a0a-1.jpg")
+    const [size, setSize] = React.useState(50)
+    const [width, setWidth] = React.useState('Medium')
+    const [price, setPrice] = React.useState('50')
+    const[name, setName] = React.useState('Giày chạy bộ')
+    const dispatch = useDispatch();
+    const getDataType = (Type) => (
+        setImage(Type)
+    )
+    const getDataSize = (Size) => {
+        setSize(Size)
+    }
+    const getDataWidth = (Width) => {
+        setWidth(Width)
+    }
+
+    const getProductToCardPage = (type, size, width, name, price) => {
+        let product = {}
+        product.type = type;
+        product.size = size;
+        product.width = width;
+        product.name = name;
+        product.price = price;
+        dispatch(addToCartPage(product))
+    }
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <Grid container spacing={20}>
+        <>
+            <Header />
+            <Box sx={{ flexGrow: 1 }}>
+            <Grid container spacing={2}>
                 <Grid item xs={1}>
                     {/* Content nam ben trai */}
                 </Grid>
@@ -31,7 +52,7 @@ export default function Product() {
                     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
                         {data.map((item) => (
                             <Grid item xs={6} key={item.id}>
-                                <ImgMediaCard img={item.image} name={item.name} use={item.use} />
+                                <ImgMediaCard img={image} name={name} use={item.use}  price={price} size={size} width={width} />
                             </Grid>
                         ))}
                     </Grid>
@@ -41,20 +62,22 @@ export default function Product() {
                         <HalfRating />
                     </Grid>
                     <Grid item xs={4}>
-                        <SpacingGrid />
+                        <SpacingGrid getDataType={(Type) => getDataType(Type)} />
                     </Grid>
                     <Grid item xs={6}>
-                        <BoxSize/>
+                        <BoxSize getDataSize={(size) => getDataSize(size)} />
                     </Grid>
                     <Grid item xs={6}>
-                        <BoxWidth/>
+                        <BoxWidth getDataWidth={(width) => getDataWidth(width)} />
                     </Grid>
-
                     <Grid item xs={6}>
-                        <ContainedButtons/>
+                        <Button onClick={() => getProductToCardPage(image, size, width,name,price)}>
+                            <ContainedButtons />
+                        </Button>
                     </Grid>
                 </Grid>
             </Grid>
         </Box>
+        </>
     );
 }

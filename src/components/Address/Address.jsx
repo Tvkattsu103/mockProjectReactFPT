@@ -16,7 +16,10 @@ import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
 import FilterNoneOutlinedIcon from "@mui/icons-material/FilterNoneOutlined";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
+import { listAddress } from '../../redux/selectors';
+import { useSelector } from 'react-redux';
 function Address() {
+  const listAddress1 = useSelector(listAddress);
   return (
     <div>
         <Header />
@@ -238,97 +241,58 @@ function Address() {
                   </Grid>
                 </Box>
               </Grid>
-              <Grid item xs={12}>
-                <Box sx={{ backgroundColor: "white", p: 3 }}>
-                  <Grid container spacing={1}> 
-                    <Grid item xs={12}>
-                      <Typography variant="h5">Phuong Huynh </Typography>
-                      <Typography variant="body1">116 Phan Chu Trinh Street </Typography>
-                      <Typography variant="body1">Hue City, Thua Thien Hue Province</Typography>
-                      <Typography variant="body1">Viet Nam</Typography>
-                    </Grid>
-                  </Grid>
-                  <Grid container spacing={1} sx={{display:'flex',justifyContent:'space-between'}}>
-                      <Grid>
-                            <Button sx={{ color: "black" }}>
-                                <Grid container alignItems={"center"}>
-                                <Grid item xs={10}>
-                                    <Typography variant="h6">EDIT</Typography>
-                                </Grid>
-                                <Grid item xs={2}>
-                                    <BorderColorIcon/>
-                                </Grid>
-                                </Grid>
-                            </Button>
-                            
-                            <Button sx={{ color: "black" ,marginLeft:'10px'}} disabled>
-                                <Grid container alignItems={"center"}>
-                                <Grid item xs={10}>
-                                    <Typography variant="h6">SETDEFAULT</Typography>
-                                </Grid>
-                                </Grid>
-                            </Button>
+              {
+                listAddress1.map((l, key) => {
+                    return (
+                      <Grid item xs={12} key={l.id}>
+                        <Box sx={{ backgroundColor: "white", p: 3 }}>
+                          <Grid container spacing={1}> 
+                            <Grid item xs={12}>
+                              <Typography variant="h5">{l.name} </Typography>
+                              <Typography variant="body1">{l.address}</Typography>
+                              <Typography variant="body1">{l.city}, {l.province}</Typography>
+                              <Typography variant="body1">{l.country}</Typography>
+                            </Grid>
+                          </Grid>
+                          <Grid container spacing={1} sx={{display:'flex',justifyContent:'space-between'}}>
+                              <Grid>
+                                    <Button sx={{ color: "black" }}>
+                                        <Grid container alignItems={"center"}>
+                                        <Grid item xs={10}>
+                                            <Typography variant="h6">EDIT</Typography>
+                                        </Grid>
+                                        <Grid item xs={2}>
+                                            <BorderColorIcon/>
+                                        </Grid>
+                                        </Grid>
+                                    </Button>
+                                    
+                                    <Button sx={{ color: "black" ,marginLeft:'10px'}} disabled={l.isDefault}>
+                                        <Grid container alignItems={"center"}>
+                                        <Grid item xs={10}>
+                                            <Typography variant="h6">SETDEFAULT</Typography>
+                                        </Grid>
+                                        </Grid>
+                                    </Button>
+                              </Grid>
+                              <Grid>
+                                    <Button sx={{ color: "black" }} disabled={l.isDefault}>
+                                        <Grid container alignItems={"center"}>
+                                        <Grid item xs={10}>
+                                            <Typography variant="h6">DELETE </Typography>
+                                        </Grid>
+                                        <Grid item xs={2}>
+                                            <DeleteOutlineIcon fontSize="large" />
+                                        </Grid>
+                                        </Grid>
+                                    </Button>
+                              </Grid>
+                          </Grid>
+                        </Box>
                       </Grid>
-                      <Grid>
-                            <Button sx={{ color: "black" }}>
-                                <Grid container alignItems={"center"}>
-                                <Grid item xs={10}>
-                                    <Typography variant="h6">DELETE </Typography>
-                                </Grid>
-                                <Grid item xs={2}>
-                                    <DeleteOutlineIcon fontSize="large" />
-                                </Grid>
-                                </Grid>
-                            </Button>
-                      </Grid>
-                  </Grid>
-                </Box>
-              </Grid>
-              <Grid item xs={12}>
-                <Box sx={{ backgroundColor: "white", p: 3 }}>
-                  <Grid container spacing={1}>
-                    <Grid item xs={12}>
-                        <Typography variant="h5">Phuong Huynh 26</Typography>
-                        <Typography variant="body1">5 Vinh Thanh Street </Typography>
-                        <Typography variant="body1">Phu Vang District, Thua Thien Hue Province</Typography>
-                        <Typography variant="body1">Viet Nam</Typography>
-                    </Grid>                     
-                  </Grid>
-                  <Grid container spacing={1} sx={{display:'flex',justifyContent:'space-between'}}>
-                        <Grid>
-                            <Button sx={{ color: "black" }}>
-                                <Grid container alignItems={"center"}>
-                                <Grid item xs={10}>
-                                    <Typography variant="h6">EDIT</Typography>
-                                </Grid>
-                                <Grid item xs={2}>
-                                    <BorderColorIcon/>
-                                </Grid>
-                                </Grid>
-                            </Button>
-                            <Button sx={{ color: "black" ,marginLeft:'10px'}}>
-                                <Grid container alignItems={"center"}>
-                                <Grid item xs={10}>
-                                    <Typography variant="h6">SETDEFAULT</Typography>
-                                </Grid>
-                                </Grid>
-                            </Button>
-                        </Grid>
-                        <Grid>
-                            <Button sx={{ color: "black" }}>
-                                <Grid container alignItems={"center"}>
-                                <Grid item xs={10}>
-                                    <Typography variant="h6">DELETE </Typography>
-                                </Grid>
-                                <Grid item xs={2}>
-                                    <DeleteOutlineIcon fontSize="large" />
-                                </Grid>
-                                </Grid>
-                            </Button>
-                        </Grid>
-                  </Grid>
-                </Box>
-              </Grid>
+                    );
+                })
+              }
             </Grid>
           </Grid>
         </Grid>

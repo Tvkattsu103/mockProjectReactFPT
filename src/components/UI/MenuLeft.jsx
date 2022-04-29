@@ -36,7 +36,7 @@ const MenuLeft = () => {
             </Box>
           </Grid>
           <Grid item xs={12}>
-            <Box sx={{ backgroundColor: "white", p: 1, display: "flex" }}>
+            <Box sx={{ backgroundColor: "white", p: 1 }}>
               <Grid container alignItems={"center"}>
                 <Grid item xs={3}>
                   <PersonOutlineIcon fontSize="large" />
@@ -84,7 +84,7 @@ const MenuLeft = () => {
             </Box>
           </Grid>
           <Grid item xs={12}>
-            <Box sx={{ backgroundColor: "white", p: 1, display: "flex" }}>
+            <Box sx={{ backgroundColor: "white", p: 1 }}>
               <Grid container alignItems={"center"}>
                 <Grid item xs={3}>
                   <LockOutlinedIcon fontSize="large" />
@@ -97,7 +97,7 @@ const MenuLeft = () => {
           </Grid>
 
           <Grid item xs={12}>
-            <Box sx={{ backgroundColor: "white", p: 1, display: "flex" }}>
+            <Box sx={{ backgroundColor: "white", p: 1 }}>
               <Link
                 to="/Address"
                 style={{ textDecoration: "none", color: "black" }}
@@ -135,7 +135,7 @@ const MenuLeft = () => {
             </Box>
           </Grid>
           <Grid item xs={12}>
-            <Box sx={{ backgroundColor: "white", p: 1, display: "flex" }}>
+            <Box sx={{ backgroundColor: "white", p: 1 }}>
               <Grid container alignItems={"center"}>
                 <Grid item xs={3}>
                   <ChatOutlinedIcon fontSize="large" />
@@ -147,7 +147,7 @@ const MenuLeft = () => {
             </Box>
           </Grid>
           <Grid item xs={12}>
-            <Box sx={{ backgroundColor: "white", p: 1, display: "flex" }}>
+            <Box sx={{ backgroundColor: "white", p: 1 }}>
               <Grid container alignItems={"center"}>
                 <Grid item xs={3}>
                   <ConnectWithoutContactOutlinedIcon fontSize="large" />
@@ -159,7 +159,7 @@ const MenuLeft = () => {
             </Box>
           </Grid>
           <Grid item xs={12}>
-            <Box sx={{ backgroundColor: "white", p: 1, display: "flex" }}>
+            <Box sx={{ backgroundColor: "white", p: 1 }}>
               <Grid container alignItems={"center"}>
                 <Grid item xs={3}>
                   <CardGiftcardOutlinedIcon fontSize="large" />
@@ -171,7 +171,7 @@ const MenuLeft = () => {
             </Box>
           </Grid>
           <Grid item xs={12}>
-            <Box sx={{ backgroundColor: "white", p: 1, display: "flex" }}>
+            <Box sx={{ backgroundColor: "white", p: 1 }}>
               <Grid container alignItems={"center"}>
                 <Grid item xs={3}>
                   <ErrorOutlineOutlinedIcon fontSize="large" />
@@ -183,7 +183,7 @@ const MenuLeft = () => {
             </Box>
           </Grid>
           <Grid item xs={12}>
-            <Box sx={{ backgroundColor: "white", p: 1, display: "flex" }}>
+            <Box sx={{ backgroundColor: "white", p: 1 }}>
               <Grid container alignItems={"center"}>
                 <Grid item xs={3}>
                   <FilterNoneOutlinedIcon fontSize="large" />
@@ -195,7 +195,7 @@ const MenuLeft = () => {
             </Box>
           </Grid>
           <Grid item xs={12}>
-            <Box sx={{ backgroundColor: "white", p: 1, display: "flex" }}>
+            <Box sx={{ backgroundColor: "white", p: 1 }}>
               <Grid container alignItems={"center"}>
                 <Grid item xs={3}>
                   <FilterNoneOutlinedIcon fontSize="large" />
@@ -207,7 +207,7 @@ const MenuLeft = () => {
             </Box>
           </Grid>
           <Grid item xs={12}>
-            <Box sx={{ backgroundColor: "white", p: 1, display: "flex" }}>
+            <Box sx={{ backgroundColor: "white", p: 1 }}>
               <Grid container alignItems={"center"}>
                 <Grid item xs={3}>
                   <FilterNoneOutlinedIcon fontSize="large" />

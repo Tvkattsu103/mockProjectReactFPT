@@ -5,12 +5,20 @@ import { Route, Routes , Link } from 'react-router-dom';
 import HomePage from '../Home/HomePage';
 import Register from '../Register/Register';
 import Header from '../UI/Header';
+import userSlice  from './userSlice';
+import { useDispatch, useSelector } from "react-redux";
+import {checkUserSelector} from '../../redux/selectors'
+
 
 function Login() {
     const [Email , setEmail] = useState('');
     const [Password, setPassword] =useState('');
     const [emailErr , setEmailErr] = useState('');
     const [passErr, setPassErr] =useState('');
+
+    const checkUser = useSelector(checkUserSelector);
+   
+    const dispatch = useDispatch();
     const handleChangeEmail=(e)=>{
         setEmail(e.target.value);
     }
@@ -35,11 +43,8 @@ function Login() {
       }
     const handleSubmit=(e)=>{
         e.preventDefault();
-        if(checkLogin()==true){
-            alert("Login successful")
-        }else{
-            alert("Login fail")
-        }
+
+        dispatch(userSlice.actions.loginSuccess({email:Email,password:Password}));
     }
     const handleSubmit2=(e)=>{
         e.preventDefault();
@@ -68,7 +73,7 @@ function Login() {
                     required 
                     onChange={handleChangeEmail}
                     />
-                    <small className="text-danger">{emailErr}</small>
+                    <small >{emailErr}</small>
                     <TextField 
                     label='Password' 
                     id="outlined-size-small" 
@@ -79,7 +84,7 @@ function Login() {
                     required 
                     onChange={handleChangePassword}
                     />
-                    <small className="text-danger">{passErr}</small>
+                    <small >{passErr}</small>
                     <Button type='submit' color='primary' fullWidth style={{backgroundColor:'black',color:'white'}}><b>Login in</b></Button>
                 </form>
             </Grid>
@@ -93,7 +98,7 @@ function Login() {
                         BẰNG CÁCH CUNG CẤP CHO CHÚNG TÔI THÔNG TIN CHI TIẾT CỦA QUÝ KHÁCH, QUÁ TRÌNH MUA HÀNG TRÊN GAP.COM SẼ LÀ MỘT TRẢI NGHIỆM THÚ VỊ VÀ NHANH CHÓNG HƠN.
                     </p>
                     {/* <Button type='submit' color='primary' fullWidth style={{backgroundColor:'black',color:'white'}}><b>Register now</b></Button> */}
-                    <Link to="/Register" fullWidth style={{backgroundColor:'black',color:'white',textDecoration:'none'}}>Register now</Link>
+                    <Link to="/Register" fullWidth style={{backgroundColor:'black',color:'white',textDecoration:'none', border:'1px solid black',padding:'10px',display:'flex',justifyContent:'center'}}><b>Register now</b></Link>
                 </form>    
             </Grid>
         </Grid>
