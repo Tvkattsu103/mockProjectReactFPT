@@ -1,10 +1,10 @@
 import { createSelector } from "@reduxjs/toolkit";
-
 // export const stateMiniCart = (state) => state.miniCart.open;
 
 export const searchSelector = (state) => state.search.key;
 export const orderConfirmSelector = (state) => state.orderConfirm;
 
+//initProductList
 const listProduct = [
   {
     id: 1,
