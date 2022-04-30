@@ -12,6 +12,7 @@ import { Grid, Box, FormControl, InputLabel, Input, TextField } from '@mui/mater
 import { useSelector, useDispatch } from 'react-redux';
 import emailSignUpSlice from './emailSignUpSlice';
 import { emailErrSelector, stateEmailSignUp, showOffCodeSelector, emailInputSelector } from './../../redux/selectors';
+import axios from 'axios';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -66,7 +67,7 @@ export default function EmailSignUp() {
     const emailErr = useSelector(emailErrSelector);
     const showOffCode = useSelector(showOffCodeSelector);
     const emailInput = useSelector(emailInputSelector);
-    
+
 
     const handleChange = (e) => {
         dispatch(emailSignUpSlice.actions.changeEmailInput(e.target.value));
@@ -96,6 +97,12 @@ export default function EmailSignUp() {
     const handleSubmit = () => {
         if (checkValid() === true) {
             dispatch(emailSignUpSlice.actions.changeShowOffCodeState(true));
+            console.log({ data:{'UserEmail': emailInput} })
+            axios.post('http://localhost:1337/api/email-sign-ups', { data:{'UserEmail': emailInput} }).then(response => {
+                console.log(response);
+            }).catch((error) => {
+                console.log(error);
+            });
         }
     }
 
@@ -139,8 +146,8 @@ export default function EmailSignUp() {
                                         <Typography variant='h3' sx={{ lineHeight: '90%', mb: 1, mt: 20 }}>Thank You.</Typography>
                                         <Typography variant='h6' sx={{ lineHeight: '130%' }}>Here's your $10 off code:</Typography>
                                         <Typography variant='h3' id="offcode" sx={{ lineHeight: '130%', mt: 15 }}>WELCOME10</Typography>
-                                        <Typography variant='subtitle1' color="#9e9e9e" fontStyle="italic" sx={{ lineHeight: '130%', cursor:'pointer' }} onClick={handleCopyOffCode}>Click to copy</Typography>
-                                        
+                                        <Typography variant='subtitle1' color="#9e9e9e" fontStyle="italic" sx={{ lineHeight: '130%', cursor: 'pointer' }} onClick={handleCopyOffCode}>Click to copy</Typography>
+
                                     </>
                                 )
                             }
