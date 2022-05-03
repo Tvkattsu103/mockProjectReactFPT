@@ -21,16 +21,36 @@ import DiscreteSliderLabel from './Slider';
 import { red } from '@mui/material/colors';
 import UnderlineLink from './Link';
 import Header from '../UI/Header'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-
+import { addToShipping } from './CartPageSlice';
+import { useEffect } from 'react';
 
 export default function CardPage() {
     const [quantity, setQuantity] = React.useState(1);
     const data = useSelector((state) => state.product.product)
+    const [image, setImage] = React.useState(data.type)
+    const [size, setSize] = React.useState(data.size)
+    const [width, setWidth] = React.useState(data.width)
+    const [price, setPrice] = React.useState(45)
+    const [name, setName] = React.useState(data.name)
+    const dispatch = useDispatch();
     const getQuantity = (quantity) => {
         setQuantity(quantity)
     }
+    const getProductToShipping = (type, size, width, name, price) => {
+        let product = {}
+        product.type = type;
+        product.size = size;
+        product.width = width;
+        product.name = name;
+        product.price = price;
+        dispatch(addToShipping(product))
+    }
+    useEffect(() => {
+        setPrice(parseInt(data.price * quantity) - (parseInt(data.price * quantity) * 1) / 10)
+    });
+    console.log(price);
     return (
         <>
             <Header />
@@ -147,9 +167,9 @@ export default function CardPage() {
                                     </Grid>
                                 </Grid>
                             </CardContent>
-                            <CardActions>  
+                            <CardActions>
                                 <Link to="/Shipping">
-                                    <Button
+                                    <Button onClick={() => getProductToShipping(image, size, width, name, price)}
                                         variant="contained" sx={{ width: 350, height: 50 }}
                                     >Check out</Button>
                                 </Link>
