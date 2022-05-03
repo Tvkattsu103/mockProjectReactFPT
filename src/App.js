@@ -14,7 +14,6 @@ import Register from './components/Register/Register';
 import Shipping from './components/Shipping/Shipping';
 
 import CardPage from './components/UICartPage/CardPage';
-import Main from './components/UICheckOut/Main';
 import UIMyProfile from './components/UIMyProfile/Main';
 import Product from './components/UIProduct/Product.js';
 import MainReturn from './components/UIReturns/MainReturn';
@@ -32,7 +31,6 @@ function App() {
             {/* <Route path="/" element={<><HomePage /><Outlet /></>} /> */}
             {/* <Route path="HomePage" element={<HomePage />} /> */}
             <Route path="/Search" element={<Search />} />
-            <Route path="/OrderConfirmation" element={<OrderConfirmation />} />
             <Route path="/PaymentMethods" element={<PaymentMethods />} />
             {/* <Route path="/" exact element={<App/>}></Route> */}
             <Route path="/Login" element={<Login />}></Route>
@@ -44,7 +42,7 @@ function App() {
             <Route path="CardPage" element={<CardPage />} />
             <Route path="Product" element={<Product />} />
             <Route path="MyProfile" element={<UIMyProfile />} />
-            <Route path="Main" element={<Main />} />
+            <Route path="/CheckoutReview" element={<OrderConfirmation />} />
             <Route path="MainReturn" element={<MainReturn />} />
           </Routes>
         </div>

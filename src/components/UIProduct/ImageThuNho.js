@@ -18,6 +18,7 @@ export default function SpacingGrid(props) {
                                         height: 50,
                                         width: 50,
                                         border: "1px solid"
+                                        
                                     }}
                                 />
                             </Button>

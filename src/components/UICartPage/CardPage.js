@@ -22,6 +22,7 @@ import { red } from '@mui/material/colors';
 import UnderlineLink from './Link';
 import Header from '../UI/Header'
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 
 export default function CardPage() {
@@ -146,10 +147,12 @@ export default function CardPage() {
                                     </Grid>
                                 </Grid>
                             </CardContent>
-                            <CardActions>
-                                <Button
-                                    variant="contained" sx={{ width: 350, height: 50 }}
-                                >Check out</Button>
+                            <CardActions>  
+                                <Link to="/Shipping">
+                                    <Button
+                                        variant="contained" sx={{ width: 350, height: 50 }}
+                                    >Check out</Button>
+                                </Link>
                             </CardActions>
                             <div style={{ textAlign: 'center' }}>
                                 <CardActions >

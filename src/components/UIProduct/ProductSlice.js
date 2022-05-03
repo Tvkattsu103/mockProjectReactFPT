@@ -30,7 +30,7 @@ const productSlice = createSlice({
     addToCartPage: (state, action) => {
       console.log("Da ket noi " + action.payload );
       state.product = action.payload;
-    }, // Tự động tạo 1 action  type: Product/AddToCartPage
+    }, // Tự động tạo 1 action  type: Product/addToCartPage
   },
 });
 
