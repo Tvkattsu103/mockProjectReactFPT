@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, {useEffect} from "react";
 import { styled, alpha } from "@mui/material/styles";
 import {
   AppBar,
@@ -189,9 +189,13 @@ const Header = () => {
     </Menu>
   );
 
+  useEffect(()=>{
+    dispatch(searchSlide.actions.searchKeyChange(keyword));
+  },[keyword])
+
   const handleKeyword = (e) => {
     setKeyword(e.currentTarget.value);
-    dispatch(searchSlide.actions.searchKeyChange(e.currentTarget.value));
+    //dispatch(searchSlide.actions.searchKeyChange(e.currentTarget.value));
   };
 
   const toggleMiniCart = (open) => (event) => {

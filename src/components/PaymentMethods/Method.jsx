@@ -1,8 +1,17 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 import React from "react";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import { useDispatch } from "react-redux";
+import paymentMethodSlice from "./paymentMethodSlice";
 
 const Method = ({ id, method, expMonth, expYear, customerName, image , isDefault }) => {
+
+  const dispatch = useDispatch();
+
+  const handleDeleteMethod = () => {
+    dispatch(paymentMethodSlice.actions.deleteMethod(id));
+  };
+
   return (
     <>
       <Grid item xs={12}>
@@ -26,7 +35,7 @@ const Method = ({ id, method, expMonth, expYear, customerName, image , isDefault
               <Typography variant="h6">{customerName}</Typography>
             </Grid>
             <Grid item xs={3} textAlign="right">
-              <Button sx={{ color: "black" }} disabled>
+              <Button sx={{ color: "black" }} disabled={isDefault} onClick={handleDeleteMethod}>
                 <Grid container alignItems={"center"}>
                   <Grid item xs={10}>
                     <Typography variant="h6">DELETE </Typography>
@@ -37,12 +46,13 @@ const Method = ({ id, method, expMonth, expYear, customerName, image , isDefault
                 </Grid>
               </Button>
             </Grid>
-            {}
+            {isDefault && 
             <Grid item xs={12}>
               <Typography variant="h6" sx={{ color: "silver" }}>
                 This is your default payment method
               </Typography>
             </Grid>
+            }
           </Grid>
         </Box>
       </Grid>
