@@ -1,34 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from "uuid";
+
 export default createSlice({
   name: "paymentMethod",
   initialState: [
-    // {
-    //   id: 1,
-    //   method: "VISA Debit (9332)",
-    //   expMonth: "08",
-    //   expYear: "22",
-    //   customerName: "Baymard Institute Asp",
-    //   image: require("../../images/visaIcon.png"),
-    //   isDefault: true,
-    // },
-    // {
-    //   id: 2,
-    //   method: "VISA Debit (3207)",
-    //   expMonth: "04",
-    //   expYear: "18",
-    //   customerName: "John Newman",
-    //   image: require("../../images/visaIcon.png"),
-    //   isDefault: false,
-    // },
-    // {
-    //   id: 3,
-    //   method: "VISA Debit (3207)",
-    //   expMonth: "07",
-    //   expYear: "23",
-    //   customerName: "Yasuo",
-    //   image: require("../../images/visaIcon.png"),
-    //   isDefault: false,
-    // },
     {
       id: 1,
       method: "diners-club-international",
@@ -123,7 +98,7 @@ export default createSlice({
   reducers: {
     addMethod: (state, action) => {
       state.push({
-        id: state.length + 1,
+        id: uuidv4(),
         method: action.payload.type,
         expMonth: action.payload.month,
         expYear: action.payload.year,

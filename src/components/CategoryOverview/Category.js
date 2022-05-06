@@ -7,6 +7,7 @@ import Header from '../UI/Header';
 import Carousel from '../CategoryOverview/Carousel';
 import axios from 'axios'
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 function Category() {
     const [category, setCategory] = useState([])
@@ -179,6 +180,7 @@ function Category() {
                 <Grid container className="category-container" spacing={0}>
                     {category.map(category => (
                         <Grid item xs={3}>
+                            <Link color="inherit" to="/categorypage">
                             <Card style={{ width: '100%' }} className="Card">
                                 <Box sx={{ position: 'relative' }}>
                                     <CardMedia
@@ -201,6 +203,7 @@ function Category() {
                                 </Box>
 
                             </Card>
+                            </Link>
                         </Grid>
                     ))}
                 </Grid>
