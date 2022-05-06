@@ -16,7 +16,7 @@ export default function Product() {
     const [product, setProduct] = React.useState([])
     const dispatch = useDispatch();
     React.useEffect(() => {
-        fetch("http://localhost:8080/SpringMVCRESTful/product.json")
+        fetch("https://raw.githubusercontent.com/0854737568aAsSdD/API/main/API.json")
           .then(res => res.json())
           .then(product => {   
             setProduct(product);

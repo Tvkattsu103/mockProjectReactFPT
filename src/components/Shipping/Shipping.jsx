@@ -10,7 +10,6 @@ import { useSelector } from 'react-redux';
 
 function Shipping() {
     const data = useSelector((state) => state.cartpage.dataShipping)
-
     return (
         <div>
             <Header />
@@ -259,13 +258,12 @@ function Shipping() {
                                     </Typography>
                                     <Typography sx={{ fontSize: 18 }} color="black" gutterBottom>
                                         <hr></hr>
-
                                         <Grid container>
                                             <Grid item xs={10}>
                                                 <b>Total</b>
                                             </Grid>
                                             <Grid item xs={2} align="right">
-                                                {parseInt(data.price) - 5}
+                                                {parseInt(data.price) + 5}
                                             </Grid>
                                         </Grid>
                                     </Typography>
