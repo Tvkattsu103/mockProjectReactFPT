@@ -96,6 +96,7 @@ export const listProductSearchSelector = createSelector(
 );
 //miniCart
 export const stateMiniCart = ( state ) => state.miniCart.open;
+export const miniCartItem = ( state ) => state.miniCart.items;
 
 // phan cua anh HuyHt8
 export const userSelector = (state) => state.user;
