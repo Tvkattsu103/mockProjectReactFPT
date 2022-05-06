@@ -52,7 +52,7 @@ const PaymentMethods = () => {
                 const exp = new Date("20" + m.expYear, m.expMonth);
                 return exp > today ? (
                   <Method
-                    key={m.id}
+                    key={m.id.toString()}
                     id={m.id}
                     method={m.method}
                     expMonth={m.expMonth}
