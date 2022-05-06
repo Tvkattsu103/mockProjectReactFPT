@@ -1,5 +1,5 @@
 import './App.css';
-import Category from './components/CategoryOverview/Category';
+import CategoryOverview from './components/CategoryOverview/Category';
 import Help from './components/Help/Help';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import HomePage from "./components/Home/HomePage";
@@ -19,6 +19,7 @@ import CardPage from './components/UICartPage/CardPage';
 import UIMyProfile from './components/UIMyProfile/Main';
 import Product from './components/UIProduct/Product.js';
 import MainReturn from './components/UIReturns/MainReturn';
+import CategoryPage from './components/CategoryPage/CategoryPage';
 
 function App() {
   return (
@@ -27,7 +28,8 @@ function App() {
         <div id="main-ct" className="p-child-dkr">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/category" element={<Category />} />
+            <Route path="/categoryoverview" element={<CategoryOverview />} />
+            <Route path="/categorypage" element={<CategoryPage />} />
             <Route path="/payment" element={<Payment />} />
             <Route path="/emailsignup" element={<EmailSignUp />} />
             {/* <Route path="/" element={<><HomePage /><Outlet /></>} /> */}
