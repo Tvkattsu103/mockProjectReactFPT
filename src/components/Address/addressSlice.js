@@ -24,6 +24,15 @@ export default createSlice({
     name: "address",
     initialState: listAddress,
     reducers: {
-      
+        changDefault: (state,action)=>{
+            state.forEach((m)=> m.isDefault=false);
+            state.forEach((m)=> m.id===action.payload?m.isDefault=true:m.isDefault=false);
+        },
+        deleteMethod: (state, action) => {
+            const index = state.findIndex((m) => m.id === action.payload);
+            if (index > -1) {
+                state.splice(index, 1);
+            }
+        }
     },
 });

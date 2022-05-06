@@ -4,7 +4,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Box, Grid, List, ListItem, Stack, ListItemButton, ListItemText, imageListItemClasses, ButtonGroup, Popover, Button } from '@mui/material';
 import Header from '../UI/Header';
-import Carousel from '../Category/Carousel';
+import Carousel from '../CategoryOverview/Carousel';
 import axios from 'axios'
 import { useState, useEffect } from 'react';
 
