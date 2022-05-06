@@ -262,7 +262,6 @@ function Shipping() {
                                     </Typography>
                                     <Typography sx={{ fontSize: 18 }} color="black" gutterBottom>
                                         <hr></hr>
-
                                         <Grid container>
                                             <Grid item xs={10}>
                                                 <b>Total</b>
