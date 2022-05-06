@@ -1,6 +1,6 @@
 import { Button, Grid, TextField } from '@mui/material';
 import { height } from '@mui/system';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Route, Routes , Link , useNavigate} from 'react-router-dom';
 import HomePage from '../Home/HomePage';
 import Register from '../Register/Register';
@@ -8,13 +8,19 @@ import Header from '../UI/Header';
 import userSlice  from './userSlice';
 import { useDispatch, useSelector } from "react-redux";
 import {checkUserSelector} from '../../redux/selectors'
-
+import axios from 'axios';
 
 function Login() {
     const [Email , setEmail] = useState('');
     const [Password, setPassword] =useState('');
     const [emailErr , setEmailErr] = useState('');
     const [passErr, setPassErr] =useState('');
+    // useEffect(()=>{
+    //     axios.get('https://reqres.in/api/login')
+    //     .then(res =>{
+    //         console.log('>>> check res: ',res.data.data)
+    //     })       
+    // },[]);
 
     const checkUser = useSelector(checkUserSelector);
     console.log(checkUser);
