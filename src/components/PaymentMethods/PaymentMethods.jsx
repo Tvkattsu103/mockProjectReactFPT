@@ -1,6 +1,6 @@
-import { Avatar, Button, Container, Grid, Typography } from "@mui/material";
+import { Avatar, Button, Container, Grid, Modal, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
+import React, { useState } from "react";
 import Header from "../UI/Header";
 
 import CreditCardOutlinedIcon from "@mui/icons-material/CreditCardOutlined";
@@ -10,9 +10,13 @@ import { listPaymentMethod } from "../../redux/selectors";
 import Method from "./Method";
 import ExpiredMethod from "./ExpiredMethod";
 import MenuLeft from "../UI/MenuLeft";
+import NewMethod from "./NewMethod";
 
 const PaymentMethods = () => {
   const listMethod = useSelector(listPaymentMethod);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <>
@@ -38,6 +42,7 @@ const PaymentMethods = () => {
                       <Button
                         variant="outlined"
                         sx={{ borderColor: "black", color: "black" }}
+                        onClick={handleOpen}
                       >
                         <Typography variant="h6">
                           ADD NEW PAYMENT METHOD
@@ -76,6 +81,14 @@ const PaymentMethods = () => {
             </Grid>
           </Grid>
         </Grid>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <NewMethod close={() => handleClose()}/>
+        </Modal>
       </Container>
     </>
   );
