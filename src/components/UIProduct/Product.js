@@ -14,7 +14,7 @@ import Header from '../UI/Header';
 import {addToCartPage} from './ProductSlice'
 
 export default function Product() {
-    const [image, setImage] = React.useState("https://cdn.hoang-phuc.com/media/catalog/product/cache/3243173bfa4021eba79889ede7b15407/3/3/33191kw-a0a-1.jpg")
+    const [image, setImage] = React.useState("https://product.hstatic.net/200000278317/product/giay-da-banh-nike-react-phantom-gt-pro-2-tf-0768-167-trang-do-vang-1_f297487790614c9eaf9ddde1c149c43b_master.jpg")
     const [size, setSize] = React.useState(50)
     const [width, setWidth] = React.useState('Medium')
     const [price, setPrice] = React.useState('50')

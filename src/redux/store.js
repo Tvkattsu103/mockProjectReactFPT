@@ -8,6 +8,9 @@ import addressSlice from "../components/Address/addressSlice";
 import productSlice from "../components/UIProduct/ProductSlice";
 import orderConfirmSlide from "../components/OrderConfirmation/orderConfirmSlide";
 import paymentMethodSlide from "../components/PaymentMethods/paymentMethodSlice";
+import productSlice from "../components/UIProduct/ProductSlice"
+import cartPageSlice from "../components/UICartPage/CartPageSlice.js"
+
 const store = configureStore({
   reducer: {
     search: searchSlide.reducer,
@@ -19,6 +22,7 @@ const store = configureStore({
     product: productSlice.reducer,
     orderConfirm: orderConfirmSlide.reducer,
     paymentMethod: paymentMethodSlide.reducer,
+    cartpage: cartPageSlice.reducer,
   },
 });
 
