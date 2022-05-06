@@ -3,7 +3,7 @@ import { Box } from "@mui/system";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import addressSlice from "./addressSlice";
-
+import { v4 as uuidv4 } from 'uuid';
 const style = {
     position: "absolute",
     top: "50%",
@@ -16,6 +16,7 @@ const style = {
     p: 4,
   };
   const DEFAULT_VALUE = {
+    id: uuidv4(),
     name: "",
     address: "",
     city: "",
@@ -24,7 +25,7 @@ const style = {
     isDefault:false
   };
   
-  const NewAddress = ({ close }) => {
+  const UpdateAddress = ({ close }) => {
     const [formValue, setFormValue] = useState(DEFAULT_VALUE);
   
     const handleFormValueChange = (e) => {
@@ -34,10 +35,10 @@ const style = {
   
     const dispatch = useDispatch();
   
-    const handleAddAddress = () => {
-      dispatch(addressSlice.actions.addAddress(formValue));
-      close();
-    };
+    // const handleAddAddress = () => {
+    //   dispatch(addressSlice.actions.addAddress(formValue));
+    //   close();
+    // };
   
     return (
       <>
@@ -52,7 +53,6 @@ const style = {
             sx={{ minWidth: 350, mt: 2 }}
             value={formValue.name}
             onChange={handleFormValueChange}
-            required
           >
           </TextField>
           <TextField
@@ -61,7 +61,6 @@ const style = {
             sx={{ minWidth: 350, mt: 2 }}
             value={formValue.address}
             onChange={handleFormValueChange}
-            required
           />
           <TextField
             name="city"
@@ -69,7 +68,6 @@ const style = {
             sx={{ minWidth: 350, mt: 2 }}
             value={formValue.city}
             onChange={handleFormValueChange}
-            required
           />
           <TextField
             name="province"
@@ -77,7 +75,6 @@ const style = {
             sx={{ minWidth: 350, mt: 2 }}
             value={formValue.province}
             onChange={handleFormValueChange}
-            required
           />
           <TextField
             name="country"
@@ -85,9 +82,8 @@ const style = {
             sx={{ minWidth: 350, mt: 2 }}
             value={formValue.country}
             onChange={handleFormValueChange}
-            required
           />
-          <Button variant="contained" sx={{ mt: 2 }} onClick={handleAddAddress}>
+          <Button variant="contained" sx={{ mt: 2 }} onClick={handleUpdateAddress}>
             Add address
           </Button>
         </Box>
@@ -95,4 +91,4 @@ const style = {
     );
   };
   
-  export default NewAddress;
+  export default UpdateAddress;

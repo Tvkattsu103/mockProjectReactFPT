@@ -4,6 +4,7 @@
         "cartpage",
         "emailsignup",
         "Giftcard",
-        "reduxjs"
+        "reduxjs",
+        "uuidv"
     ]
 }
