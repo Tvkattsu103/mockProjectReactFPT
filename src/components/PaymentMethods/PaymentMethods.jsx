@@ -87,7 +87,7 @@ const PaymentMethods = () => {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-          <NewMethod close={() => handleClose()}/>
+          <NewMethod close={handleClose}/>
         </Modal>
       </Container>
     </>
