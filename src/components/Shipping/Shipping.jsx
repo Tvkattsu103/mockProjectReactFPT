@@ -223,7 +223,7 @@ function Shipping() {
                                                 Sub Total:
                                             </Grid>
                                             <Grid item xs={2} align="right">
-                                                {data.price}
+                                                $ {data.price}
                                             </Grid>
                                         </Grid>
                                     </Typography>
@@ -267,7 +267,7 @@ function Shipping() {
                                                 <b>Total</b>
                                             </Grid>
                                             <Grid item xs={2} align="right">
-                                                {parseInt(data.price) - valueRadio}
+                                                $ {parseInt(data.price) + parseInt(valueRadio)}
                                             </Grid>
                                             {console.log(data.price)}
                                         </Grid>
