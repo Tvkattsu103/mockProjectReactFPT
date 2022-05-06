@@ -8,8 +8,7 @@ import addressSlice from "../components/Address/addressSlice";
 import productSlice from "../components/UIProduct/ProductSlice";
 import orderConfirmSlide from "../components/OrderConfirmation/orderConfirmSlide";
 import paymentMethodSlide from "../components/PaymentMethods/paymentMethodSlice";
-import productSlice from "../components/UIProduct/ProductSlice"
-import cartPageSlice from "../components/UICartPage/CartPageSlice.js"
+import cartPageSlice from "../components/UICartPage/CartPageSlice";
 
 const store = configureStore({
   reducer: {
