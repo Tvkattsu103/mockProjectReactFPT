@@ -15,19 +15,27 @@ import {
   IconButton
 } from '@mui/material';
 import { Delete, AddCircle, RemoveCircle, Close } from '@mui/icons-material'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { stateMiniCart, miniCartItem } from './../../redux/selectors';
+import miniCartSlice from '../MiniCart/miniCartSlice';
 
 
 export default function MiniCart({ toggleMiniCart }) {
+  const dispatch = useDispatch();
   const open = useSelector(stateMiniCart)
   const items = useSelector(miniCartItem)
   console.log(items)
+
+  const addQuantity = (e) => {
+    e.preventDefault();
+    dispatch(miniCartSlice.actions.addQuantity(1))
+  }
+
   const list = () => (
     <Box
       sx={{ width: 550, height: '100%' }}
       role="presentation"
-      onClick={toggleMiniCart(false)}
+      // onClick={toggleMiniCart(false)}
       onKeyDown={toggleMiniCart(false)}
     >
       <Box sx={{ height: '82%' }}>
@@ -96,9 +104,9 @@ export default function MiniCart({ toggleMiniCart }) {
                             <RemoveCircle />
                           </Button>
                           <Button variant="outlined" size="small" style={{ minWidth: '30px', paddingTop: '4px', paddingBottom: '4px' }}>
-                            1
+                            {item.quantity}
                           </Button>
-                          <Button variant="contained" size="small" style={{ minWidth: '0px' }}>
+                          <Button variant="contained" size="small" style={{ minWidth: '0px' }} onClick={()=>addQuantity(item.name)}>
                             <AddCircle />
                           </Button>
                         </div>

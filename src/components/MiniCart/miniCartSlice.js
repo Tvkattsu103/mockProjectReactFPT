@@ -8,7 +8,8 @@ export default createSlice({
             {
                 image:'https://www3.assets-gap.com/webcontent/0028/965/940/cn28965940.jpg',
                 title:'The Weekend Spring Dress',
-                price:40
+                price:40,
+                quantity:1
             }
         ]
     },
@@ -18,6 +19,11 @@ export default createSlice({
         },
         changeState: (state, action) => {
             state.open = action.payload;
-        }
+        },
+        addQuantity: (state, action) => {
+            // state.items.quantity = state.items.quantity + action.payload;
+            // state.items.find((item) => )
+            // console.log("action",state.items.quantity);
+        },
     }
 })

@@ -39,7 +39,7 @@ export default function CategoryPage() {
     e.preventDefault();
     console.log(product.attributes);
     const img = "http://localhost:1337" + product.attributes.Image.data[0].attributes.url;
-    dispatch(miniCartSlice.actions.addItem({title:product.attributes.Title, image:img, price:product.attributes.Price}))
+    dispatch(miniCartSlice.actions.addItem({title:product.attributes.Title, image:img, price:product.attributes.Price, quantity:1}))
   }
 
   const getCategoryPage = () => {
