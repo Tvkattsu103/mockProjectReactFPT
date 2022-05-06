@@ -1,6 +1,7 @@
 import './App.css';
 import Category from './components/CategoryOverview/Category';
 import Help from './components/Help/Help';
+// import { Link, Outlet } from 'react-router-dom';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import HomePage from "./components/Home/HomePage";
 import OrderConfirmation from "./components/OrderConfirmation/OrderConfirmationPage";
@@ -15,10 +16,12 @@ import OrderHistory from "./components/Order/OrderHistory";
 import Register from "./components/Register/Register";
 import Shipping from "./components/Shipping/Shipping";
 
-import CardPage from './components/UICartPage/CardPage';
-import UIMyProfile from './components/UIMyProfile/Main';
-import Product from './components/UIProduct/Product.js';
-import MainReturn from './components/UIReturns/MainReturn';
+import CardPage from "./components/UICartPage/CardPage";
+import Main from "./components/UICheckOut/Main";
+import UIMyProfile from "./components/UIMyProfile/Main";
+import Product from "./components/UIProduct/Product.js";
+import MainReturn from "./components/UIReturns/MainReturn";
+// import Product from "./components/UIProduct/TestGird.js";
 
 function App() {
   return (
@@ -33,6 +36,7 @@ function App() {
             {/* <Route path="/" element={<><HomePage /><Outlet /></>} /> */}
             {/* <Route path="HomePage" element={<HomePage />} /> */}
             <Route path="/Search" element={<Search />} />
+            <Route path="/OrderConfirmation" element={<OrderConfirmation />} />
             <Route path="/PaymentMethods" element={<PaymentMethods />} />
             {/* <Route path="/" exact element={<App/>}></Route> */}
             <Route path="/Login" element={<Login />}></Route>
@@ -45,6 +49,7 @@ function App() {
             <Route path="Product" element={<Product />} />
             <Route path="MyProfile" element={<UIMyProfile />} />
             <Route path="/CheckoutReview" element={<OrderConfirmation />} />
+            <Route path="Main" element={<Main />} />
             <Route path="MainReturn" element={<MainReturn />} />
           </Routes>
         </div>
