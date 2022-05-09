@@ -2,31 +2,21 @@ import Box from "@mui/material/Box";
 import { Button, ButtonGroup, Grid } from "@mui/material";
 import * as React from "react";
 import Header from "../UI/Header";
-import { Popover, Typography } from "@mui/material";
+import { Popper, Typography } from "@mui/material";
 import Carousel from "./Carousel";
 import SpacingGrid from "./SpacingGrid";
 import MonthBest from "./MonthBest";
 import EmailSignUp from "../EmailSignUp/EmailSignUp";
+import { Link } from "react-router-dom";
+import useFetchData from "../../customHooks/useFetchData";
 
 const HomePage = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [itemHover, setItemHover] = React.useState(null);
 
-  const categories = [
-    { id: 1, name: "NEW" },
-    { id: 2, name: "WOMEN" },
-    { id: 3, name: "MATERNITY" },
-    { id: 4, name: "MEN" },
-    { id: 5, name: "TEEN" },
-    { id: 6, name: "GIRLS" },
-    { id: 7, name: "BOY" },
-    { id: 8, name: "TODDLER" },
-    { id: 9, name: "BABY" },
-    { id: 10, name: "MATCHING" },
-    { id: 11, name: "JEANS" },
-    { id: 12, name: "SALE" },
-    { id: 13, name: "FACTORY" },
-  ];
+  const categories = useFetchData("http://localhost:1337/api/categories");
+
+  console.log(categories);
 
   const handlePopoverOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -51,19 +41,22 @@ const HomePage = () => {
               aria-label="text button group"
               size="large"
             >
-              {categories.map((ca) => {
+              {
+                categories &&
+              categories.map((ca) => {
                 return (
                   <Box
                     key={ca.id}
-                    aria-owns={open ? "mouse-over-popover" : undefined}
+                    aria-owns={open ? "mouse-over-poper" : undefined}
                     aria-haspopup="true"
-                    onMouseOver={handlePopoverOpen}
+                    //onMouseOver={handlePopoverOpen}
+                    //onMouseLeave={handlePopoverClose}
                   >
-                    <Button >{ca.name}</Button>
+                    <Button >{ca.attributes.Name}</Button>
                   </Box>
                 );
               })}
-              <Popover
+              {/* <Popper 
                 id="mouse-over-popover"
                 sx={{
                   pointerEvents: "none",
@@ -78,10 +71,11 @@ const HomePage = () => {
                   vertical: "top",
                   horizontal: "left",
                 }}
-                onMouseOver={handlePopoverClose}
               >
-                <Typography sx={{ p: 2 }} >{itemHover} use Popover.</Typography>
-              </Popover>
+                <Box sx={{p: 3, backgroundColor: 'silver'}}>
+                <Link to="/Search"><Typography>{itemHover} Category</Typography></Link>
+                </Box>
+              </Popper> */}
             </ButtonGroup>
           </Box>
         </Grid>

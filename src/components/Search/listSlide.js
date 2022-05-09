@@ -86,10 +86,7 @@ export default createSlice({
   ]},
   reducers: {
     changeList: (state, action) => {
-      console.log('da ket noi');
-      console.log(state.values);
       state.products = action.payload;
-      console.log(state);
     },
   },
 });

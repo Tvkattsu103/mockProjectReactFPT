@@ -190,12 +190,19 @@ const Header = () => {
   );
 
   useEffect(()=>{
-    dispatch(searchSlide.actions.searchKeyChange(keyword));
+
+    const identifier = setTimeout(() => {
+      dispatch(searchSlide.actions.searchKeyChange(keyword));
+    }, 500);
+
+    return () => {
+      clearTimeout(identifier);
+    }
+    
   },[keyword])
 
   const handleKeyword = (e) => {
     setKeyword(e.currentTarget.value);
-    //dispatch(searchSlide.actions.searchKeyChange(e.currentTarget.value));
   };
 
   const toggleMiniCart = (open) => (event) => {
