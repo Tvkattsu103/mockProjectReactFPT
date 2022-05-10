@@ -32,8 +32,6 @@ function App() {
             <Route path="/categorypage" element={<CategoryPage />} />
             <Route path="/payment" element={<Payment />} />
             <Route path="/emailsignup" element={<EmailSignUp />} />
-            {/* <Route path="/" element={<><HomePage /><Outlet /></>} /> */}
-            {/* <Route path="HomePage" element={<HomePage />} /> */}
             <Route path="/Search" element={<Search />} />
             <Route path="/PaymentMethods" element={<PaymentMethods />} />
             {/* <Route path="/" exact element={<App/>}></Route> */}
