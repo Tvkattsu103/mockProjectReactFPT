@@ -35,7 +35,6 @@ export default function MiniCart({ toggleMiniCart }) {
     <Box
       sx={{ width: 550, height: '100%' }}
       role="presentation"
-      // onClick={toggleMiniCart(false)}
       onKeyDown={toggleMiniCart(false)}
     >
       <Box sx={{ height: '82%' }}>

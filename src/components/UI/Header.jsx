@@ -101,7 +101,8 @@ const Header = () => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const currentUser = useSelector(checkUserSelector);
+  // const currentUser = useSelector(checkUserSelector);
+  const currentUser = { email: "tuan", password: "tuan" }
 
   const handleLogout = () => {
     history("/Login");

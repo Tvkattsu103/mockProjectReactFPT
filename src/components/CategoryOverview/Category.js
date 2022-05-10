@@ -2,7 +2,7 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Box, Grid, List, ListItem, Stack, ListItemButton, ListItemText, imageListItemClasses, ButtonGroup, Popover, Button } from '@mui/material';
+import { Box, Grid, List, ListItem, Stack, ListItemButton, ListItemText, ButtonGroup, Popover, Button } from '@mui/material';
 import Header from '../UI/Header';
 import Carousel from '../CategoryOverview/Carousel';
 import axios from 'axios'
@@ -20,82 +20,8 @@ function Category() {
             )
             .then(data => {
                 setCategory(data);
-                // setUrl("http://localhost:1337" + response.data.data[0].attributes.Image.data[0].attributes.url);
             })
     }
-    // const category = [
-    //     {
-    //         name: 'New Arrivals',
-    //         img: 'https://www.gap.com/Asset_Archive/GPWeb/content/0028/619/791/assets/NEW_ARRIVALS.jpg'
-    //     },
-    //     {
-    //         name: 'Jeans',
-    //         img: 'https://www.gap.com/Asset_Archive/GPWeb/content/0028/619/791/assets/JEANS.jpg'
-    //     },
-    //     {
-    //         name: 'Pants',
-    //         img: 'https://www.gap.com/Asset_Archive/GPWeb/content/0028/619/791/assets/PANTS.jpg'
-    //     },
-    //     {
-    //         name: 'Sweats',
-    //         img: 'https://www.gap.com/Asset_Archive/GPWeb/content/0028/619/791/assets/SWEATS.jpg'
-    //     },
-    //     {
-    //         name: 'Sweaters',
-    //         img: 'https://www.gap.com/Asset_Archive/GPWeb/content/0028/619/791/assets/SWEATERS.jpg'
-    //     },
-    //     {
-    //         name: 'Dresses',
-    //         img: 'https://www.gap.com/Asset_Archive/GPWeb/content/0028/619/791/assets/DRESSES.jpg'
-    //     },
-    //     {
-    //         name: 'Outerwear',
-    //         img: 'https://www.gap.com/Asset_Archive/GPWeb/content/0028/619/791/assets/OUTERWEAR.jpg'
-    //     },
-    //     {
-    //         name: 'Tees',
-    //         img: 'https://www.gap.com/Asset_Archive/GPWeb/content/0028/619/791/assets/TEES.jpg'
-    //     }
-    // ]
-    // const listcategory2 = [
-    //     'New Arrivals', 'Jeans', 'Dresses', 'Jumpsuits & Rompers', 'T-shirts', 'Shirts & Tops', 'Sweatshirts & Sweatpants',
-    //     'Sweaters', 'Outerwear & Jacket', 'Pants', 'Shorts', 'Skirts', 'Swim', 'Shoes & Accessories', 'Gapfit',
-    //     'Gapbody', 'Sale'
-    // ]
-    const data = [
-        {
-            name: "Pizza Begin",
-            link: "pizza-begin.co.il",
-        },
-        {
-            name: "Mia Luz",
-            link: "mia-luz.com",
-        },
-        {
-            name: "Nuda Swim",
-            link: "nudaswim.com"
-        }
-    ];
-    const images = [
-        {
-            label: "Toddler Denim Jacket",
-            imgPath: "https://www.gap.com/Asset_Archive/GPWeb/content/0028/946/322/Assets/PZ/KTB/SP222007_img_DESK.jpg?v=1",
-        },
-        {
-            label: "100% Organic Classic V-Neck T-Shirt",
-            imgPath: "https://www.gap.com/Asset_Archive/GPWeb/content/0028/876/662/assets/PZ/MEN/MEN2/a/SP221763_img2_DESK.jpg",
-        },
-        {
-            label: "Bali, Indonesia",
-            imgPath:
-                "https://www.gap.com/Asset_Archive/GPWeb/content/0028/876/662/assets/PZ/MEN/MEN2/a/SP221763_img1_DESK.jpg",
-        },
-        {
-            label: "Goč, Serbia",
-            imgPath:
-                "https://oldnavy.gap.com/Asset_Archive/ONWeb/content/0028/959/445/assets/220418_32_M7935_Neutrals_HPSec_Hero_s2_US_XL.jpg?v=1",
-        },
-    ];
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [itemHover, setItemHover] = React.useState(null);
