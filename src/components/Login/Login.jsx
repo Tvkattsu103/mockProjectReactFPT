@@ -21,6 +21,9 @@ function Login() {
     //         console.log('>>> check res: ',res.data.data)
     //     })       
     // },[]);
+    
+               
+    
 
     const checkUser = useSelector(checkUserSelector);
     console.log(checkUser);
@@ -56,6 +59,13 @@ function Login() {
         e.preventDefault();
 
         dispatch(userSlice.actions.loginSuccess({email:Email,password:Password}));
+        // axios.post("https://reqres.in/api/login",{
+        // email:Email,
+        // password:Password,
+        // })
+        // .then(res =>{
+        //     console.log('>>> check res: ',res)
+        // })
     }
     const handleSubmit2=(e)=>{
         e.preventDefault();
@@ -81,7 +91,8 @@ function Login() {
                     placeholder='Enter Email' 
                     type='Email' 
                     fullWidth 
-                    required 
+                    required
+                    style={{marginTop:'10px'}}
                     onChange={handleChangeEmail}
                     />
                     <small >{emailErr}</small>
@@ -93,10 +104,11 @@ function Login() {
                     type='password' 
                     fullWidth 
                     required 
+                    style={{marginTop:'10px'}}
                     onChange={handleChangePassword}
                     />
-                    <small >{passErr}</small>
-                    <Button type='submit' color='primary' fullWidth style={{backgroundColor:'black',color:'white'}}><b>Login in</b></Button>
+                    <small style={{marginTop:'10px'}}>{passErr}</small>
+                    <Button type='submit' color='primary' fullWidth style={{backgroundColor:'black',color:'white',marginTop:'10px'}}><b>Login in</b></Button>
                 </form>
             </Grid>
             <Grid item xs={1}>

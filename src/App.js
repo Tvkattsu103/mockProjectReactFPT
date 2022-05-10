@@ -48,6 +48,7 @@ function App() {
             <Route path="MyProfile" element={<UIMyProfile />} />
             <Route path="/CheckoutReview" element={<OrderConfirmation />} />
             <Route path="MainReturn" element={<MainReturn />} />
+            <Route path="/Help" element={<Help/>} />
           </Routes>
         </div>
       </Router>

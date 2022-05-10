@@ -7,6 +7,7 @@ import Carousel from "./Carousel";
 import SpacingGrid from "./SpacingGrid";
 import MonthBest from "./MonthBest";
 import EmailSignUp from "../EmailSignUp/EmailSignUp";
+import Footer from "../UI/Footer";
 
 const HomePage = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -101,6 +102,7 @@ const HomePage = () => {
           </Box>
         </Grid>
       </Grid>
+      <Footer></Footer>
     </>
   );
 };
