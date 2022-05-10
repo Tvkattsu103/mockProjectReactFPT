@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { styled, alpha } from "@mui/material/styles";
 import {
   AppBar,
@@ -23,13 +23,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeStateMiniCart } from "../../redux/actions";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LoginIcon from "@mui/icons-material/Login";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Login } from "@mui/icons-material";
 import miniCartSlice from "../MiniCart/miniCartSlice";
 import LogoutIcon from "@mui/icons-material/Logout";
 import searchSlide from "../Search/searchSlide";
 import { checkUserSelector } from "../../redux/selectors";
-import userSlice from "../Login/userSlice"
+import userSlice from "../Login/userSlice";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -74,6 +74,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const Header = () => {
   const dispatch = useDispatch();
 
+  const history = useNavigate();
+
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [keyword, setKeyword] = React.useState("");
@@ -101,8 +104,32 @@ const Header = () => {
   const currentUser = useSelector(checkUserSelector);
 
   const handleLogout = () => {
-    console.log("log out");
-    dispatch(userSlice.actions.logout({email:'',password:''}));
+    history("/Login");
+    dispatch(userSlice.actions.logout({ email: "", password: "" }));
+  };
+
+  useEffect(() => {
+    const identifier = setTimeout(() => {
+      dispatch(searchSlide.actions.searchKeyChange(keyword));
+    }, 500);
+
+    return () => {
+      clearTimeout(identifier);
+    };
+  }, [keyword]);
+
+  const handleKeyword = (e) => {
+    setKeyword(e.currentTarget.value);
+  };
+
+  const toggleMiniCart = (open) => (event) => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+    dispatch(miniCartSlice.actions.changeState(open));
   };
 
   const menuId = "primary-search-account-menu";
@@ -149,71 +176,71 @@ const Header = () => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <Link to="/OrderConfirmation">
-        <MenuItem>
+      {currentUser ? (
+        <Box>
+          {/* <Link
+                  to="/OrderConfirmation"
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  <IconButton
+                    size="large"
+                    aria-label="show products in cart"
+                    color="inherit"
+                  >
+                    <Badge badgeContent={5} color="error">
+                      <ShoppingCartIcon />
+                    </Badge>
+                  </IconButton>
+                </Link> */}
           <IconButton
             size="large"
-            aria-label="show 4 new mails"
+            edge="end"
+            aria-label="account of current user"
+            aria-controls={menuId}
+            aria-haspopup="true"
             color="inherit"
+            onClick={toggleMiniCart(true)}
           >
-            <Badge badgeContent={5} color="error">
+            <Badge badgeContent={2} color="error">
               <ShoppingCartIcon />
             </Badge>
           </IconButton>
-        </MenuItem>
-      </Link>
-      <MenuItem>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
-        >
-          <Badge badgeContent={17} color="error">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
+          <MiniCart toggleMiniCart={toggleMiniCart} />
+          <IconButton
+            size="large"
+            aria-label="account of current user"
+            aria-controls={menuId}
+            aria-haspopup="true"
+            onClick={handleProfileMenuOpen}
+            color="inherit"
+          >
+            <AccountCircle />
+          </IconButton>
+
+          <IconButton
+            size="large"
+            edge="end"
+            aria-haspopup="true"
+            onClick={handleLogout}
+          >
+            <LogoutIcon sx={{ color: "black" }} />
+          </IconButton>
+        </Box>
+      ) : (
+        <Link to="/Login" sx={{ textDecoration: "none" }}>
+          <IconButton size="large" edge="end" aria-haspopup="true">
+            <LoginIcon sx={{ color: "black" }} />
+          </IconButton>
+        </Link>
+      )}
     </Menu>
   );
-
-  useEffect(()=>{
-    dispatch(searchSlide.actions.searchKeyChange(keyword));
-  },[keyword])
-
-  const handleKeyword = (e) => {
-    setKeyword(e.currentTarget.value);
-    //dispatch(searchSlide.actions.searchKeyChange(e.currentTarget.value));
-  };
-
-  const toggleMiniCart = (open) => (event) => {
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-    dispatch(miniCartSlice.actions.changeState(open));
-    // console.log(miniCartSlice.actions.changeState(open))
-  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             size="large"
             edge="start"
             color="inherit"
@@ -221,7 +248,7 @@ const Header = () => {
             sx={{ mr: 2 }}
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           <Typography
             variant="h6"
             noWrap
@@ -252,29 +279,38 @@ const Header = () => {
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             {currentUser ? (
               <>
-                <Link
+                {/* <Link
                   to="/OrderConfirmation"
                   style={{ textDecoration: "none", color: "white" }}
                 >
                   <IconButton
                     size="large"
-                    aria-label="show 4 new mails"
+                    aria-label="show products in cart"
                     color="inherit"
                   >
-                    <Badge badgeContent={4} color="error">
+                    <Badge badgeContent={5} color="error">
                       <ShoppingCartIcon />
                     </Badge>
                   </IconButton>
-                </Link>
+                </Link> */}
+
                 <IconButton
                   size="large"
-                  aria-label="show 17 new notifications"
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-controls={menuId}
+                  aria-haspopup="true"
                   color="inherit"
+                  onClick={toggleMiniCart(true)}
+                  mr={1}
                 >
-                  <Badge badgeContent={17} color="error">
-                    <NotificationsIcon />
+                  {/* sản phẩm trong giỏ hàng */}
+                  <Badge badgeContent={2} color="error"> 
+                    <ShoppingCartIcon />
                   </Badge>
                 </IconButton>
+                <MiniCart toggleMiniCart={toggleMiniCart} />
+
                 <IconButton
                   size="large"
                   aria-label="account of current user"
@@ -285,18 +321,6 @@ const Header = () => {
                 >
                   <AccountCircle />
                 </IconButton>
-                <IconButton
-                  size="large"
-                  edge="end"
-                  aria-label="account of current user"
-                  aria-controls={menuId}
-                  aria-haspopup="true"
-                  color="inherit"
-                  onClick={toggleMiniCart(true)}
-                >
-                  <ShoppingCartIcon />
-                </IconButton>
-                <MiniCart toggleMiniCart={toggleMiniCart} />
 
                 <IconButton
                   size="large"

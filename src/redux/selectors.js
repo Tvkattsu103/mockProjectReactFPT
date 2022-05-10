@@ -10,7 +10,7 @@ export const listSelector = (state) => state.list.products;
 export const listProductSearchSelector = createSelector(
   listSelector, searchSelector,
   (listProduct, key) => {
-    return listProduct.filter((p) => p.title.includes(key));
+    return listProduct.filter((p) => p.attributes.Title.toLowerCase().includes(key.toLowerCase()));
   }
 );
 //miniCart
