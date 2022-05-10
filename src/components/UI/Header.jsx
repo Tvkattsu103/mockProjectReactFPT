@@ -103,6 +103,7 @@ const Header = () => {
   const handleLogout = () => {
     console.log("log out");
     dispatch(userSlice.actions.logout({email:'',password:''}));
+    localStorage.removeItem('currentuser');
   };
 
   const menuId = "primary-search-account-menu";

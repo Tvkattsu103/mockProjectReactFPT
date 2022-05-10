@@ -5,11 +5,12 @@ import Footer from '../UI/Footer';
 import Header from '../UI/Header';
 
 function Help() {
+  
   return (
     <div>
         <Header/>
         <Box sx={{backgroundColor:'silver'}}>
-            <Container maxWidth="xs" align="center" style={{padding:'50px',color:'white'}}>
+            <Container maxWidth="xs" align="center" style={{padding:'50px',color:'black'}}>
                         <Typography variant='h4'>How can we help ?</Typography>
                         <br></br>
                         <Typography variant='b1'>Sent us a text: 1-814-251-9966</Typography><br></br>
