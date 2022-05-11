@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const listUser =[
     {
         email:"thehuy.2pro@gmail.com",
-        password:"1234566",
+        password:"123456",
         name:"Huy",
         surname:"Hoàng Thế",
         province:"Thừa Thiên Huế",

@@ -1,8 +1,12 @@
 {
     "cSpell.words": [
         "bgcolor",
+        "cartpage",
+        "currentuser",
         "emailsignup",
         "Giftcard",
-        "reduxjs"
-    ]
+        "reduxjs",
+        "uuidv"
+    ],
+    "eslint.enable": false
 }
