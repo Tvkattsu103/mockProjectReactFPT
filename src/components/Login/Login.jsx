@@ -6,6 +6,7 @@ import HomePage from '../Home/HomePage';
 import Register from '../Register/Register';
 import Header from '../UI/Header';
 import userSlice  from './userSlice';
+import registerSlice from '../Register/registerSlice'
 import { useDispatch, useSelector } from "react-redux";
 import {checkUserSelector} from '../../redux/selectors'
 import axios from 'axios';
@@ -15,21 +16,20 @@ function Login() {
     const [Password, setPassword] =useState('');
     const [emailErr , setEmailErr] = useState('');
     const [passErr, setPassErr] =useState('');
-    // useEffect(()=>{
-    //     axios.get('https://reqres.in/api/login')
-    //     .then(res =>{
-    //         console.log('>>> check res: ',res.data.data)
-    //     })       
-    // },[]);
-    
-               
-    
+
+    useEffect(()=>{
+        axios.get('http://localhost:1337/api/accounts')
+        .then(res =>{
+            return res.data.data
+        })
+        .then(data =>{
+            dispatch(registerSlice.actions.initUser(data))
+        })
+    },[]);
 
     const checkUser = useSelector(checkUserSelector);
-    console.log(checkUser);
     let navigate = useNavigate();
     if(checkUser){
-        alert("Đăng nhập thành công");
         navigate('/');
     }
     const dispatch = useDispatch();
@@ -39,39 +39,15 @@ function Login() {
     const handleChangePassword=(e)=>{
         setPassword(e.target.value);
     }
-    const checkLogin = ()=>{
-        let isValid = true;
-        if(Email!=="thehuy@gmail.com"){
-          isValid = false;
-          setEmailErr("User is not correct");
-        }else{
-          setEmailErr("");
-        }
-        if(Password!=="123456"){
-          isValid = false;
-          setPassErr("Pass is not correct");
-        }else{
-          setPassErr("");
-        }
-        return isValid;
-      }
+
     const handleSubmit=(e)=>{
         e.preventDefault();
 
         dispatch(userSlice.actions.loginSuccess({email:Email,password:Password}));
-        // axios.post("https://reqres.in/api/login",{
-        // email:Email,
-        // password:Password,
-        // })
-        // .then(res =>{
-        //     console.log('>>> check res: ',res)
-        // })
     }
     const handleSubmit2=(e)=>{
         e.preventDefault();
-        //link to Register.js
-        
-        
+        navigate('/Register');
     }
     
     return (
