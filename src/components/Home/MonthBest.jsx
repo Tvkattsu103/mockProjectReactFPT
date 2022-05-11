@@ -22,8 +22,8 @@ export default function MonthBest() {
     console.log(id);
 
     axios
-      .post("http://localhost:1337/api/carts", {
-        data: {quantity: 1, size: 38, products: id}
+      .post("http://localhost:1337/api/carts?populate=*", {
+        data: {quantity: 1, size: '38', products: id}
       })
       .then((response) => {
         console.log(response);
@@ -51,19 +51,19 @@ export default function MonthBest() {
                     height="400"
                     image={
                       "http://localhost:1337" +
-                      p.attributes.Image.data[0].attributes.url
+                      p.attributes.image.data[0].attributes.url
                     }
-                    alt={p.attributes.Title}
+                    alt={p.attributes.title}
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                      {p.attributes.Title}
+                      {p.attributes.title}
                     </Typography>
                     {/* <Typography variant="h6" color="text.secondary">
                       {p.category}
                     </Typography> */}
                     <Typography variant="h5" color="text.secondary">
-                      ${p.attributes.Price}
+                      ${p.attributes.price}
                     </Typography>
                   </CardContent>
                   <CardActions>

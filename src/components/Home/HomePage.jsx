@@ -35,7 +35,7 @@ const HomePage = () => {
             >
               {categories &&
                 categories.map((ca) => {
-                  return <Button key={ca.id} onClick={handleCategoryClick}>{ca.attributes.Name}</Button>;
+                  return <Button key={ca.id} onClick={handleCategoryClick}>{ca.attributes.name}</Button>;
                 })}
             </ButtonGroup>
           </Box>

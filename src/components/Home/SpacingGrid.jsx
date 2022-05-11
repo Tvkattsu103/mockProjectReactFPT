@@ -24,18 +24,18 @@ export default function SpacingGrid() {
               <CardMedia
                     component="img"
                     height="400"
-                    image={"http://localhost:1337"+p.attributes.Image.data[0].attributes.url}
-                    alt={p.attributes.Title}
+                    image={"http://localhost:1337"+p.attributes.image.data[0].attributes.url}
+                    alt={p.attributes.title}
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                      {p.attributes.Title}
+                      {p.attributes.title}
                     </Typography>
                     {/* <Typography variant="h6" color="text.secondary">
                       {p.category}
                     </Typography> */}
                     <Typography variant="h5" color="text.secondary">
-                      ${p.attributes.Price}
+                      ${p.attributes.price}
                     </Typography>
                   </CardContent>
                   <CardActions>
