@@ -26,7 +26,7 @@ export const checkUserSelector = createSelector(
   (user,listUser) => {
     const e = listUser.find((p) => p.email===user.email && p.password===user.password);
     if(e){
-      localStorage.setItem('currentuser',e);
+      localStorage.setItem('currentuser',JSON.stringify(e));
     }
     return e;
     

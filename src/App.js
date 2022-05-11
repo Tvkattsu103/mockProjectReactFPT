@@ -45,6 +45,7 @@ function App() {
             <Route path="Product" element={<Product />} />
             <Route path="MyProfile" element={<UIMyProfile />} />
             <Route path="/CheckoutReview" element={<OrderConfirmation />} />
+            {/* <Route path="Main" element={<Main />} /> */}
             <Route path="MainReturn" element={<MainReturn />} />
             <Route path="/Help" element={<Help/>} />
           </Routes>
