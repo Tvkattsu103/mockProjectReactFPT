@@ -1,4 +1,4 @@
-import { Button, Grid, TextField } from '@mui/material';
+import { Alert, Button, Grid, Snackbar, TextField } from '@mui/material';
 import { height } from '@mui/system';
 import React, { useEffect, useState } from 'react'
 import { Route, Routes , Link , useNavigate} from 'react-router-dom';
@@ -15,6 +15,7 @@ function Login() {
     const [Password, setPassword] =useState('');
     const [emailErr , setEmailErr] = useState('');
     const [passErr, setPassErr] =useState('');
+    const [open , setOpen] = useState(false);
     // useEffect(()=>{
     //     axios.get('https://reqres.in/api/login')
     //     .then(res =>{
@@ -28,10 +29,15 @@ function Login() {
     const checkUser = useSelector(checkUserSelector);
     console.log(checkUser);
     let navigate = useNavigate();
-    if(checkUser){
-        alert("Đăng nhập thành công");
-        navigate('/');
-    }
+    
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setOpen(false);
+    };
     const dispatch = useDispatch();
     const handleChangeEmail=(e)=>{
         setEmail(e.target.value);
@@ -66,14 +72,13 @@ function Login() {
         // .then(res =>{
         //     console.log('>>> check res: ',res)
         // })
-    }
-    const handleSubmit2=(e)=>{
-        e.preventDefault();
-        //link to Register.js
-        
-        
-    }
-    
+        if(checkUser){
+            // alert("Đăng nhập thành công");
+            navigate('/');
+        }else{
+            setOpen(true);
+        }
+    }   
     return (
     <div>
         <Header/>
@@ -115,7 +120,7 @@ function Login() {
                 
             </Grid>
             <Grid item xs={3}>
-                <form action='#' method='post' onSubmit={handleSubmit2}>
+                <form action='#' method='post'>
                     <h5><b>Đăng ký:</b></h5>
                     <p>NẾU QUÝ KHÁCH VẪN CHƯA CÓ TÀI KHOẢN TRÊN GAP.COM, HÃY SỬ DỤNG TÙY CHỌN NÀY ĐỂ TRUY CẬP BIỂU MẪU ĐĂNG KÝ.
                         BẰNG CÁCH CUNG CẤP CHO CHÚNG TÔI THÔNG TIN CHI TIẾT CỦA QUÝ KHÁCH, QUÁ TRÌNH MUA HÀNG TRÊN GAP.COM SẼ LÀ MỘT TRẢI NGHIỆM THÚ VỊ VÀ NHANH CHÓNG HƠN.
@@ -125,7 +130,11 @@ function Login() {
                 </form>    
             </Grid>
         </Grid>
-        
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                Đăng nhập không thành công!
+            </Alert>
+        </Snackbar>
     </div>
 
     )

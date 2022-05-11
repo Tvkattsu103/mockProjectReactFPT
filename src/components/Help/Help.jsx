@@ -1,11 +1,18 @@
 import { Button, Container, Grid, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import React from 'react'
+import React, { useState } from 'react'
 import Footer from '../UI/Footer';
 import Header from '../UI/Header';
 
 function Help() {
-  
+  const [question,setQuestion] = useState("");
+  const [contact,setContact] = useState("");
+  const handleQuestion = (e) =>{
+    setQuestion(e.target.value);
+  };
+  const handleContact = (e) =>{
+    setContact(e.target.value);
+  };
   return (
     <div>
         <Header/>
@@ -22,8 +29,8 @@ function Help() {
         <Box>  
             <Typography variant='h5' align='center' padding='20px' fontFamily='monospace'>You can leave information here. We will response to you soon.<br></br> Thanh you!</Typography>
             <Container style={{padding:'20px',border:'2px solid black',borderRadius:'10px'}} maxWidth="sm" align="center">
-                <TextField placeholder='What can we help you?' fullWidth style={{marginTop:'20px'}} required></TextField>
-                <TextField placeholder='Your phone' fullWidth style={{marginTop:'20px'}} required></TextField>
+                <TextField value={question} placeholder='What can we help you?' fullWidth style={{marginTop:'20px'}} required onChange={handleQuestion}></TextField>
+                <TextField value={contact} placeholder='Your phone' fullWidth style={{marginTop:'20px'}} required onChange={handleContact}></TextField>
                 <Button style={{height:'50px',border:'1px solid white',backgroundColor:'black',color:'white',marginTop:'20px'}} fullWidth>
                             <p style={{fontWeight:'bold'}}>Send</p>
                 </Button>

@@ -106,7 +106,8 @@ const Header = () => {
 
   const handleLogout = () => {
     history("/Login");
-    dispatch(userSlice.actions.logout({ email: "", password: "" }));
+    dispatch(userSlice.actions.logout({email:'',password:''}));
+    localStorage.removeItem('currentuser');
   };
 
   useEffect(() => {
@@ -132,8 +133,6 @@ const Header = () => {
     }
     dispatch(miniCartSlice.actions.changeState(open));
     console.log("log out");
-    dispatch(userSlice.actions.logout({email:'',password:''}));
-    localStorage.removeItem('currentuser');
   };
 
   const menuId = "primary-search-account-menu";
