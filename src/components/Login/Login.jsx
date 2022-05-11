@@ -16,6 +16,7 @@ function Login() {
     const [emailErr , setEmailErr] = useState('');
     const [passErr, setPassErr] =useState('');
     const [open , setOpen] = useState(false);
+    const [isSubmit, setIsSubmit] = useState(false);
     // useEffect(()=>{
     //     axios.get('https://reqres.in/api/login')
     //     .then(res =>{
@@ -30,12 +31,17 @@ function Login() {
     console.log(checkUser);
     let navigate = useNavigate();
     
-
+    useEffect(()=>{
+        if(checkUser){
+            navigate('/');
+        }else{
+            setOpen(true);
+        }
+    },[isSubmit]);
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
           return;
-        }
-    
+        }   
         setOpen(false);
     };
     const dispatch = useDispatch();
@@ -45,22 +51,6 @@ function Login() {
     const handleChangePassword=(e)=>{
         setPassword(e.target.value);
     }
-    const checkLogin = ()=>{
-        let isValid = true;
-        if(Email!=="thehuy@gmail.com"){
-          isValid = false;
-          setEmailErr("User is not correct");
-        }else{
-          setEmailErr("");
-        }
-        if(Password!=="123456"){
-          isValid = false;
-          setPassErr("Pass is not correct");
-        }else{
-          setPassErr("");
-        }
-        return isValid;
-      }
     const handleSubmit=(e)=>{
         e.preventDefault();
 
@@ -72,12 +62,7 @@ function Login() {
         // .then(res =>{
         //     console.log('>>> check res: ',res)
         // })
-        if(checkUser){
-            // alert("Đăng nhập thành công");
-            navigate('/');
-        }else{
-            setOpen(true);
-        }
+        setIsSubmit(true);
     }   
     return (
     <div>

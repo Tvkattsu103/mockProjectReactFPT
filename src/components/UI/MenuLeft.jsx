@@ -19,7 +19,7 @@ import { useSelector } from "react-redux";
 
 const MenuLeft = () => {
 
-  const currentUser = useSelector(checkUserSelector);
+  const currentUser = JSON.parse(localStorage.getItem('currentuser'));
 
   const nameAva = currentUser.name.split(" ");
 
