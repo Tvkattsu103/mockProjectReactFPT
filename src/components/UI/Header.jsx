@@ -76,16 +76,16 @@ const Header = () => {
 
   const history = useNavigate();
 
-
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [keyword, setKeyword] = React.useState("");
 
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const isMenuOpen = anchorEl;
+  const isMobileMenuOpen = mobileMoreAnchorEl;
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
+    history("/PaymentMethods");
   };
 
   const handleMobileMenuClose = () => {
@@ -104,7 +104,7 @@ const Header = () => {
   const handleLogout = () => {
     history("/Login");
     dispatch(userSlice.actions.logout({ email: "", password: "" }));
-    localStorage.removeItem('currentuser');
+    localStorage.removeItem("currentuser");
   };
 
   useEffect(() => {
@@ -129,35 +129,34 @@ const Header = () => {
       return;
     }
     dispatch(miniCartSlice.actions.changeState(open));
-    dispatch(userSlice.actions.logout({email:'',password:''}));
   };
 
   const menuId = "primary-search-account-menu";
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <Link
-        to="/PaymentMethods"
-        style={{ textDecoration: "none", color: "black" }}
-      >
-        <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      </Link>
-    </Menu>
-  );
+  // const renderMenu = (
+  //   <Menu
+  //     anchorEl={anchorEl}
+  //     anchorOrigin={{
+  //       vertical: "top",
+  //       horizontal: "right",
+  //     }}
+  //     id={menuId}
+  //     keepMounted
+  //     transformOrigin={{
+  //       vertical: "top",
+  //       horizontal: "right",
+  //     }}
+  //     open={isMenuOpen}
+  //     onClose={handleMenuClose}
+  //   >
+  //     <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+  //     <Link
+  //       to="/PaymentMethods"
+  //       style={{ textDecoration: "none", color: "black" }}
+  //     >
+  //       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+  //     </Link>
+  //   </Menu>
+  // );
 
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
@@ -176,22 +175,8 @@ const Header = () => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      {localStorage.getItem('currentuser') ? (
+      {localStorage.getItem("currentuser") ? (
         <Box>
-          {/* <Link
-                  to="/OrderConfirmation"
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  <IconButton
-                    size="large"
-                    aria-label="show products in cart"
-                    color="inherit"
-                  >
-                    <Badge badgeContent={5} color="error">
-                      <ShoppingCartIcon />
-                    </Badge>
-                  </IconButton>
-                </Link> */}
           <IconButton
             size="large"
             edge="end"
@@ -240,15 +225,6 @@ const Header = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          {/* <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton> */}
           <Typography
             variant="h6"
             noWrap
@@ -277,23 +253,8 @@ const Header = () => {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            {localStorage.getItem('currentuser') ? (
+            {localStorage.getItem("currentuser") ? (
               <>
-                {/* <Link
-                  to="/OrderConfirmation"
-                  style={{ textDecoration: "none", color: "white" }}
-                >
-                  <IconButton
-                    size="large"
-                    aria-label="show products in cart"
-                    color="inherit"
-                  >
-                    <Badge badgeContent={5} color="error">
-                      <ShoppingCartIcon />
-                    </Badge>
-                  </IconButton>
-                </Link> */}
-
                 <IconButton
                   size="large"
                   edge="end"
@@ -304,8 +265,8 @@ const Header = () => {
                   onClick={toggleMiniCart(true)}
                   mr={1}
                 >
-                  {/* sản phẩm trong giỏ hàng */}
-                  <Badge badgeContent={2} color="error"> 
+                  {/*số sản phẩm trong giỏ hàng */}
+                  <Badge badgeContent={2} color="error">
                     <ShoppingCartIcon />
                   </Badge>
                 </IconButton>
@@ -354,7 +315,7 @@ const Header = () => {
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
-      {renderMenu}
+      {/* {renderMenu} */}
     </Box>
   );
 };

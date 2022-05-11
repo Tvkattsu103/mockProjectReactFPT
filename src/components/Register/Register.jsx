@@ -1,4 +1,4 @@
-import { Button, Container, Grid, TextField } from '@mui/material';
+import { Alert, Button, Container, Grid, Snackbar, TextField } from '@mui/material';
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
@@ -26,6 +26,7 @@ function Register() {
 
     const dispatch = useDispatch();
     const listUser1 = useSelector(listUser);
+    const [open , setOpen] = useState(false);
     
     const handleChangeEmail = (e) => {
         setEmail(e.target.value);
@@ -51,6 +52,13 @@ function Register() {
     const handleChangeAddress = (e) => {
         setAddress(e.target.value);
     }
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setOpen(false);
+    };
     const checkValid = () => {
         let isValid = true;
         //const regexEmail = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
@@ -70,7 +78,7 @@ function Register() {
         e.preventDefault();
         if (checkValid() === true) {
             if (listUser1.find(user => user.email === Email)) {
-                alert("Email đã tồn tại")
+                setOpen(true);
             }
             else {
                 dispatch(registerSlice.actions.addUser({ email: Email, password: Password, name: Name, surname: Surname, province: Province, city: City, address: Address }));
@@ -220,6 +228,11 @@ function Register() {
 
                 </Grid>
             </Container>
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                    Email đã tồn tại!
+                </Alert>
+            </Snackbar>
         </div>
     )
 }

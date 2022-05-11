@@ -24,6 +24,11 @@ export default createSlice({
     name: "registerUser",
     initialState: listUser,
     reducers: {     
+      initUser: (state, action) => {
+        action.payload.map((p) => {
+          return state.push({...p.attributes});
+        })
+      },
       addUser: (state,action) =>{
         state.push(action.payload);
       }     

@@ -86,6 +86,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            {/* <Route path="Main" element={<Main />} /> */}
             <Route path="MainReturn" element={<MainReturn />} />
             <Route path="/Help" element={<Help />} />
           </Routes>
