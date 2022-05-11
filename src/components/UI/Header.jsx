@@ -101,12 +101,10 @@ const Header = () => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  // const currentUser = useSelector(checkUserSelector);
-  const currentUser = { email: "", password: "" }
-
   const handleLogout = () => {
     history("/Login");
     dispatch(userSlice.actions.logout({ email: "", password: "" }));
+    localStorage.removeItem('currentuser');
   };
 
   useEffect(() => {
@@ -131,9 +129,7 @@ const Header = () => {
       return;
     }
     dispatch(miniCartSlice.actions.changeState(open));
-    console.log("log out");
     dispatch(userSlice.actions.logout({email:'',password:''}));
-    localStorage.removeItem('currentuser');
   };
 
   const menuId = "primary-search-account-menu";
@@ -180,7 +176,7 @@ const Header = () => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      {currentUser ? (
+      {localStorage.getItem('currentuser') ? (
         <Box>
           {/* <Link
                   to="/OrderConfirmation"
@@ -281,7 +277,7 @@ const Header = () => {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            {currentUser ? (
+            {localStorage.getItem('currentuser') ? (
               <>
                 {/* <Link
                   to="/OrderConfirmation"

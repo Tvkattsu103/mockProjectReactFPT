@@ -7,5 +7,6 @@
         "Giftcard",
         "reduxjs",
         "uuidv"
-    ]
+    ],
+    "eslint.enable": false
 }
