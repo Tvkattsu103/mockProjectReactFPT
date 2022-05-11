@@ -23,7 +23,7 @@ const HomePage = () => {
 
   return (
     <>
-      <Header></Header>
+      <Header />
       <EmailSignUp />
       <Grid container spacing={2}>
         <Grid item xs={12}>
@@ -35,28 +35,24 @@ const HomePage = () => {
             >
               {categories &&
                 categories.map((ca) => {
-                  return <Button key={ca.id} onClick={handleCategoryClick}>{ca.attributes.Name}</Button>;
+                  return <Button key={ca.id} onClick={handleCategoryClick}>{ca.attributes.name}</Button>;
                 })}
             </ButtonGroup>
           </Box>
         </Grid>
-        <Grid item xs={12}>
-          <Box sx={{ backgroundColor: "#81d4fa" }}>
-            <Carousel></Carousel>
-          </Box>
-        </Grid>
-        <Grid item xs={12}>
-          <Box sx={{ backgroundColor: "#81d4fa" }}>
-            <SpacingGrid></SpacingGrid>
-          </Box>
-        </Grid>
-        <Grid item xs={12}>
-          <Box sx={{ backgroundColor: "#81d4fa" }}>
-            <MonthBest></MonthBest>
-          </Box>
-        </Grid>
+        <Box sx={{ paddingBottom: '50px', backgroundColor: "#81d4fa" }}>
+          <Grid item xs={12}>
+            <Carousel />
+          </Grid>
+          <Grid item xs={12}>
+            <SpacingGrid />
+          </Grid>
+          <Grid item xs={12}>
+            <MonthBest />
+          </Grid>
+        </Box>
       </Grid>
-      <Footer></Footer>
+      <Footer />
     </>
   );
 };
