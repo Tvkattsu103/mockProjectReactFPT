@@ -40,4 +40,5 @@ a {
 }
 body{
   background-color: #efefef;
+  min-height: 100vh-100px;
 }
