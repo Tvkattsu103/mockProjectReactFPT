@@ -12,6 +12,8 @@ import { Grid, Box, FormControl, InputLabel, Input, TextField } from '@mui/mater
 import { useSelector, useDispatch } from 'react-redux';
 import emailSignUpSlice from './emailSignUpSlice';
 import { emailErrSelector, stateEmailSignUp, showOffCodeSelector, emailInputSelector } from './../../redux/selectors';
+import axios from 'axios';
+
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -36,7 +38,6 @@ const BootstrapDialogTitle = (props) => {
     return (
         <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
             {children}
-            {/* {onClose ? ( */}
             <IconButton
                 aria-label="close"
                 onClick={onClose}
@@ -49,7 +50,6 @@ const BootstrapDialogTitle = (props) => {
             >
                 <CloseIcon />
             </IconButton>
-            {/* ) : null} */}
         </DialogTitle>
     );
 };
@@ -62,11 +62,10 @@ BootstrapDialogTitle.propTypes = {
 export default function EmailSignUp() {
     const dispatch = useDispatch();
     const open = useSelector(stateEmailSignUp);
-    console.log(open)
     const emailErr = useSelector(emailErrSelector);
     const showOffCode = useSelector(showOffCodeSelector);
     const emailInput = useSelector(emailInputSelector);
-    
+
 
     const handleChange = (e) => {
         dispatch(emailSignUpSlice.actions.changeEmailInput(e.target.value));
@@ -96,6 +95,12 @@ export default function EmailSignUp() {
     const handleSubmit = () => {
         if (checkValid() === true) {
             dispatch(emailSignUpSlice.actions.changeShowOffCodeState(true));
+            console.log({ data: { 'UserEmail': emailInput } })
+            axios.post('http://localhost:1337/api/email-sign-ups', { data: { 'UserEmail': emailInput } }).then(response => {
+                console.log(response);
+            }).catch((error) => {
+                console.log(error);
+            });
         }
     }
 
@@ -130,7 +135,6 @@ export default function EmailSignUp() {
                                                 error={emailErr}
                                                 helperText={emailErr && 'Email không đúng định dạng'}
                                             />
-                                            {/* <Input error helperText="Incorrect entry." id="component-simple" value={emailInput} placeholder='Your email' sx={{ fontSize: '20px' }} onChange={handleChange} /> */}
                                             <Button sx={{ position: 'absolute', right: '0', marginTop: '10px' }} onClick={handleSubmit}>Submit</Button>
                                         </FormControl>
                                     </>
@@ -139,12 +143,11 @@ export default function EmailSignUp() {
                                         <Typography variant='h3' sx={{ lineHeight: '90%', mb: 1, mt: 20 }}>Thank You.</Typography>
                                         <Typography variant='h6' sx={{ lineHeight: '130%' }}>Here's your $10 off code:</Typography>
                                         <Typography variant='h3' id="offcode" sx={{ lineHeight: '130%', mt: 15 }}>WELCOME10</Typography>
-                                        <Typography variant='subtitle1' color="#9e9e9e" fontStyle="italic" sx={{ lineHeight: '130%', cursor:'pointer' }} onClick={handleCopyOffCode}>Click to copy</Typography>
-                                        
+                                        <Typography variant='subtitle1' color="#9e9e9e" fontStyle="italic" sx={{ lineHeight: '130%', cursor: 'pointer' }} onClick={handleCopyOffCode}>Click to copy</Typography>
+
                                     </>
                                 )
                             }
-
                         </Grid>
                         <Grid item xs={6}>
                             <Box component="img"

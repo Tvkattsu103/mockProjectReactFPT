@@ -2,7 +2,6 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import ImgMediaCard from './Image';
-import data from "./DataImg.json"
 import HalfRating from './Rating';
 import SpacingGrid from './ImageThuNho';
 import BoxSize from './BoxSize';
@@ -14,13 +13,26 @@ import Header from '../UI/Header';
 import {addToCartPage} from './ProductSlice'
 
 export default function Product() {
-    const [image, setImage] = React.useState("https://cdn.hoang-phuc.com/media/catalog/product/cache/3243173bfa4021eba79889ede7b15407/3/3/33191kw-a0a-1.jpg")
-    const [size, setSize] = React.useState(50)
-    const [width, setWidth] = React.useState('Medium')
-    const [price, setPrice] = React.useState('50')
-    const[name, setName] = React.useState('Giày chạy bộ')
+    const [product, setProduct] = React.useState([])
     const dispatch = useDispatch();
-    const getDataType = (Type) => (
+    React.useEffect(() => {
+        fetch("https://raw.githubusercontent.com/0854737568aAsSdD/API/main/API.json")
+          .then(res => res.json())
+          .then(product => {   
+            setProduct(product);
+            setImage(product[0].name)
+            setSize(product[0].size)
+            setWidth(product[0].width)
+            setPrice(product[0].price)
+            setName(product[0].type)
+          })
+      }, [])   
+      const [image, setImage] = React.useState(product[0]?.name)
+      const [size, setSize] = React.useState(product[0]?.size)
+      const [width, setWidth] = React.useState(product[0]?.width)
+      const [price, setPrice] = React.useState(product[0]?.price)
+      const[name, setName] = React.useState(product[0]?.type)
+      const getDataType = (Type) => (
         setImage(Type)
     )
     const getDataSize = (Size) => {
@@ -29,7 +41,6 @@ export default function Product() {
     const getDataWidth = (Width) => {
         setWidth(Width)
     }
-
     const getProductToCardPage = (type, size, width, name, price) => {
         let product = {}
         product.type = type;
@@ -50,9 +61,9 @@ export default function Product() {
                 <Grid item xs={6}>
                     {/* Content nam ben trai */}
                     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
-                        {data.map((item) => (
+                        {product.map((item) => (
                             <Grid item xs={6} key={item.id}>
-                                <ImgMediaCard img={image} name={name} use={item.use}  price={price} size={size} width={width} />
+                                <ImgMediaCard img={image} name={name} price={price} size={size} width={width} />
                             </Grid>
                         ))}
                     </Grid>

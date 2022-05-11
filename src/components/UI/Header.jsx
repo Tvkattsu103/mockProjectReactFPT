@@ -101,7 +101,8 @@ const Header = () => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const currentUser = useSelector(checkUserSelector);
+  // const currentUser = useSelector(checkUserSelector);
+  const currentUser = { email: "", password: "" }
 
   const handleLogout = () => {
     history("/Login");
@@ -130,6 +131,9 @@ const Header = () => {
       return;
     }
     dispatch(miniCartSlice.actions.changeState(open));
+    console.log("log out");
+    dispatch(userSlice.actions.logout({email:'',password:''}));
+    localStorage.removeItem('currentuser');
   };
 
   const menuId = "primary-search-account-menu";

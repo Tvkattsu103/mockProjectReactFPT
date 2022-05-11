@@ -15,6 +15,7 @@ export const listProductSearchSelector = createSelector(
 );
 //miniCart
 export const stateMiniCart = ( state ) => state.miniCart.open;
+export const miniCartItem = ( state ) => state.miniCart.items;
 
 // phan cua anh HuyHt8
 export const userSelector = (state) => state.user;
@@ -23,7 +24,12 @@ export const listUser = (state) => state.registerUser;
 export const checkUserSelector = createSelector(
   userSelector,listUser,
   (user,listUser) => {
-    return listUser.find((p) => p.email===user.email && p.password===user.password);
+    const e = listUser.find((p) => p.email===user.email && p.password===user.password);
+    if(e){
+      localStorage.setItem('currentuser',e);
+    }
+    return e;
+    
   }
 );
 // phan cua anh HuyHt8 address

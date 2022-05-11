@@ -8,6 +8,7 @@ import addressSlice from "../components/Address/addressSlice";
 import productSlice from "../components/UIProduct/ProductSlice";
 import orderConfirmSlide from "../components/OrderConfirmation/orderConfirmSlide";
 import paymentMethodSlide from "../components/PaymentMethods/paymentMethodSlice";
+import cartPageSlice from "../components/UICartPage/CartPageSlice";
 import listSlide from "../components/Search/listSlide";
 
 const store = configureStore({
@@ -21,6 +22,7 @@ const store = configureStore({
     product: productSlice.reducer,
     orderConfirm: orderConfirmSlide.reducer,
     paymentMethod: paymentMethodSlide.reducer,
+    cartpage: cartPageSlice.reducer,
     list: listSlide.reducer,
   },
 });

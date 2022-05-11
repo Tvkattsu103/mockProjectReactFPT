@@ -1,6 +1,6 @@
-import { Avatar, Button, Container, Grid, Typography } from '@mui/material';
+import { Avatar, Button, Container, Grid, Modal, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../UI/Header';
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
@@ -17,10 +17,23 @@ import FilterNoneOutlinedIcon from "@mui/icons-material/FilterNoneOutlined";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { listAddress } from '../../redux/selectors';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import MenuLeft from '../UI/MenuLeft';
+import addressSlice from "./addressSlice";
+import NewAddress from './NewAddress';
+import Footer from '../UI/Footer';
 function Address() {
   const listAddress1 = useSelector(listAddress);
+  const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
+  const handleAdd = () => setOpen(true);
+  const handleCloseAdd = () => setOpen(false);
+  const handleChangeDefaultAddress = (id) => {
+    dispatch(addressSlice.actions.changDefault(id));
+  };
+  const handleDeleteAddress = (id) => {
+    dispatch(addressSlice.actions.deleteAddress(id));
+  };
   return (
     <div>
         <Header />
@@ -45,6 +58,7 @@ function Address() {
                       <Button
                         variant="outlined"
                         sx={{ borderColor: "black", color: "black" }}
+                        onClick={handleAdd}
                       >
                         <Typography variant="h6">
                           ADD NEW ADDRESS
@@ -80,7 +94,7 @@ function Address() {
                                         </Grid>
                                     </Button>
                                     
-                                    <Button sx={{ color: "black" ,marginLeft:'10px'}} disabled={l.isDefault}>
+                                    <Button sx={{ color: "black" ,marginLeft:'10px'}} disabled={l.isDefault} onClick={()=>handleChangeDefaultAddress(l.id)}>
                                         <Grid container alignItems={"center"}>
                                         <Grid item xs={10}>
                                             <Typography variant="h6">SETDEFAULT</Typography>
@@ -89,7 +103,7 @@ function Address() {
                                     </Button>
                               </Grid>
                               <Grid>
-                                    <Button sx={{ color: "black" }} disabled={l.isDefault}>
+                                    <Button sx={{ color: "black" }} disabled={l.isDefault} onClick={()=>handleDeleteAddress(l.id)}>
                                         <Grid container alignItems={"center"}>
                                         <Grid item xs={10}>
                                             <Typography variant="h6">DELETE </Typography>
@@ -109,8 +123,16 @@ function Address() {
             </Grid>
           </Grid>
         </Grid>
+        <Modal
+          open={open}
+          onClose={handleCloseAdd}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <NewAddress close={() => handleCloseAdd()}/>
+        </Modal>
       </Container>
-    
+      <Footer/>
     </div>
   )
 }

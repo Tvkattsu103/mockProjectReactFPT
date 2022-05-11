@@ -2,84 +2,26 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Box, Grid, List, ListItem, Stack, ListItemButton, ListItemText, imageListItemClasses, ButtonGroup, Popover, Button } from '@mui/material';
+import { Box, Grid, List, ListItem, Stack, ListItemButton, ListItemText, ButtonGroup, Popover, Button } from '@mui/material';
 import Header from '../UI/Header';
-import Carousel from './Carousel';
+import Carousel from '../CategoryOverview/Carousel';
+import axios from 'axios'
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 function Category() {
-    const category = [
-        {
-            name: 'New Arrivals',
-            img: 'https://www.gap.com/Asset_Archive/GPWeb/content/0028/619/791/assets/NEW_ARRIVALS.jpg'
-        },
-        {
-            name: 'Jeans',
-            img: 'https://www.gap.com/Asset_Archive/GPWeb/content/0028/619/791/assets/JEANS.jpg'
-        },
-        {
-            name: 'Pants',
-            img: 'https://www.gap.com/Asset_Archive/GPWeb/content/0028/619/791/assets/PANTS.jpg'
-        },
-        {
-            name: 'Sweats',
-            img: 'https://www.gap.com/Asset_Archive/GPWeb/content/0028/619/791/assets/SWEATS.jpg'
-        },
-        {
-            name: 'Sweaters',
-            img: 'https://www.gap.com/Asset_Archive/GPWeb/content/0028/619/791/assets/SWEATERS.jpg'
-        },
-        {
-            name: 'Dresses',
-            img: 'https://www.gap.com/Asset_Archive/GPWeb/content/0028/619/791/assets/DRESSES.jpg'
-        },
-        {
-            name: 'Outerwear',
-            img: 'https://www.gap.com/Asset_Archive/GPWeb/content/0028/619/791/assets/OUTERWEAR.jpg'
-        },
-        {
-            name: 'Tees',
-            img: 'https://www.gap.com/Asset_Archive/GPWeb/content/0028/619/791/assets/TEES.jpg'
-        }
-    ]
-    const listcategory2 = [
-        'New Arrivals', 'Jeans', 'Dresses', 'Jumpsuits & Rompers', 'T-shirts', 'Shirts & Tops', 'Sweatshirts & Sweatpants',
-        'Sweaters', 'Outerwear & Jacket', 'Pants', 'Shorts', 'Skirts', 'Swim', 'Shoes & Accessories', 'Gapfit',
-        'Gapbody', 'Sale'
-    ]
-    const data = [
-        {
-            name: "Pizza Begin",
-            link: "pizza-begin.co.il",
-        },
-        {
-            name: "Mia Luz",
-            link: "mia-luz.com",
-        },
-        {
-            name: "Nuda Swim",
-            link: "nudaswim.com"
-        }
-    ];
-    const images = [
-        {
-            label: "Toddler Denim Jacket",
-            imgPath: "https://www.gap.com/Asset_Archive/GPWeb/content/0028/946/322/Assets/PZ/KTB/SP222007_img_DESK.jpg?v=1",
-        },
-        {
-            label: "100% Organic Classic V-Neck T-Shirt",
-            imgPath: "https://www.gap.com/Asset_Archive/GPWeb/content/0028/876/662/assets/PZ/MEN/MEN2/a/SP221763_img2_DESK.jpg",
-        },
-        {
-            label: "Bali, Indonesia",
-            imgPath:
-                "https://www.gap.com/Asset_Archive/GPWeb/content/0028/876/662/assets/PZ/MEN/MEN2/a/SP221763_img1_DESK.jpg",
-        },
-        {
-            label: "Goč, Serbia",
-            imgPath:
-                "https://oldnavy.gap.com/Asset_Archive/ONWeb/content/0028/959/445/assets/220418_32_M7935_Neutrals_HPSec_Hero_s2_US_XL.jpg?v=1",
-        },
-    ];
+    const [category, setCategory] = useState([])
+
+    const getCategories = () => {
+        axios
+            .get('http://localhost:1337/api/categories?populate=*')
+            .then(response => 
+                response.data.data
+            )
+            .then(data => {
+                setCategory(data);
+            })
+    }
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [itemHover, setItemHover] = React.useState(null);
@@ -107,6 +49,11 @@ function Category() {
     const handlePopoverClose = () => {
         setAnchorEl(null);
     };
+
+    useEffect(()=> {
+        getCategories();
+    }, [])
+    console.log("category",category)
 
     const open = Boolean(anchorEl);
     return (
@@ -159,11 +106,12 @@ function Category() {
                 <Grid container className="category-container" spacing={0}>
                     {category.map(category => (
                         <Grid item xs={3}>
+                            <Link color="inherit" to="/categorypage">
                             <Card style={{ width: '100%' }} className="Card">
                                 <Box sx={{ position: 'relative' }}>
                                     <CardMedia
                                         component="img"
-                                        image={category.img}
+                                        image={"http://localhost:1337"+category.attributes.Image.data[0].attributes.url}
                                         alt="Paella dish"
                                     />
                                     <Box className="Box"
@@ -176,11 +124,12 @@ function Category() {
                                             color: 'white',
                                         }}
                                     >
-                                        <Typography variant="h5" style={{ textTransform: 'uppercase' }}>{category.name}</Typography>
+                                        <Typography variant="h5" style={{ textTransform: 'uppercase' }}>{category.attributes.Name}</Typography>
                                     </Box>
                                 </Box>
 
                             </Card>
+                            </Link>
                         </Grid>
                     ))}
                 </Grid>
@@ -194,15 +143,15 @@ function Category() {
                     <Grid item xs={3} >
                         <List component={Stack} direction="row" style={{ padding: '0 7px' }}>
                             <ListItem disablePadding >
-                                {listcategory2.filter((item, index) => index <= 6).map(listcate => (
+                                {category.map(category => (
                                     <ListItemButton style={{ padding: '0' }}>
-                                        <ListItemText primary={listcate} style={{ padding: '0 12px' }} className="list-category" />
+                                        <ListItemText primary={category.attributes.Name} style={{ padding: '0 12px' }} className="list-category" />
                                     </ListItemButton>
                                 ))}
                             </ListItem>
                         </List>
                     </Grid>
-                    <Grid item xs={3} >
+                    {/* <Grid item xs={3} >
                         <List component={Stack} direction="row" style={{ padding: '0 7px' }}>
                             <ListItem disablePadding >
                                 {listcategory2.filter((item, index) => index > 6).map(listcate => (
@@ -212,7 +161,7 @@ function Category() {
                                 ))}
                             </ListItem>
                         </List>
-                    </Grid>
+                    </Grid> */}
                 </Grid>
                 <Grid
                     container

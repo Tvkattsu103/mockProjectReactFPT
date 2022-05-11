@@ -1,23 +1,37 @@
 import { Button, Grid, TextField } from '@mui/material';
 import { height } from '@mui/system';
-import React, { useState } from 'react'
-import { Route, Routes , Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { Route, Routes , Link , useNavigate} from 'react-router-dom';
 import HomePage from '../Home/HomePage';
 import Register from '../Register/Register';
 import Header from '../UI/Header';
 import userSlice  from './userSlice';
 import { useDispatch, useSelector } from "react-redux";
 import {checkUserSelector} from '../../redux/selectors'
-
+import axios from 'axios';
 
 function Login() {
     const [Email , setEmail] = useState('');
     const [Password, setPassword] =useState('');
     const [emailErr , setEmailErr] = useState('');
     const [passErr, setPassErr] =useState('');
+    // useEffect(()=>{
+    //     axios.get('https://reqres.in/api/login')
+    //     .then(res =>{
+    //         console.log('>>> check res: ',res.data.data)
+    //     })       
+    // },[]);
+    
+               
+    
 
     const checkUser = useSelector(checkUserSelector);
-   
+    console.log(checkUser);
+    let navigate = useNavigate();
+    if(checkUser){
+        alert("Đăng nhập thành công");
+        navigate('/');
+    }
     const dispatch = useDispatch();
     const handleChangeEmail=(e)=>{
         setEmail(e.target.value);
@@ -45,6 +59,13 @@ function Login() {
         e.preventDefault();
 
         dispatch(userSlice.actions.loginSuccess({email:Email,password:Password}));
+        // axios.post("https://reqres.in/api/login",{
+        // email:Email,
+        // password:Password,
+        // })
+        // .then(res =>{
+        //     console.log('>>> check res: ',res)
+        // })
     }
     const handleSubmit2=(e)=>{
         e.preventDefault();
@@ -70,7 +91,8 @@ function Login() {
                     placeholder='Enter Email' 
                     type='Email' 
                     fullWidth 
-                    required 
+                    required
+                    style={{marginTop:'10px'}}
                     onChange={handleChangeEmail}
                     />
                     <small >{emailErr}</small>
@@ -82,10 +104,11 @@ function Login() {
                     type='password' 
                     fullWidth 
                     required 
+                    style={{marginTop:'10px'}}
                     onChange={handleChangePassword}
                     />
-                    <small >{passErr}</small>
-                    <Button type='submit' color='primary' fullWidth style={{backgroundColor:'black',color:'white'}}><b>Login in</b></Button>
+                    <small style={{marginTop:'10px'}}>{passErr}</small>
+                    <Button type='submit' color='primary' fullWidth style={{backgroundColor:'black',color:'white',marginTop:'10px'}}><b>Login in</b></Button>
                 </form>
             </Grid>
             <Grid item xs={1}>
