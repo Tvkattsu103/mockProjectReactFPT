@@ -6,7 +6,7 @@ import HomePage from "./components/Home/HomePage";
 import OrderConfirmation from "./components/OrderConfirmation/OrderConfirmationPage";
 import PaymentMethods from "./components/PaymentMethods/PaymentMethods";
 import Search from "./components/Search/Search";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Payment from "./components/Payment/Payment";
 import EmailSignUp from "./components/EmailSignUp/EmailSignUp";
 import Address from "./components/Address/Address";
@@ -46,6 +46,7 @@ function App() {
             <Route path="MyProfile" element={<UIMyProfile />} />
             <Route path="/CheckoutReview" element={<OrderConfirmation />} />
             <Route path="MainReturn" element={<MainReturn />} />
+            <Route path="/Help" element={<Help/>} />
           </Routes>
         </div>
       </Router>

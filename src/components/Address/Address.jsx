@@ -21,6 +21,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import MenuLeft from '../UI/MenuLeft';
 import addressSlice from "./addressSlice";
 import NewAddress from './NewAddress';
+import Footer from '../UI/Footer';
 function Address() {
   const listAddress1 = useSelector(listAddress);
   const dispatch = useDispatch();
@@ -131,7 +132,7 @@ function Address() {
           <NewAddress close={() => handleCloseAdd()}/>
         </Modal>
       </Container>
-    
+      <Footer/>
     </div>
   )
 }

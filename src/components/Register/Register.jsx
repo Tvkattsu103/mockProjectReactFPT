@@ -97,6 +97,7 @@ function Register() {
                                     type='text'
                                     fullWidth
                                     required
+                                    style={{marginTop:'10px'}}
                                     onChange={handleChangeEmail}
                                     error={errEmail !== ""}
                                     helperText={errEmail !== "" ? errEmail : null}
@@ -112,6 +113,7 @@ function Register() {
                                         type='password'
                                         fullWidth
                                         required
+                                        style={{marginTop:'10px'}}
                                         onChange={handleChangePassword}
                                         error={errPassword !== ""}
                                         helperText={errPassword !== "" ? errPassword : null}
@@ -126,6 +128,7 @@ function Register() {
                                         type='password'
                                         fullWidth
                                         required
+                                        style={{marginTop:'10px'}}
                                         onChange={handleChangeRePassword}
                                         error={errRePassword !== ""}
                                         helperText={errRePassword !== "" ? errRePassword : null}
@@ -142,6 +145,7 @@ function Register() {
                                         type='text'
                                         fullWidth
                                         required
+                                        style={{marginTop:'10px'}}
                                         onChange={handleChangeName}
                                         error={errName !== ""}
                                         helperText={errName !== "" ? errName : null}
@@ -156,6 +160,7 @@ function Register() {
                                         type='text'
                                         fullWidth
                                         required
+                                        style={{marginTop:'10px'}}
                                         onChange={handleChangeSurname}
                                         error={errSurname !== ""}
                                         helperText={errSurname !== "" ? errSurname : null}
@@ -172,6 +177,7 @@ function Register() {
                                         type='text'
                                         fullWidth
                                         required
+                                        style={{marginTop:'10px'}}
                                         onChange={handleChangeProvince}
                                         error={errProvince !== ""}
                                         helperText={errProvince !== "" ? errProvince : null}
@@ -186,6 +192,7 @@ function Register() {
                                         type='text'
                                         fullWidth
                                         required
+                                        style={{marginTop:'10px'}}
                                         onChange={handleChangeCity}
                                         error={errCity !== ""}
                                         helperText={errCity !== "" ? errCity : null}
@@ -201,12 +208,13 @@ function Register() {
                                     type='text'
                                     fullWidth
                                     required
+                                    style={{marginTop:'10px'}}
                                     onChange={handleChangeAddress}
                                     error={errAddress !== ""}
                                     helperText={errAddress !== "" ? errAddress : null}
                                 />
                             </Grid>
-                            <Button type='submit' color='primary' fullWidth style={{ backgroundColor: 'black', color: 'white' }}><b>Register</b></Button>
+                            <Button type='submit' color='primary' fullWidth style={{ backgroundColor: 'black', color: 'white',marginTop:'10px' }}><b>Register</b></Button>
                         </form>
                     </Grid>
 

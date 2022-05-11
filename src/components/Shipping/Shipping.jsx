@@ -7,6 +7,7 @@ import Header from '../UI/Header';
 import RadioLabel from './RadioLabel';
 import AddIcon from '@mui/icons-material/Add';
 import { useSelector } from 'react-redux';
+import Footer from '../UI/Footer';
 
 function Shipping() {
     const data = useSelector((state) => state.cartpage.dataShipping)
@@ -278,6 +279,7 @@ function Shipping() {
                     </Grid>
                 </Grid>
             </Container>
+            <Footer/>
         </div>
     )
 }
