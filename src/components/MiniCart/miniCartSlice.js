@@ -5,15 +5,14 @@ export default createSlice({
     initialState: {
         open: false,
         items: [
-            {
-                image:'https://www3.assets-gap.com/webcontent/0028/965/940/cn28965940.jpg',
-                title:'The Weekend Spring Dress',
-                price:40,
-                quantity:1
-            }
         ]
     },
     reducers: {
+        initCart: (state, action) => {
+            action.payload.map((p) => {
+                return state.items.push({...p.attributes, id:p.id});
+              })
+        },
         addItem: (state, action) => {
             state.items.push(action.payload);
         },

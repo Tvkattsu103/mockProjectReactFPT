@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Box,
   Drawer,
@@ -16,8 +16,9 @@ import {
 } from '@mui/material';
 import { Delete, AddCircle, RemoveCircle, Close } from '@mui/icons-material'
 import { useSelector, useDispatch } from 'react-redux';
-import { stateMiniCart, miniCartItem } from './../../redux/selectors';
-import miniCartSlice from '../MiniCart/miniCartSlice';
+import { stateMiniCart, miniCartItem } from '../../redux/selectors';
+import miniCartSlice from './miniCartSlice';
+import axios from 'axios';
 
 
 export default function MiniCart({ toggleMiniCart }) {
@@ -25,11 +26,33 @@ export default function MiniCart({ toggleMiniCart }) {
   const open = useSelector(stateMiniCart)
   const items = useSelector(miniCartItem)
 
+  const [cart, setCart] = useState([]);
+
+  const currentUser = JSON.parse(localStorage.getItem('currentuser'));
+  const idCurrentUser = currentUser.id;
+
   const addQuantity = (e) => {
     e.preventDefault();
     dispatch(miniCartSlice.actions.addQuantity(1))
   }
-
+  // const getCart = () => {
+  //   axios.get('http://localhost:1337/api/accounts/2?populate=*')
+  //     .then(res =>
+  //       res.data.data
+  //     )
+  //     .then(data => 
+  //       dispatch(miniCartSlice.actions.initCart({data}))
+  //     )
+  // }
+  useEffect(() => {
+    axios.get('http://localhost:1337/api/accounts/'+idCurrentUser+'?populate=*')
+        .then(res => 
+            res.data.data.attributes.carts.data
+        )
+        .then(data => {
+          dispatch(miniCartSlice.actions.initCart(data))
+        })
+}, []);
   const list = () => (
     <Box
       sx={{ width: 550, height: '100%' }}
@@ -104,7 +127,7 @@ export default function MiniCart({ toggleMiniCart }) {
                           <Button variant="outlined" size="small" style={{ minWidth: '30px', paddingTop: '4px', paddingBottom: '4px' }}>
                             {item.quantity}
                           </Button>
-                          <Button variant="contained" size="small" style={{ minWidth: '0px' }} onClick={()=>addQuantity(item.name)}>
+                          <Button variant="contained" size="small" style={{ minWidth: '0px' }} onClick={() => addQuantity(item.name)}>
                             <AddCircle />
                           </Button>
                         </div>

@@ -39,13 +39,10 @@ function Address() {
   };
   useEffect(()=>{
     axios
-            .get('http://localhost:1337/api/accounts/2?populate=*')
+            .get('http://localhost:1337/api/accounts/'+idCurrentUser+'?populate=*')
             .then(response => 
-                response.data.data
+              console.log(response.data.data)
             )
-            .then(data => {
-                console.log(data);
-            })
   },[]);
   return (
     <div>
