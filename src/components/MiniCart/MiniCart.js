@@ -24,7 +24,6 @@ export default function MiniCart({ toggleMiniCart }) {
   const dispatch = useDispatch();
   const open = useSelector(stateMiniCart)
   const items = useSelector(miniCartItem)
-  console.log(items)
 
   const addQuantity = (e) => {
     e.preventDefault();

@@ -3,7 +3,7 @@ import { Button, ButtonGroup, Grid } from "@mui/material";
 import * as React from "react";
 import Header from "../UI/Header";
 import Carousel from "./Carousel";
-import SpacingGrid from "./SpacingGrid";
+import Newest from "./Newest";
 import MonthBest from "./MonthBest";
 import EmailSignUp from "../EmailSignUp/EmailSignUp";
 import { Link } from "react-router-dom";
@@ -47,7 +47,7 @@ const HomePage = () => {
         </Grid>
         <Grid item xs={12}>
           <Box sx={{ backgroundColor: "#81d4fa" }}>
-            <SpacingGrid></SpacingGrid>
+            <Newest></Newest>
           </Box>
         </Grid>
         <Grid item xs={12}>
