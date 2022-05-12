@@ -21,31 +21,16 @@ export default function SpacingGrid() {
           {newest && 
             newest.map((p) => (
             <Grid key={p.id} item>
-              <Card sx={{ maxWidth: 345 }}>
-              <CardMedia
-                    component="img"
-                    height="400"
-                    image={"http://localhost:1337"+p.attributes.image.data[0].attributes.url}
-                    alt={p.attributes.title}
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                      {p.attributes.title}
-                    </Typography>
-                    {/* <Typography variant="h6" color="text.secondary">
-                      {p.category}
-                    </Typography> */}
-                    <Typography variant="h5" color="text.secondary">
-                      ${p.attributes.price}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small">
-                      <AddShoppingCartIcon />
-                    </Button>
-                    <Button size="small">Buy now</Button>
-                  </CardActions>
-              </Card>
+              <ProductCard
+                  id={p.id}
+                  title={p.attributes.title}
+                  image={
+                    "http://localhost:1337" +
+                    p.attributes.image.data[0].attributes.url
+                  }
+                  price={p.attributes.price}
+                  maxWidth={250}
+                />
             </Grid>
           ))}
         </Grid>

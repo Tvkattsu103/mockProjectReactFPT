@@ -29,22 +29,24 @@ function Address() {
   const [open, setOpen] = useState(false);
   const handleAdd = () => setOpen(true);
   const handleCloseAdd = () => setOpen(false);
+  const currentUser = JSON.parse(localStorage.getItem('currentuser'));
+  const idCurrentUser = currentUser.id;
   const handleChangeDefaultAddress = (id) => {
     dispatch(addressSlice.actions.changDefault(id));
   };
   const handleDeleteAddress = (id) => {
     dispatch(addressSlice.actions.deleteAddress(id));
   };
-  // useEffect(()=>{
-  //   axios
-  //           .get('http://localhost:1337/api/addresses')
-  //           .then(response => 
-  //               response.data.data
-  //           )
-  //           .then(data => {
-  //               console.log(data);
-  //           })
-  // },[]);
+  useEffect(()=>{
+    axios
+            .get('http://localhost:1337/api/accounts/2?populate=*')
+            .then(response => 
+                response.data.data
+            )
+            .then(data => {
+                console.log(data);
+            })
+  },[]);
   return (
     <div>
         <Header />

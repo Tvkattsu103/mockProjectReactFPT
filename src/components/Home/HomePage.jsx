@@ -48,7 +48,7 @@ const HomePage = () => {
             <Newest />
           </Grid>
           <Grid item xs={12}>
-            <Newest />
+            <MonthBest />
           </Grid>
         </Box>
       </Grid>
