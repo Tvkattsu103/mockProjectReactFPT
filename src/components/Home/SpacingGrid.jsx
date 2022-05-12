@@ -25,7 +25,7 @@ export default function SpacingGrid() {
               <CardMedia
                     component="img"
                     height="400"
-                    image={"http://localhost:1337"+p.attributes.image.data[0]?.attributes.url}
+                    image={"http://localhost:1337"+p.attributes.image.data[0].attributes.url}
                     alt={p.attributes.title}
                   />
                   <CardContent>

@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import Header from "../UI/Header";
+import Footer from "../UI/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 //import listProduct from "../../data/listProduct";
@@ -70,6 +71,7 @@ const Search = () => {
           })}
         </Grid>
       </Container>
+      <Footer/>
     </>
   );
 };
