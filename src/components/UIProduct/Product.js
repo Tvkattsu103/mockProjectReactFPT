@@ -10,29 +10,53 @@ import ContainedButtons from './Button';
 import { Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import Header from '../UI/Header';
-import {addToCartPage} from './ProductSlice'
+import { addToCartPage } from './ProductSlice'
+import productApi from '../../api/productApi';
+import axios from 'axios'
+import { ChevronLeftSharp } from '@mui/icons-material';
 
 export default function Product() {
     const [product, setProduct] = React.useState([])
     const dispatch = useDispatch();
+    // React.useEffect(() => {
+    //     fetch("https://raw.githubusercontent.com/0854737568aAsSdD/API/main/API.json")
+    //     // api da day len web : https://raw.githubusercontent.com/0854737568aAsSdD/API/main/API.json
+    //       .then(res => res.json())
+    //       .then(product => {   
+    //         setProduct(product);
+    //         setImage(product[0].name)
+    //         setSize(product[0].size)
+    //         setWidth(product[0].width)
+    //         setPrice(product[0].price)
+    //         setName(product[0].type)
+    //       })
+    //   }, [])   
     React.useEffect(() => {
-        fetch("https://raw.githubusercontent.com/0854737568aAsSdD/API/main/API.json")
-          .then(res => res.json())
-          .then(product => {   
-            setProduct(product);
-            setImage(product[0].name)
-            setSize(product[0].size)
-            setWidth(product[0].width)
-            setPrice(product[0].price)
-            setName(product[0].type)
-          })
-      }, [])   
-      const [image, setImage] = React.useState(product[0]?.name)
-      const [size, setSize] = React.useState(product[0]?.size)
-      const [width, setWidth] = React.useState(product[0]?.width)
-      const [price, setPrice] = React.useState(product[0]?.price)
-      const[name, setName] = React.useState(product[0]?.type)
-      const getDataType = (Type) => (
+        const fetchProductList = async () => {
+            try {
+                const params = {
+                    _page: 1,
+                    _limit: 10,
+                }
+                const response = await productApi.getAll(params);
+                setProduct(response.data)
+                setImage(response.data[0].attributes.name)
+                setSize(response.data[0].attributes.size)
+                setWidth(response.data[0].attributes.width)
+                setPrice(response.data[0].attributes.price)
+                setName(response.data[0].attributes.type)
+            } catch (error) {
+                console.log("Fail to fetch product list", error);
+            }
+        }
+        fetchProductList();
+    }, []);
+    const [image, setImage] = React.useState()
+    const [size, setSize] = React.useState()
+    const [width, setWidth] = React.useState()
+    const [price, setPrice] = React.useState()
+    const [name, setName] = React.useState()
+    const getDataType = (Type) => (
         setImage(Type)
     )
     const getDataSize = (Size) => {
@@ -48,47 +72,69 @@ export default function Product() {
         product.width = width;
         product.name = name;
         product.price = price;
+        let data = {
+            data: {
+            }
+        }
+        //data.data.id = 4;
+        data.data = product;
+        addToCartTuan(data)
+        console.log(data);
         dispatch(addToCartPage(product))
+    }
+    const addToCartTuan = (product) => {
+        // const addToCart = async () => {
+        //     try {
+        //         const response = await productApi.addToCartPage(product);
+        //         console.log("responday")
+        //         console.log(response)
+        //     } catch (error) {
+        //         console.log("Lỗi khi add", error);
+        //     }
+        // }
+        // addToCart();
+        axios.post('http://localhost:1337/api/carts',product).then(res=>console.log(res))
     }
     return (
         <>
+            {console.log(image)}
             <Header />
             <Box sx={{ flexGrow: 1 }}>
-            <Grid container spacing={2}>
-                <Grid item xs={1}>
-                    {/* Content nam ben trai */}
-                </Grid>
-                <Grid item xs={6}>
-                    {/* Content nam ben trai */}
-                    <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
-                        {product.map((item) => (
-                            <Grid item xs={6} key={item.id}>
-                                <ImgMediaCard img={image} name={name} price={price} size={size} width={width} />
-                            </Grid>
-                        ))}
-                    </Grid>
-                </Grid>
-                <Grid item xs={5}>
-                    <Grid item xs={8}>
-                        <HalfRating />
-                    </Grid>
-                    <Grid item xs={4}>
-                        <SpacingGrid getDataType={(Type) => getDataType(Type)} />
+                <Grid container spacing={2}>
+                    <Grid item xs={1}>
+                        {/* Content nam ben trai */}
                     </Grid>
                     <Grid item xs={6}>
-                        <BoxSize getDataSize={(size) => getDataSize(size)} />
+                        {/* Content nam ben trai */}
+                        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
+                            {product.map((item) => (
+                                <Grid item xs={6} key={item.id}>
+                                    <ImgMediaCard img={image} name={name} price={price} size={size} width={width} />
+                                </Grid>
+                            ))}
+                        </Grid>
                     </Grid>
-                    <Grid item xs={6}>
-                        <BoxWidth getDataWidth={(width) => getDataWidth(width)} />
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Button onClick={() => getProductToCardPage(image, size, width,name,price)}>
-                            <ContainedButtons />
-                        </Button>
+                    <Grid item xs={5}>
+                        <Grid item xs={8}>
+                            <HalfRating />
+                        </Grid>
+                        <Grid item xs={4}>
+                            <SpacingGrid getDataType={(Type) => getDataType(Type)} />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <BoxSize getDataSize={(size) => getDataSize(size)} />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <BoxWidth getDataWidth={(width) => getDataWidth(width)} />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <Button onClick={() => getProductToCardPage(image, size, width, name, price)}>
+                                <ContainedButtons />
+                            </Button>
+                        </Grid>
                     </Grid>
                 </Grid>
-            </Grid>
-        </Box>
+            </Box>
         </>
     );
 }
