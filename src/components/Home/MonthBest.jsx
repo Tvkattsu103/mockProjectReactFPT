@@ -1,37 +1,13 @@
 import * as React from "react";
 import Grid from "@mui/material/Grid";
-import axios from "axios";
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Typography,
-} from "@mui/material";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import ProductCard from "./ProductCard";
 import useFetchData from "../../customHooks/useFetchData";
 
 export default function MonthBest() {
+
   const bests = useFetchData(
     "http://localhost:1337/api/products?populate=*&pagination[page]=1&pagination[pageSize]=5"
   );
-
-  const handleAddToCart = (id) => {
-
-    console.log(id);
-
-    axios
-      .post("http://localhost:1337/api/carts?populate=*", {
-        data: {quantity: 1, size: '38', products: id}
-      })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
 
   return (
     <Grid sx={{ flexGrow: 1 }} container spacing={2}>
@@ -70,6 +46,16 @@ export default function MonthBest() {
                     <Button size="small">Buy now</Button>
                   </CardActions>
                 </Card>
+                <ProductCard
+                  id={p.id}
+                  title={p.attributes.title}
+                  image={
+                    "http://localhost:1337" +
+                    p.attributes.image.data[0].attributes.url
+                  }
+                  price={p.attributes.price}
+                  maxWidth={250}
+                />
               </Grid>
             ))}
         </Grid>

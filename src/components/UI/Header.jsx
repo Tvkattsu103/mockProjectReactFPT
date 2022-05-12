@@ -30,6 +30,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import searchSlide from "../Search/searchSlide";
 import { checkUserSelector } from "../../redux/selectors";
 import userSlice from "../Login/userSlice";
+import useFetchData from "../../customHooks/useFetchData";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -83,6 +84,10 @@ const Header = () => {
   const isMenuOpen = anchorEl;
   const isMobileMenuOpen = mobileMoreAnchorEl;
 
+  const cartItems = useFetchData(
+    "http://localhost:1337/api/carts?filters[email][$eq]=hvp230499@gmail.com"
+  );
+
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
     history("/PaymentMethods");
@@ -132,32 +137,6 @@ const Header = () => {
   };
 
   const menuId = "primary-search-account-menu";
-  // const renderMenu = (
-  //   <Menu
-  //     anchorEl={anchorEl}
-  //     anchorOrigin={{
-  //       vertical: "top",
-  //       horizontal: "right",
-  //     }}
-  //     id={menuId}
-  //     keepMounted
-  //     transformOrigin={{
-  //       vertical: "top",
-  //       horizontal: "right",
-  //     }}
-  //     open={isMenuOpen}
-  //     onClose={handleMenuClose}
-  //   >
-  //     <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-  //     <Link
-  //       to="/PaymentMethods"
-  //       style={{ textDecoration: "none", color: "black" }}
-  //     >
-  //       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-  //     </Link>
-  //   </Menu>
-  // );
-
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
     <Menu
@@ -186,7 +165,10 @@ const Header = () => {
             color="inherit"
             onClick={toggleMiniCart(true)}
           >
-            <Badge badgeContent={2} color="error">
+            <Badge
+              badgeContent={cartItems ? cartItems.length : 0}
+              color="error"
+            >
               <ShoppingCartIcon />
             </Badge>
           </IconButton>
@@ -267,7 +249,7 @@ const Header = () => {
                   mr={1}
                 >
                   {/*số sản phẩm trong giỏ hàng */}
-                  <Badge badgeContent={2} color="error">
+                  <Badge badgeContent={cartItems ? cartItems.length : 0} color="error">
                     <ShoppingCartIcon />
                   </Badge>
                 </IconButton>
