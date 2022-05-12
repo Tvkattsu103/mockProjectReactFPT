@@ -17,7 +17,6 @@ const HomePage = () => {
   const categories = useFetchData("http://localhost:1337/api/categories");
 
   const handleCategoryClick = (e) => {
-    // console.log(e.target.textcontent);
     navigate("/categoryoverview")
   }
 

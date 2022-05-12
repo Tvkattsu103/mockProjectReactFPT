@@ -13,16 +13,15 @@ import Header from "../UI/Header";
 import Footer from "../UI/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-//import listProduct from "../../data/listProduct";
 import { listProductSearchSelector } from "../../redux/selectors";
 import useFetchData from "../../customHooks/useFetchData";
 import listSlide from "../Search/listSlide";
 import { Box } from "@mui/system";
+import ProductCard from "../Home/ProductCard";
 
 const Search = () => {
   const dispatch = useDispatch();
 
-  // const [list, setList] = useState(listProduct);
   const listProductAPI = useFetchData("http://localhost:1337/api/products?populate=*");
 
   useEffect(() => {
@@ -41,31 +40,16 @@ const Search = () => {
           {listProductSearch.map((p) => {
             return (
               <Grid item xs={3} key={p.id}>
-                <Card >
-                  <CardMedia
-                    component="img"
-                    height="400"
-                    image={"http://localhost:1337"+p.attributes.Image.data[0].attributes.url}
-                    alt={p.attributes.Title}
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                      {p.attributes.Title}
-                    </Typography>
-                    {/* <Typography variant="h6" color="text.secondary">
-                      {p.category}
-                    </Typography> */}
-                    <Typography variant="h5" color="text.secondary">
-                      ${p.attributes.Price}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small">
-                      <AddShoppingCartIcon />
-                    </Button>
-                    <Button size="small">Buy now</Button>
-                  </CardActions>
-                </Card>
+                <ProductCard
+                  id={p.id}
+                  title={p.attributes.title}
+                  image={
+                    "http://localhost:1337" +
+                    p.attributes.image.data[0].attributes.url
+                  }
+                  price={p.attributes.price}
+                  // maxWidth={400}
+                />
               </Grid>
             );
           })}

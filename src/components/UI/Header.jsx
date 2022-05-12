@@ -80,13 +80,24 @@ const Header = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [keyword, setKeyword] = React.useState("");
-
+  const [email, setEmail] = React.useState("");
+  const [cart, setCart] = React.useState([]);
   const isMenuOpen = anchorEl;
   const isMobileMenuOpen = mobileMoreAnchorEl;
 
+  useEffect(() => {
+    if (localStorage.getItem("currentuser")) {
+      setEmail(JSON.parse(localStorage.getItem("currentuser")).email);
+    }
+  }, [localStorage.getItem("currentuser")]);
+
   const cartItems = useFetchData(
-    "http://localhost:1337/api/carts?filters[email][$eq]=hvp230499@gmail.com"
+    "http://localhost:1337/api/carts?filters[email][$eq]=" + email
   );
+
+  useEffect(() => {
+    setCart(cartItems);
+  },[cartItems])
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -166,7 +177,7 @@ const Header = () => {
             onClick={toggleMiniCart(true)}
           >
             <Badge
-              badgeContent={cartItems ? cartItems.length : 0}
+              badgeContent={cart ? cart.length : 0}
               color="error"
             >
               <ShoppingCartIcon />
@@ -248,7 +259,10 @@ const Header = () => {
                   mr={1}
                 >
                   {/*số sản phẩm trong giỏ hàng */}
-                  <Badge badgeContent={cartItems ? cartItems.length : 0} color="error">
+                  <Badge
+                    badgeContent={cart ? cart.length : 0}
+                    color="error"
+                  >
                     <ShoppingCartIcon />
                   </Badge>
                 </IconButton>
