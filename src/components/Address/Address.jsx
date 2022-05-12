@@ -1,6 +1,6 @@
 import { Avatar, Button, Container, Grid, Modal, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../UI/Header';
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
@@ -22,6 +22,7 @@ import MenuLeft from '../UI/MenuLeft';
 import addressSlice from "./addressSlice";
 import NewAddress from './NewAddress';
 import Footer from '../UI/Footer';
+import axios from 'axios';
 function Address() {
   const listAddress1 = useSelector(listAddress);
   const dispatch = useDispatch();
@@ -34,6 +35,16 @@ function Address() {
   const handleDeleteAddress = (id) => {
     dispatch(addressSlice.actions.deleteAddress(id));
   };
+  // useEffect(()=>{
+  //   axios
+  //           .get('http://localhost:1337/api/addresses')
+  //           .then(response => 
+  //               response.data.data
+  //           )
+  //           .then(data => {
+  //               console.log(data);
+  //           })
+  // },[]);
   return (
     <div>
         <Header />
