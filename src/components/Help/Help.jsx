@@ -40,7 +40,7 @@ function Help() {
     console.log(question);
     console.log(contact);
     if(checkValid()){
-      axios.post('http://localhost:1337/api/help-contacts', {data : {'Question':question,'PhoneContact':contact}})
+      axios.post('http://localhost:1337/api/help-contacts', {data : {'question':question,'phone':contact}})
       .then(response=>{
         console.log(response);
         setMessage("Đã gởi báo cáo!")
