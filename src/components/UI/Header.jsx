@@ -221,6 +221,8 @@ const Header = () => {
     </Menu>
   );
 
+  const currentUser = JSON.parse(localStorage.getItem('currentuser'));
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -257,7 +259,6 @@ const Header = () => {
               <>
                 <IconButton
                   size="large"
-                  edge="end"
                   aria-label="account of current user"
                   aria-controls={menuId}
                   aria-haspopup="true"
