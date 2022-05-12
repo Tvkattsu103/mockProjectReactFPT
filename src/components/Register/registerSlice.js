@@ -26,7 +26,7 @@ export default createSlice({
     reducers: {     
       initUser: (state, action) => {
         action.payload.map((p) => {
-          return state.push({...p.attributes});
+          return state.push({...p.attributes, id:p.id});
         })
       },
       addUser: (state,action) =>{
