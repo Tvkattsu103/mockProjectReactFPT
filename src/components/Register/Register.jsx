@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import Header from '../UI/Header';
 import registerSlice from './registerSlice';
 import { listUser } from '../../redux/selectors';
+import axios from 'axios';
+
 function Register() {
     const [Email, setEmail] = useState('');
     const [Password, setPassword] = useState('');
@@ -63,7 +65,6 @@ function Register() {
         let isValid = true;
         //const regexEmail = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
 
-
         if (RePassword !== Password) {
             setErrRePassword("RePassword is not same Password");
             isValid = false;
@@ -82,10 +83,22 @@ function Register() {
             }
             else {
                 dispatch(registerSlice.actions.addUser({ email: Email, password: Password, name: Name, surname: Surname, province: Province, city: City, address: Address }));
+                registerAccount({ email: Email, password: Password, name: Name, surname: Surname, province: Province, city: City, address: Address });
                 navigate('/Login');
             }
         }
     }
+
+    const registerAccount = (acc) => {
+        console.log({data: {...acc}})
+        axios.post('http://localhost:1337/api/accounts',{data: {...acc}})
+            .then(res => {
+                console.log(res);
+            }).catch((error) => {
+                console.log(error);
+            });
+    }
+
     return (
         <div>
             <Header />

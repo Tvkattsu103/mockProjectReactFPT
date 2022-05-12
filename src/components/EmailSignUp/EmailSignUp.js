@@ -96,8 +96,13 @@ export default function EmailSignUp() {
         if (checkValid() === true) {
             dispatch(emailSignUpSlice.actions.changeShowOffCodeState(true));
             console.log({ data: { 'UserEmail': emailInput } })
-            axios.post('http://localhost:1337/api/email-sign-ups', { data: { 'UserEmail': emailInput } }).then(response => {
-                console.log(response);
+            // axios.post('http://localhost:1337/api/email-sign-ups', { data: { 'UserEmail': emailInput } }).then(response => {
+            //     console.log(response);
+            // }).catch((error) => {
+            //     console.log(error);
+            // });
+            axios.post('http://localhost:1337/api/as', { data: { 'name': "tuanm", "bs": 1 } }).then(response => {
+                console.log("okla");
             }).catch((error) => {
                 console.log(error);
             });
