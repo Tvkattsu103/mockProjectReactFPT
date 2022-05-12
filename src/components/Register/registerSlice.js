@@ -1,15 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const listUser =[
-    {
-        email:"thehuy.2pro@gmail.com",
-        password:"123456",
-        name:"Huy",
-        surname:"Hoàng Thế",
-        province:"Thừa Thiên Huế",
-        city:"TP Huế",
-        address:"116 Phan Chu Trinh"
-    },
+    
     {
         email:"huynhphuong@gmail.com",
         password:"123456",

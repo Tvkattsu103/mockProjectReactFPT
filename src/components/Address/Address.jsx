@@ -16,37 +16,37 @@ import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
 import FilterNoneOutlinedIcon from "@mui/icons-material/FilterNoneOutlined";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { listAddress } from '../../redux/selectors';
+// import { listAddress } from '../../redux/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import MenuLeft from '../UI/MenuLeft';
 import addressSlice from "./addressSlice";
 import NewAddress from './NewAddress';
 import Footer from '../UI/Footer';
+
+import useFetchData from '../../customHooks/useFetchData';
+import { listAddress } from '../../redux/selectors';
 import axios from 'axios';
+// import { listAddress } from '../../redux/selectors';
 function Address() {
-  const listAddress1 = useSelector(listAddress);
+  //const listAddress1 = useSelector(listAddress);
+  // const listAddress= [];
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const handleAdd = () => setOpen(true);
   const handleCloseAdd = () => setOpen(false);
   const currentUser = JSON.parse(localStorage.getItem('currentuser'));
-  const idCurrentUser = currentUser.id;
+  const aid = currentUser.id;
   const handleChangeDefaultAddress = (id) => {
     dispatch(addressSlice.actions.changDefault(id));
   };
   const handleDeleteAddress = (id) => {
     dispatch(addressSlice.actions.deleteAddress(id));
   };
-  useEffect(()=>{
-    axios
-            .get('http://localhost:1337/api/accounts/2?populate=*')
-            .then(response => 
-                response.data.data
-            )
-            .then(data => {
-                console.log(data);
-            })
-  },[]);
+  
+  const listAddress = useFetchData(
+    "http://localhost:1337/api/addresses?filters[accountID][$eq]="+aid
+  );
+  console.log("listAddress",listAddress);
   return (
     <div>
         <Header />
@@ -81,17 +81,18 @@ function Address() {
                   </Grid>
                 </Box>
               </Grid>
-              {
-                listAddress1.map((l, key) => {
+              { 
+                listAddress&&
+                listAddress.map((l, key) => {
                     return (
                       <Grid item xs={12} key={l.id}>
                         <Box sx={{ backgroundColor: "white", p: 3 }}>
                           <Grid container spacing={1}> 
                             <Grid item xs={12}>
-                              <Typography variant="h5">{l.name} </Typography>
-                              <Typography variant="body1">{l.address}</Typography>
-                              <Typography variant="body1">{l.city}, {l.province}</Typography>
-                              <Typography variant="body1">{l.country}</Typography>
+                              <Typography variant="h5">{l.attributes.name} </Typography>
+                              <Typography variant="body1">{l.attributes.address}</Typography>
+                              <Typography variant="body1">{l.attributes.city}, {l.attributes.province}</Typography>
+                              <Typography variant="body1">{l.attributes.country}</Typography>
                             </Grid>
                           </Grid>
                           <Grid container spacing={1} sx={{display:'flex',justifyContent:'space-between'}}>
@@ -107,7 +108,7 @@ function Address() {
                                         </Grid>
                                     </Button>
                                     
-                                    <Button sx={{ color: "black" ,marginLeft:'10px'}} disabled={l.isDefault} onClick={()=>handleChangeDefaultAddress(l.id)}>
+                                    <Button sx={{ color: "black" ,marginLeft:'10px'}} disabled={l.attributes.isDefault} onClick={()=>handleChangeDefaultAddress(l.id)}>
                                         <Grid container alignItems={"center"}>
                                         <Grid item xs={10}>
                                             <Typography variant="h6">SETDEFAULT</Typography>
@@ -116,7 +117,7 @@ function Address() {
                                     </Button>
                               </Grid>
                               <Grid>
-                                    <Button sx={{ color: "black" }} disabled={l.isDefault} onClick={()=>handleDeleteAddress(l.id)}>
+                                    <Button sx={{ color: "black" }} disabled={l.attributes.isDefault} onClick={()=>handleDeleteAddress(l.id)}>
                                         <Grid container alignItems={"center"}>
                                         <Grid item xs={10}>
                                             <Typography variant="h6">DELETE </Typography>
