@@ -3,7 +3,7 @@ import { Box } from "@mui/system";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import addressSlice from "./addressSlice";
-
+import usePostData from '../../customHooks/usePostData';
 const style = {
     position: "absolute",
     top: "50%",
@@ -36,9 +36,19 @@ const style = {
   
     const handleAddAddress = () => {
       dispatch(addressSlice.actions.addAddress(formValue));
+      usePostData(
+       'http://localhost:1337/api/addresses',{
+         name: formValue.name,
+         address: formValue.address,
+         city: formValue.city,
+         province: formValue.province,
+         country: formValue.country,
+         isDefault: true,
+         accountID: 2
+       });
       close();
     };
-  
+    
     return (
       <>
         <Box sx={style}>
