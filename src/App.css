@@ -1,5 +1,5 @@
-body {
-  background-color: #EFEFEF;
+body{
+  background-color: #81d4fa;
   min-height: 100vh;
 }
 
@@ -40,11 +40,6 @@ a {
 .Button :hover {
   background-color: rgb(62, 62, 62) !important;
   color: white;
-}
-
-body {
-  background-color: #efefef;
-  min-height: 100vh;
 }
 
 .Link {
