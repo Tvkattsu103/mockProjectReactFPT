@@ -25,6 +25,7 @@ import UIMyProfile from "./components/UIMyProfile/Main";
 import Product from "./components/UIProduct/Product.js";
 import MainReturn from "./components/UIReturns/MainReturn";
 import CategoryPage from "./components/CategoryPage/CategoryPage";
+import CardPage2 from "./components/UICartPage/CartPage2";
 
 function App() {
   const ProtectedRoute = ({ children }) => {
@@ -44,6 +45,7 @@ function App() {
             <Route path="/categoryoverview" element={<CategoryOverview />} />
             <Route path="/categorypage" element={<CategoryPage />} />
             <Route path="/payment" element={<Payment />} />
+            <Route path="/:title/:gia" element={<Product />} />
             <Route path="/emailsignup" element={<EmailSignUp />} />
             <Route path="/Search" element={<Search />} />
             <Route
@@ -69,6 +71,7 @@ function App() {
             <Route path="/Address" element={<Address />}></Route>
 
             <Route path="CardPage" element={<CardPage />} />
+            <Route path="/CardPage2" element={<CardPage2 />} />
             <Route path="Product" element={<Product />} />
             <Route
               path="MyProfile"
