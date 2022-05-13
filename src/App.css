@@ -49,6 +49,7 @@ a {
 
 .FooterItem {
   margin-top: 15px;
+  position: relative;
 }
 
 .product-title {

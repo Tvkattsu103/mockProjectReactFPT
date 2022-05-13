@@ -1,22 +1,15 @@
 import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
+  Box,
   Container,
   Grid,
-  Typography,
 } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Header from "../UI/Header";
 import Footer from "../UI/Footer";
 import { useDispatch, useSelector } from "react-redux";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { listProductSearchSelector } from "../../redux/selectors";
 import useFetchData from "../../customHooks/useFetchData";
 import listSlide from "../Search/listSlide";
-import { Box } from "@mui/system";
 import ProductCard from "../Home/ProductCard";
 
 const Search = () => {
@@ -35,7 +28,7 @@ const Search = () => {
   return (
     <>
       <Header></Header>
-      <Box sx={{minHeight:'100vh', mb:3}}>
+      <Box sx={{mb:3}}>
         <Container maxWidth="" sx={{ marginTop: 3 }} >
           <Grid container spacing={2}>
             {listProductSearch.map((p) => {
