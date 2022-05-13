@@ -13,7 +13,7 @@ import {useNavigate} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import { stateMiniCart, miniCartItem } from '../../redux/selectors';
 import miniCartSlice from '../MiniCart/miniCartSlice';
-
+import {productCardSliceAction} from './ProductCardSlice'
 const ProductCard = ({ id, title, image, price, maxWidth }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();

@@ -41,6 +41,7 @@ function App() {
         <div id="main-ct" className="p-child-dkr">
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/:title/:gia" element={<Product />} />
             <Route path="/categoryoverview" element={<CategoryOverview />} />
             <Route path="/categorypage" element={<CategoryPage />} />
             <Route path="/payment" element={<Payment />} />
