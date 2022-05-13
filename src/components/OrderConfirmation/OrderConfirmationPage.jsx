@@ -1,25 +1,28 @@
 import { Button, Container, Grid, Typography, Divider } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../UI/Header";
 import adventure from "../../images/adventure.png";
 import more from "../../images/more.png";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { currentOrderConfirmSelector } from "../../redux/selectors";
 import OrderItem from "./OrderItem";
 import Footer from "../UI/Footer";
+import { miniCartItem, subtotal } from "../../redux/selectors";
 
 const OrderConfirmation = () => {
-  
-  const currentOrederConfirm = useSelector(currentOrderConfirmSelector);
-
   const items = useSelector(miniCartItem);
+  const sum = useSelector(subtotal);
+
+  const [date, setDate] = useState("");
+  useEffect(() => {
+    setDate(new Date().toLocaleDateString());
+  }, []);
 
   return (
     <>
       <Header></Header>
-      <Container maxWidth="lg" sx={{ marginTop: 2 , mb: 2}}>
+      <Container maxWidth="lg" sx={{ marginTop: 2, mb: 2 }}>
         <Grid container spacing={1}>
           <Grid item xs={8}>
             <Grid container spacing={1}>
@@ -49,9 +52,7 @@ const OrderConfirmation = () => {
                       </Typography>
                     </Grid>
                     <Grid item xs={8}>
-                      <Typography variant="body1">
-                        ${currentOrederConfirm.orderTotal}
-                      </Typography>
+                      <Typography variant="body1">${sum}</Typography>
                     </Grid>
                     <Grid item xs={4}>
                       <Typography variant="body1" color={"#757575"}>
@@ -59,9 +60,7 @@ const OrderConfirmation = () => {
                       </Typography>
                     </Grid>
                     <Grid item xs={8}>
-                      <Typography variant="body1">
-                        {currentOrederConfirm.orderReference}
-                      </Typography>
+                      <Typography variant="body1">DSD51FXC4F11S2</Typography>
                     </Grid>
                     <Grid item xs={4}>
                       <Typography variant="body1" color={"#757575"}>
@@ -69,9 +68,7 @@ const OrderConfirmation = () => {
                       </Typography>
                     </Grid>
                     <Grid item xs={8}>
-                      <Typography variant="body1">
-                        {currentOrederConfirm.delivery}
-                      </Typography>
+                      <Typography variant="body1">{date}</Typography>
                     </Grid>
                     <Grid item xs={4}>
                       <Typography variant="body1" color={"#757575"}>
@@ -79,9 +76,7 @@ const OrderConfirmation = () => {
                       </Typography>
                     </Grid>
                     <Grid item xs={8}>
-                      <Typography variant="body1">
-                        {currentOrederConfirm.orderStatus}
-                      </Typography>
+                      <Typography variant="body1">Delivering</Typography>
                     </Grid>
                   </Grid>
                 </Box>
@@ -93,24 +88,19 @@ const OrderConfirmation = () => {
                 >
                   <Grid container spacing={2}>
                     <Grid item xs={12}>
-                      <Typography variant="h6">
-                        {currentOrederConfirm.orderList.length} ITEM
-                      </Typography>
+                      <Typography variant="h6">{items.length} ITEM</Typography>
                     </Grid>
                     <Grid item xs={12}>
                       <Divider></Divider>
                     </Grid>
                     <Grid item xs={12}>
                       <Grid container spacing={2}>
-                        {currentOrederConfirm.orderList.map((p) => {
+                        {items.map((p) => {
                           return (
                             <OrderItem
                               key={p.id}
                               id={p.id}
-                              name={p.name}
                               image={p.image}
-                              description={p.description}
-                              type={p.type}
                               size={p.size}
                               price={p.price}
                               quantity={p.quantity}
@@ -120,14 +110,20 @@ const OrderConfirmation = () => {
                         <Grid item xs={12}>
                           <Grid container rowSpacing={3}>
                             <Grid item xs={12}>
-                              <Link to={"/PaymentMethods"} sx={{ TextDecoder: "none" }}>
+                              <Link
+                                to={"/PaymentMethods"}
+                                sx={{ TextDecoder: "none" }}
+                              >
                                 <Typography variant="body1" color="black">
                                   My account
                                 </Typography>
                               </Link>
                             </Grid>
                             <Grid item xs={12}>
-                              <Link to={"/MainReturn"} sx={{ TextDecoder: "none" }}>
+                              <Link
+                                to={"/MainReturn"}
+                                sx={{ TextDecoder: "none" }}
+                              >
                                 <Typography variant="body1" color="black">
                                   Return Policy
                                 </Typography>
@@ -202,7 +198,7 @@ const OrderConfirmation = () => {
                   sx={{
                     backgroundColor: "#4fc3f7",
                     display: "flex",
-                    border: 2
+                    border: 2,
                   }}
                 >
                   <Grid
