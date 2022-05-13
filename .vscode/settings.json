@@ -2,9 +2,12 @@
     "cSpell.words": [
         "bgcolor",
         "cartpage",
+        "clickaway",
+        "currentuser",
         "emailsignup",
         "Giftcard",
         "reduxjs",
         "uuidv"
-    ]
+    ],
+    "eslint.enable": false
 }

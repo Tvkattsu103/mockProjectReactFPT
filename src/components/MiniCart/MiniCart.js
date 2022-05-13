@@ -24,7 +24,6 @@ export default function MiniCart({ toggleMiniCart }) {
   const dispatch = useDispatch();
   const open = useSelector(stateMiniCart)
   const items = useSelector(miniCartItem)
-  console.log(items)
 
   const addQuantity = (e) => {
     e.preventDefault();
@@ -35,7 +34,6 @@ export default function MiniCart({ toggleMiniCart }) {
     <Box
       sx={{ width: 550, height: '100%' }}
       role="presentation"
-      // onClick={toggleMiniCart(false)}
       onKeyDown={toggleMiniCart(false)}
     >
       <Box sx={{ height: '82%' }}>

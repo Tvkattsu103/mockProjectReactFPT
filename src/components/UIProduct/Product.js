@@ -14,8 +14,11 @@ import { addToCartPage } from './ProductSlice'
 import productApi from '../../api/productApi';
 import axios from 'axios'
 import { ChevronLeftSharp } from '@mui/icons-material';
-
+import {useParams} from 'react-router-dom'
 export default function Product() {
+    const { title,img } = useParams();
+    console.log(JSON.stringify(id))
+    console.log(JSON.stringify(img))
     const [product, setProduct] = React.useState([])
     const dispatch = useDispatch();
     // React.useEffect(() => {
@@ -31,31 +34,32 @@ export default function Product() {
     //         setName(product[0].type)
     //       })
     //   }, [])   
-    React.useEffect(() => {
-        const fetchProductList = async () => {
-            try {
-                const params = {
-                    _page: 1,
-                    _limit: 10,
-                }
-                const response = await productApi.getAll(params);
-                setProduct(response.data)
-                setImage(response.data[0].attributes.name)
-                setSize(response.data[0].attributes.size)
-                setWidth(response.data[0].attributes.width)
-                setPrice(response.data[0].attributes.price)
-                setName(response.data[0].attributes.type)
-            } catch (error) {
-                console.log("Fail to fetch product list", error);
-            }
-        }
-        fetchProductList();
-    }, []);
+    // React.useEffect(() => {
+    //     const fetchProductList = async () => {
+    //         try {
+    //             const params = {
+    //                 _page: 1,
+    //                 _limit: 10,
+    //             }
+    //             const response = await productApi.getAll(params);
+    //             setProduct(response.data)
+    //             setImage(response.data[0].attributes.name)
+    //             setSize(response.data[0].attributes.size)
+    //             setWidth(response.data[0].attributes.width)
+    //             setPrice(response.data[0].attributes.price)
+    //             setName(response.data[0].attributes.type)
+    //         } catch (error) {
+    //             console.log("Fail to fetch product list", error);
+    //         }npm s
+    //     }
+    //     fetchProductList();
+    // }, []);
     const [image, setImage] = React.useState()
     const [size, setSize] = React.useState()
     const [width, setWidth] = React.useState()
     const [price, setPrice] = React.useState()
-    const [name, setName] = React.useState()
+    const [name, setName] = React.useState(title)
+    console.log(name)
     const getDataType = (Type) => (
         setImage(Type)
     )
@@ -107,11 +111,9 @@ export default function Product() {
                     <Grid item xs={6}>
                         {/* Content nam ben trai */}
                         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
-                            {product.map((item) => (
-                                <Grid item xs={6} key={item.id}>
+                                <Grid item xs={6} >
                                     <ImgMediaCard img={image} name={name} price={price} size={size} width={width} />
                                 </Grid>
-                            ))}
                         </Grid>
                     </Grid>
                     <Grid item xs={5}>

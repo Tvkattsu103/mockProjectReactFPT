@@ -38,7 +38,6 @@ const BootstrapDialogTitle = (props) => {
     return (
         <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
             {children}
-            {/* {onClose ? ( */}
             <IconButton
                 aria-label="close"
                 onClick={onClose}
@@ -51,7 +50,6 @@ const BootstrapDialogTitle = (props) => {
             >
                 <CloseIcon />
             </IconButton>
-            {/* ) : null} */}
         </DialogTitle>
     );
 };
@@ -64,7 +62,6 @@ BootstrapDialogTitle.propTypes = {
 export default function EmailSignUp() {
     const dispatch = useDispatch();
     const open = useSelector(stateEmailSignUp);
-    console.log(open)
     const emailErr = useSelector(emailErrSelector);
     const showOffCode = useSelector(showOffCodeSelector);
     const emailInput = useSelector(emailInputSelector);
@@ -98,9 +95,14 @@ export default function EmailSignUp() {
     const handleSubmit = () => {
         if (checkValid() === true) {
             dispatch(emailSignUpSlice.actions.changeShowOffCodeState(true));
-            console.log({ data:{'UserEmail': emailInput} })
-            axios.post('http://localhost:1337/api/email-sign-ups', { data:{'UserEmail': emailInput} }).then(response => {
-                console.log(response);
+            console.log({ data: { 'UserEmail': emailInput } })
+            // axios.post('http://localhost:1337/api/email-sign-ups', { data: { 'UserEmail': emailInput } }).then(response => {
+            //     console.log(response);
+            // }).catch((error) => {
+            //     console.log(error);
+            // });
+            axios.post('http://localhost:1337/api/as', { data: { 'name': "tuanm", "bs": 1 } }).then(response => {
+                console.log("okla");
             }).catch((error) => {
                 console.log(error);
             });
@@ -138,7 +140,6 @@ export default function EmailSignUp() {
                                                 error={emailErr}
                                                 helperText={emailErr && 'Email không đúng định dạng'}
                                             />
-                                            {/* <Input error helperText="Incorrect entry." id="component-simple" value={emailInput} placeholder='Your email' sx={{ fontSize: '20px' }} onChange={handleChange} /> */}
                                             <Button sx={{ position: 'absolute', right: '0', marginTop: '10px' }} onClick={handleSubmit}>Submit</Button>
                                         </FormControl>
                                     </>
@@ -152,7 +153,6 @@ export default function EmailSignUp() {
                                     </>
                                 )
                             }
-
                         </Grid>
                         <Grid item xs={6}>
                             <Box component="img"

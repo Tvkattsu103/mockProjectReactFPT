@@ -10,6 +10,7 @@ import { currentOrderConfirmSelector } from "../../redux/selectors";
 import OrderItem from "./OrderItem";
 
 const OrderConfirmation = () => {
+  
   const currentOrederConfirm = useSelector(currentOrderConfirmSelector);
 
   return (

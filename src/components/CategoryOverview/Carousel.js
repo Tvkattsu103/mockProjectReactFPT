@@ -80,7 +80,6 @@ function Carousel() {
     const handleStepChange = (step) => {
         setActiveStep(step);
     };
-    console.log(rows)
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AutoPlaySwipeableViews

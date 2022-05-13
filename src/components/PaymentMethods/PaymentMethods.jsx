@@ -11,6 +11,7 @@ import Method from "./Method";
 import ExpiredMethod from "./ExpiredMethod";
 import MenuLeft from "../UI/MenuLeft";
 import NewMethod from "./NewMethod";
+import Footer from "../UI/Footer";
 
 const PaymentMethods = () => {
   const listMethod = useSelector(listPaymentMethod);
@@ -90,6 +91,7 @@ const PaymentMethods = () => {
           <NewMethod close={handleClose}/>
         </Modal>
       </Container>
+      <Footer />
     </>
   );
 };

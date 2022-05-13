@@ -1,15 +1,20 @@
 import { Avatar, AvatarGroup, Box, Button, Card, CardActions, CardContent, CardMedia, Checkbox, Container, FormControlLabel, Grid, Paper, Radio, RadioGroup, Typography } from '@mui/material';
 import { deepOrange } from '@mui/material/colors';
 import { border, flexbox, margin } from '@mui/system';
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import Header from '../UI/Header';
 import RadioLabel from './RadioLabel';
 import AddIcon from '@mui/icons-material/Add';
 import { useSelector } from 'react-redux';
+import Footer from '../UI/Footer';
 
 function Shipping() {
     const data = useSelector((state) => state.cartpage.dataShipping)
+    const [valueRadio,setValueRadio] = useState(5);
+    const handleChangeRadio = (e) => {
+        setValueRadio(e.target.value);
+    };
     return (
         <div>
             <Header />
@@ -52,14 +57,14 @@ function Shipping() {
                                     <RadioGroup
                                         aria-labelledby="demo-controlled-radio-buttons-group"
                                         name="controlled-radio-buttons-group"
-                                    //value={value}
-                                    //onChange={handleChange}   
+                                        value={valueRadio}
+                                        onChange={handleChangeRadio}  
                                     >
-                                        <FormControlLabel value="1" sx={{ display: 'block', paddingLeft: '20px' }} control={<Radio />} label={<RadioLabel day="Thursday, Jul 29" time="Standard 3-5 business days" money="$5" />} />
+                                        <FormControlLabel value="5" sx={{ display: 'block', paddingLeft: '20px' }} control={<Radio />} label={<RadioLabel day="Thursday, Jul 29" time="Standard 3-5 business days" money="$5" />}/>
 
-                                        <FormControlLabel value="2" sx={{ display: 'block', paddingLeft: '20px' }} control={<Radio />} label={<RadioLabel day="Tuesday, Jul 27" time="Express 2-3 business days" money="$17" />} />
+                                        <FormControlLabel value="17" sx={{ display: 'block', paddingLeft: '20px' }} control={<Radio />} label={<RadioLabel day="Tuesday, Jul 27" time="Express 2-3 business days" money="$17" />} />
 
-                                        <FormControlLabel value="3" sx={{ display: 'block', paddingLeft: '20px' }} control={<Radio />} label={<RadioLabel day="Friday, Jul 23" time="Priority 1 business day" money="$22" />} />
+                                        <FormControlLabel value="22" sx={{ display: 'block', paddingLeft: '20px' }} control={<Radio />} label={<RadioLabel day="Friday, Jul 23" time="Priority 1 business day" money="$22" />} />
                                     </RadioGroup>
                                 </CardContent>
                             </Card>
@@ -219,7 +224,7 @@ function Shipping() {
                                                 Sub Total:
                                             </Grid>
                                             <Grid item xs={2} align="right">
-                                                {data.price}
+                                                $ {data.price}
                                             </Grid>
                                         </Grid>
                                     </Typography>
@@ -230,7 +235,7 @@ function Shipping() {
                                                 Shipping:
                                             </Grid>
                                             <Grid item xs={2} align="right">
-                                                $5.00
+                                                $ {valueRadio}
                                             </Grid>
                                         </Grid>
                                     </Typography>
@@ -263,8 +268,9 @@ function Shipping() {
                                                 <b>Total</b>
                                             </Grid>
                                             <Grid item xs={2} align="right">
-                                                {parseInt(data.price) + 5}
+                                                $ {parseInt(data.price) + parseInt(valueRadio)}
                                             </Grid>
+                                            {console.log(data.price)}
                                         </Grid>
                                     </Typography>
                                 </CardContent>
@@ -273,6 +279,7 @@ function Shipping() {
                     </Grid>
                 </Grid>
             </Container>
+            <Footer/>
         </div>
     )
 }

@@ -1,10 +1,12 @@
-import { Button, Container, Grid, TextField } from '@mui/material';
+import { Alert, Button, Container, Grid, Snackbar, TextField } from '@mui/material';
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import Header from '../UI/Header';
 import registerSlice from './registerSlice';
 import { listUser } from '../../redux/selectors';
+import axios from 'axios';
+
 function Register() {
     const [Email, setEmail] = useState('');
     const [Password, setPassword] = useState('');
@@ -26,6 +28,7 @@ function Register() {
 
     const dispatch = useDispatch();
     const listUser1 = useSelector(listUser);
+    const [open , setOpen] = useState(false);
     
     const handleChangeEmail = (e) => {
         setEmail(e.target.value);
@@ -51,10 +54,16 @@ function Register() {
     const handleChangeAddress = (e) => {
         setAddress(e.target.value);
     }
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setOpen(false);
+    };
     const checkValid = () => {
         let isValid = true;
         //const regexEmail = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
-
 
         if (RePassword !== Password) {
             setErrRePassword("RePassword is not same Password");
@@ -70,14 +79,26 @@ function Register() {
         e.preventDefault();
         if (checkValid() === true) {
             if (listUser1.find(user => user.email === Email)) {
-                alert("Email đã tồn tại")
+                setOpen(true);
             }
             else {
                 dispatch(registerSlice.actions.addUser({ email: Email, password: Password, name: Name, surname: Surname, province: Province, city: City, address: Address }));
+                registerAccount({ email: Email, password: Password, name: Name, surname: Surname, province: Province, city: City, address: Address });
                 navigate('/Login');
             }
         }
     }
+
+    const registerAccount = (acc) => {
+        console.log({data: {...acc}})
+        axios.post('http://localhost:1337/api/accounts',{data: {...acc}})
+            .then(res => {
+                console.log(res);
+            }).catch((error) => {
+                console.log(error);
+            });
+    }
+
     return (
         <div>
             <Header />
@@ -97,6 +118,7 @@ function Register() {
                                     type='text'
                                     fullWidth
                                     required
+                                    style={{marginTop:'10px'}}
                                     onChange={handleChangeEmail}
                                     error={errEmail !== ""}
                                     helperText={errEmail !== "" ? errEmail : null}
@@ -112,6 +134,7 @@ function Register() {
                                         type='password'
                                         fullWidth
                                         required
+                                        style={{marginTop:'10px'}}
                                         onChange={handleChangePassword}
                                         error={errPassword !== ""}
                                         helperText={errPassword !== "" ? errPassword : null}
@@ -126,6 +149,7 @@ function Register() {
                                         type='password'
                                         fullWidth
                                         required
+                                        style={{marginTop:'10px'}}
                                         onChange={handleChangeRePassword}
                                         error={errRePassword !== ""}
                                         helperText={errRePassword !== "" ? errRePassword : null}
@@ -142,6 +166,7 @@ function Register() {
                                         type='text'
                                         fullWidth
                                         required
+                                        style={{marginTop:'10px'}}
                                         onChange={handleChangeName}
                                         error={errName !== ""}
                                         helperText={errName !== "" ? errName : null}
@@ -156,6 +181,7 @@ function Register() {
                                         type='text'
                                         fullWidth
                                         required
+                                        style={{marginTop:'10px'}}
                                         onChange={handleChangeSurname}
                                         error={errSurname !== ""}
                                         helperText={errSurname !== "" ? errSurname : null}
@@ -172,6 +198,7 @@ function Register() {
                                         type='text'
                                         fullWidth
                                         required
+                                        style={{marginTop:'10px'}}
                                         onChange={handleChangeProvince}
                                         error={errProvince !== ""}
                                         helperText={errProvince !== "" ? errProvince : null}
@@ -186,6 +213,7 @@ function Register() {
                                         type='text'
                                         fullWidth
                                         required
+                                        style={{marginTop:'10px'}}
                                         onChange={handleChangeCity}
                                         error={errCity !== ""}
                                         helperText={errCity !== "" ? errCity : null}
@@ -201,17 +229,23 @@ function Register() {
                                     type='text'
                                     fullWidth
                                     required
+                                    style={{marginTop:'10px'}}
                                     onChange={handleChangeAddress}
                                     error={errAddress !== ""}
                                     helperText={errAddress !== "" ? errAddress : null}
                                 />
                             </Grid>
-                            <Button type='submit' color='primary' fullWidth style={{ backgroundColor: 'black', color: 'white' }}><b>Register</b></Button>
+                            <Button type='submit' color='primary' fullWidth style={{ backgroundColor: 'black', color: 'white',marginTop:'10px' }}><b>Register</b></Button>
                         </form>
                     </Grid>
 
                 </Grid>
             </Container>
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                    Email đã tồn tại!
+                </Alert>
+            </Snackbar>
         </div>
     )
 }

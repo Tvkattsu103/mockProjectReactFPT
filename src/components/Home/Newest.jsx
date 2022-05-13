@@ -1,25 +1,24 @@
 import * as React from "react";
 import Grid from "@mui/material/Grid";
-import ProductCard from "./ProductCard";
 import useFetchData from "../../customHooks/useFetchData";
+import ProductCard from "./ProductCard";
 
-export default function MonthBest() {
-
-  const bests = useFetchData(
-    "http://localhost:1337/api/products?populate=*&pagination[page]=1&pagination[pageSize]=5"
+export default function Newest() {
+  const newest = useFetchData(
+    "http://localhost:1337/api/products?populate=*&sort=createdAt:DESC&pagination[page]=1&pagination[pageSize]=3"
   );
 
   return (
-    <Grid sx={{ flexGrow: 1 }} container spacing={2}>
+    <Grid sx={{ flexGrow: 1 }} container spacing={5}>
       <Grid item xs={12}>
         <Grid container justifyContent="center">
-          <h1>Best of this month!</h1>
+          <h1>Newest!</h1>
         </Grid>
       </Grid>
       <Grid item xs={12}>
-        <Grid container justifyContent="center" spacing={2}>
-          {bests &&
-            bests.map((p) => (
+        <Grid container justifyContent="center" spacing={5}>
+          {newest &&
+            newest.map((p) => (
               <Grid key={p.id} item>
                 <ProductCard
                   id={p.id}
@@ -29,8 +28,7 @@ export default function MonthBest() {
                     p.attributes.image.data[0].attributes.url
                   }
                   price={p.attributes.price}
-                  maxWidth={250}
-      
+                  maxWidth={350}
                 />
               </Grid>
             ))}

@@ -10,7 +10,7 @@ export const listSelector = (state) => state.list.products;
 export const listProductSearchSelector = createSelector(
   listSelector, searchSelector,
   (listProduct, key) => {
-    return listProduct.filter((p) => p.title.includes(key));
+    return listProduct.filter((p) => p.attributes.Title.toLowerCase().includes(key.toLowerCase()));
   }
 );
 //miniCart
@@ -24,7 +24,12 @@ export const listUser = (state) => state.registerUser;
 export const checkUserSelector = createSelector(
   userSelector,listUser,
   (user,listUser) => {
-    return listUser.find((p) => p.email===user.email && p.password===user.password);
+    const e = listUser.find((p) => p.email===user.email && p.password===user.password);
+    if(e){
+      localStorage.setItem('currentuser',JSON.stringify(e));
+    }
+    return e;
+    
   }
 );
 // phan cua anh HuyHt8 address
