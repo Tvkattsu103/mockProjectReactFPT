@@ -1,19 +1,21 @@
-body{
+body {
   background-color: #EFEFEF;
   min-height: 100vh;
 }
+
 .category-container {
   max-width: 1440px;
   margin: 1rem auto 2.7rem;
   cursor: pointer;
 }
+
 .Card {
   border-radius: 0px !important;
   box-shadow: none !important;
 }
 
 .Card:hover {
-  filter: brightness(108%)!important;
+  filter: brightness(108%) !important;
 }
 
 .Box:hover {
@@ -22,10 +24,10 @@ body{
 
 .Button:hover {
   color: black;
-  background-color: rgb(187, 255, 232)!important;
+  background-color: rgb(187, 255, 232) !important;
 }
 
-.list-category{
+.list-category {
   border: 1px solid rgb(18, 35, 68);
   border-top: none;
   border-bottom: none;
@@ -35,10 +37,29 @@ a {
   text-decoration: none;
 }
 
-.Button :hover{
-  background-color: rgb(62, 62, 62)!important;
+.Button :hover {
+  background-color: rgb(62, 62, 62) !important;
   color: white;
 }
-body{
+
+body {
   background-color: #efefef;
+  min-height: 100vh;
+}
+
+.Link {
+  color: white;
+  margin-top: 10px;
+}
+
+.FooterItem {
+  margin-top: 15px;
+}
+
+.product-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }

@@ -34,7 +34,7 @@ const ProductCard = ({ id, title, image, price, maxWidth }) => {
       <Card sx={{ maxWidth: maxWidth }}>
         <CardMedia component="img" height="400" image={image} alt={title} />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h5" component="div" className='product-title'>
             {title}
           </Typography>
           {/* <Typography variant="h6" color="text.secondary">

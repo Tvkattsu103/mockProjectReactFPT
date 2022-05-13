@@ -53,7 +53,6 @@ function Category() {
     useEffect(()=> {
         getCategories();
     }, [])
-    console.log("category",category)
 
     const open = Boolean(anchorEl);
     return (
@@ -111,7 +110,7 @@ function Category() {
                                 <Box sx={{ position: 'relative' }}>
                                     <CardMedia
                                         component="img"
-                                        image={"http://localhost:1337"+category.attributes.Image.data[0].attributes.url}
+                                        image={"http://localhost:1337"+category.attributes.image.data[0].attributes.url}
                                         alt="Paella dish"
                                     />
                                     <Box className="Box"
@@ -124,7 +123,7 @@ function Category() {
                                             color: 'white',
                                         }}
                                     >
-                                        <Typography variant="h5" style={{ textTransform: 'uppercase' }}>{category.attributes.Name}</Typography>
+                                        <Typography variant="h5" style={{ textTransform: 'uppercase' }}>{category.attributes.name}</Typography>
                                     </Box>
                                 </Box>
 
@@ -145,7 +144,7 @@ function Category() {
                             <ListItem disablePadding >
                                 {category.map(category => (
                                     <ListItemButton style={{ padding: '0' }}>
-                                        <ListItemText primary={category.attributes.Name} style={{ padding: '0 12px' }} className="list-category" />
+                                        <ListItemText primary={category.attributes.name} style={{ padding: '0 12px' }} className="list-category" />
                                     </ListItemButton>
                                 ))}
                             </ListItem>

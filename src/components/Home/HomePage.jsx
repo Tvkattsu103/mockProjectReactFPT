@@ -22,7 +22,7 @@ const HomePage = () => {
 
   return (
     <>
-      <Header></Header>
+      <Header />
       <EmailSignUp />
       <Grid container spacing={2}>
         <Grid item xs={12}>
@@ -39,23 +39,19 @@ const HomePage = () => {
             </ButtonGroup>
           </Box>
         </Grid>
-        <Grid item xs={12}>
-          <Box sx={{ backgroundColor: "#81d4fa" }}>
-            <Carousel></Carousel>
-          </Box>
-        </Grid>
-        <Grid item xs={12}>
-          <Box sx={{ backgroundColor: "#81d4fa" }}>
-            <Newest></Newest>
-          </Box>
-        </Grid>
-        <Grid item xs={12}>
-          <Box sx={{ backgroundColor: "#81d4fa" }}>
-            <MonthBest></MonthBest>
-          </Box>
-        </Grid>
+        <Box sx={{ paddingBottom: '50px', backgroundColor: "#81d4fa" }}>
+          <Grid item xs={12}>
+            <Carousel />
+          </Grid>
+          <Grid item xs={12}>
+            <Newest />
+          </Grid>
+          <Grid item xs={12}>
+            <MonthBest />
+          </Grid>
+        </Box>
       </Grid>
-      <Footer></Footer>
+      <Footer />
     </>
   );
 };

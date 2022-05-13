@@ -20,9 +20,9 @@ import { useSelector } from "react-redux";
 const MenuLeft = () => {
 
   const currentUser = JSON.parse(localStorage.getItem('currentuser'));
-
   const nameAva = currentUser.name.split(" ");
 
+  console.log(currentUser) 
   return (
     <>
       <Grid item xs={4}>
@@ -32,7 +32,7 @@ const MenuLeft = () => {
               <Grid container>
                 <Grid item xs={4}>
                   <Avatar sx={{ bgcolor: "#2d2d2d", height: 100, width: 100 }}>
-                  {nameAva.map((p)=>p[0])}
+                    {nameAva.map((p) => p[0])}
                   </Avatar>
                 </Grid>
                 <Grid item xs={8} sx={{ pt: 3, pb: 3 }}>
@@ -102,11 +102,11 @@ const MenuLeft = () => {
               </Grid>
             </Box>
           </Grid>
-      
+
           <Grid item xs={12}>
             <NavLink
               to="/Address"
-              style={({isActive}) => ({
+              style={({ isActive }) => ({
                 color: isActive ? "blue" : "black",
               })}
             >
@@ -125,7 +125,7 @@ const MenuLeft = () => {
           <Grid item xs={12}>
             <NavLink
               to="/PaymentMethods"
-              style={({isActive}) => ({
+              style={({ isActive }) => ({
                 color: isActive ? "blue" : "black",
               })}
             >
