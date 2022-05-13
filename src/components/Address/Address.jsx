@@ -26,10 +26,8 @@ import Footer from '../UI/Footer';
 import useFetchData from '../../customHooks/useFetchData';
 import { listAddress } from '../../redux/selectors';
 import axios from 'axios';
-// import { listAddress } from '../../redux/selectors';
 function Address() {
-  //const listAddress1 = useSelector(listAddress);
-  // const listAddress= [];
+  const list = useSelector(listAddress);
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const handleAdd = () => setOpen(true);
@@ -37,16 +35,23 @@ function Address() {
   const currentUser = JSON.parse(localStorage.getItem('currentuser'));
   const aid = currentUser.id;
   const handleChangeDefaultAddress = (id) => {
-    dispatch(addressSlice.actions.changDefault(id));
+    dispatch(addressSlice.actions.changDefault(id));    
   };
   const handleDeleteAddress = (id) => {
     dispatch(addressSlice.actions.deleteAddress(id));
   };
   
-  const listAddress = useFetchData(
-    "http://localhost:1337/api/addresses?filters[accountID][$eq]="+aid
-  );
-  console.log("listAddress",listAddress);
+  useEffect(() => {
+    axios
+     .get("http://localhost:1337/api/addresses?filters[accountID][$eq]="+aid)
+     .then((res) => 
+      res.data.data
+     )
+     .then(data=>{
+      dispatch(addressSlice.actions.initAddress(data));
+     }     )
+     .catch((error) => console.log(error));
+ }, []);
   return (
     <div>
         <Header />
@@ -82,17 +87,17 @@ function Address() {
                 </Box>
               </Grid>
               { 
-                listAddress&&
-                listAddress.map((l, key) => {
+                list&&
+                list.map((l, key) => {
                     return (
                       <Grid item xs={12} key={l.id}>
                         <Box sx={{ backgroundColor: "white", p: 3 }}>
                           <Grid container spacing={1}> 
                             <Grid item xs={12}>
-                              <Typography variant="h5">{l.attributes.name} </Typography>
-                              <Typography variant="body1">{l.attributes.address}</Typography>
-                              <Typography variant="body1">{l.attributes.city}, {l.attributes.province}</Typography>
-                              <Typography variant="body1">{l.attributes.country}</Typography>
+                              <Typography variant="h5">{l.name} </Typography>
+                              <Typography variant="body1">{l.address}</Typography>
+                              <Typography variant="body1">{l.city}, {l.province}</Typography>
+                              <Typography variant="body1">{l.country}</Typography>
                             </Grid>
                           </Grid>
                           <Grid container spacing={1} sx={{display:'flex',justifyContent:'space-between'}}>
@@ -108,7 +113,7 @@ function Address() {
                                         </Grid>
                                     </Button>
                                     
-                                    <Button sx={{ color: "black" ,marginLeft:'10px'}} disabled={l.attributes.isDefault} onClick={()=>handleChangeDefaultAddress(l.id)}>
+                                    <Button sx={{ color: "black" ,marginLeft:'10px'}} disabled={l.isDefault} onClick={()=>handleChangeDefaultAddress(l.id)}>
                                         <Grid container alignItems={"center"}>
                                         <Grid item xs={10}>
                                             <Typography variant="h6">SETDEFAULT</Typography>
@@ -117,7 +122,7 @@ function Address() {
                                     </Button>
                               </Grid>
                               <Grid>
-                                    <Button sx={{ color: "black" }} disabled={l.attributes.isDefault} onClick={()=>handleDeleteAddress(l.id)}>
+                                    <Button sx={{ color: "black" }} disabled={l.isDefault} onClick={()=>handleDeleteAddress(l.id)}>
                                         <Grid container alignItems={"center"}>
                                         <Grid item xs={10}>
                                             <Typography variant="h6">DELETE </Typography>
