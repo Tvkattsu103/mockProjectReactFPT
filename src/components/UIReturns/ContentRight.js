@@ -1,8 +1,9 @@
 import React from 'react';
 import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
-import { Typography } from '@mui/material';
+import { Typography,Button } from '@mui/material';
 import ChatIcon from '@mui/icons-material/Chat';
 import EditLocationIcon from '@mui/icons-material/EditLocation';
+import {Link} from "react-router-dom"
 // import { Container } from './styles';
 
 function ContentRight() {
@@ -27,6 +28,11 @@ function ContentRight() {
         <Typography variant="body1" gutterBottom component="div">
             Chat with us
         </Typography>
+        <Button>
+        <Link to="/Chat">
+        Chat với chúng tôi
+        </Link>
+        </Button>
         <Typography variant="body1" gutterBottom component="div">
             4 am - 11 pm PT
         </Typography>

@@ -28,17 +28,16 @@ const productSlice = createSlice({
   initialState: { product: data },
   reducers: {
     addToCartPage: (state, action) => {
-      console.log("Da ket noi " + action.payload );
-      state.product = action.payload;
-      
+      console.log("Da ket noi " + action.payload);
+      state.product = action.payload
     }, // Tự động tạo 1 action  type: Product/addToCartPage
   },
 });
 
 export default productSlice
 
-export const {addToCartPage} = productSlice.actions
-  
+export const { addToCartPage } = productSlice.actions
+
 
 
 

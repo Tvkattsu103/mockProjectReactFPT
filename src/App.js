@@ -26,7 +26,7 @@ import Product from "./components/UIProduct/Product.js";
 import MainReturn from "./components/UIReturns/MainReturn";
 import CategoryPage from "./components/CategoryPage/CategoryPage";
 import CardPage2 from "./components/UICartPage/CartPage2";
-
+import AppChat from "./components/UIChat/App"
 function App() {
   const ProtectedRoute = ({ children }) => {
     if (!localStorage.getItem("currentuser")) {
@@ -42,13 +42,15 @@ function App() {
         <div id="main-ct" className="p-child-dkr">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/:title/:gia" element={<Product />} />
+            <Route path="/:title/:gia/" element={<Product />} />
             <Route path="/categoryoverview" element={<CategoryOverview />} />
             <Route path="/categorypage" element={<CategoryPage />} />
             <Route path="/payment" element={<Payment />} />
             <Route path="/:title/:gia" element={<Product />} />
             <Route path="/emailsignup" element={<EmailSignUp />} />
             <Route path="/Search" element={<Search />} />
+            <Route path="/Chat" element={<AppChat />} />
+
             <Route
               path="/PaymentMethods"
               element={
@@ -70,7 +72,6 @@ function App() {
               }
             ></Route>
             <Route path="/Address" element={<Address />}></Route>
-
             <Route path="CardPage" element={<CardPage />} />
             <Route path="/CardPage2" element={<CardPage2 />} />
             <Route path="Product" element={<Product />} />

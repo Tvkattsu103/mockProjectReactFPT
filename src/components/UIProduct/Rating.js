@@ -11,7 +11,7 @@ export default function HalfRating() {
             <h1>Ghost 14</h1>
             <p>Women's road-running shoes</p>
             <hr></hr>
-            <h3>Chọn loại giày</h3>
+            <h3>Chọn loại áo</h3>
         </div>
     );
 }

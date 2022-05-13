@@ -149,9 +149,9 @@ export default function CardPage() {
                                                     <Typography variant="body2" color="text.secondary">
                                                         Size: {item?.size}
                                                     </Typography>
-                                                    <Typography variant="body2" color="text.secondary">
+                                                    {/* <Typography variant="body2" color="text.secondary">
                                                         Width: {item?.width}
-                                                    </Typography>
+                                                    </Typography> */}
                                                 </CardContent>
                                                 <br />
                                                 <div >

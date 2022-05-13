@@ -29,20 +29,19 @@ import { useEffect } from 'react';
 export default function CardPage2() {
     const [quantity, setQuantity] = React.useState(1);
     const data = useSelector((state) => state.product.product)
+    console.log("data" + JSON.stringify(data))
     const [image, setImage] = React.useState(data.type)
     const [size, setSize] = React.useState(data.size)
-    const [width, setWidth] = React.useState(data.width)
     const [price, setPrice] = React.useState(45)
     const [name, setName] = React.useState(data.name)
     const dispatch = useDispatch();
     const getQuantity = (quantity) => {
         setQuantity(quantity)
     }
-    const getProductToShipping = (type, size, width, name, price) => {
+    const getProductToShipping = (type, size, name, price) => {
         let product = {}
         product.type = type;
         product.size = size;
-        product.width = width;
         product.name = name;
         product.price = price;
         dispatch(addToShipping(product))
@@ -50,7 +49,6 @@ export default function CardPage2() {
     useEffect(() => {
         setPrice(parseInt(data.price * quantity) - (parseInt(data.price * quantity) * 1) / 10)
     });
-    console.log(price);
     return (
         <>
             <Header />
@@ -59,34 +57,34 @@ export default function CardPage2() {
                     <Grid item xs={8}>
                         <Card sx={{ maxWidth: 750, height: 300, mb: 2 }}>
                             <Grid container spacing={2}>
-                                <Grid item xs={6}>
-                                    <CardMedia
-                                        component="img"
-                                        alt="green iguana"
-                                        height="230"
-                                        image={data.type}
-                                    />
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <CardContent>
-                                        <Typography gutterBottom variant="h5" component="div">
+                            <Grid item xs={6}>
+                                <CardMedia
+                                    component="img"
+                                    alt="green iguana"
+                                    height="230"
+                                    image={data.type}
+                                />
+                            </Grid>
+                            <Grid item xs={4}>
+                                <CardContent>
+                                    {/* <Typography gutterBottom variant="h5" component="div">
                                             {data.name}
-                                        </Typography>
-                                        <Typography variant="body2" color="text.secondary">
-                                            Color: red
-                                        </Typography>
-                                        <Typography variant="body2" color="text.secondary">
-                                            Size: {data.size}
-                                        </Typography>
-                                        <Typography variant="body2" color="text.secondary">
-                                            Width: {data.width}
-                                        </Typography>
-                                    </CardContent>
-                                    <br />
-                                    <div style={{ width: '3px' }} >
-                                        <BasicSelect getQuantity={(quantity) => getQuantity(quantity)} />
-                                    </div>
-                                </Grid>
+                                        </Typography> */}
+                                    <Typography variant="body2" color="text.secondary">
+                                        Color: red
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary">
+                                        Size: {data.size}
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary">
+                                        Width: {data.width}
+                                    </Typography>
+                                </CardContent>
+                                <br />
+                                <div style={{ width: '3px' }} >
+                                    <BasicSelect getQuantity={(quantity) => getQuantity(quantity)} />
+                                </div>
+                            </Grid>
                                 <Grid item xs={1}>
                                     <CardContent>
                                         <Typography variant="body2" color="text.secondary">
@@ -102,7 +100,6 @@ export default function CardPage2() {
                                         </Typography>
                                     </CardContent>
                                 </Grid>
-
                             </Grid>
                             <br />
                         </Card>
@@ -170,7 +167,7 @@ export default function CardPage2() {
                             </CardContent>
                             <CardActions sx={{ p: 0 }}>
                                 <Link to="/Shipping">
-                                    <Button onClick={() => getProductToShipping(image, size, width, name, price)}
+                                    <Button onClick={() => getProductToShipping(image, size, name, price)}
                                         variant="contained" sx={{ width: 350, height: 50 }}
                                     >Check out</Button>
                                 </Link>

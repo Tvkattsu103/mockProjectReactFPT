@@ -18,7 +18,6 @@ import { useParams } from 'react-router-dom'
 export default function Product() {
     const { title, gia } = useParams();
     const data = useSelector((state) => state.productCardSlice.img)
-    console.log(data)
     // console.log(JSON.stringify(title))
     // console.log(JSON.stringify(img))
     const [product, setProduct] = React.useState([])
@@ -57,8 +56,8 @@ export default function Product() {
     //     fetchProductList();
     // }, []);
     const [image, setImage] = React.useState(data)
-    const [size, setSize] = React.useState()
-    const [width, setWidth] = React.useState()
+    const [size, setSize] = React.useState(50)
+    // const [width, setWidth] = React.useState()
     const [price, setPrice] = React.useState(gia)
     const [name, setName] = React.useState(title)
     const getDataType = (Type) => (
@@ -67,14 +66,13 @@ export default function Product() {
     const getDataSize = (Size) => {
         setSize(Size)
     }
-    const getDataWidth = (Width) => {
-        setWidth(Width)
-    }
-    const getProductToCardPage = (type, size, width, name, price) => {
+    // const getDataWidth = (Width) => {
+    //     setWidth(Width)
+    // }
+    const getProductToCardPage = (type, size , name, price) => {
         let product = {}
         product.type = type;
         product.size = size;
-        product.width = width;
         product.name = name;
         product.price = price;
         let data = {
@@ -113,7 +111,7 @@ export default function Product() {
                         {/* Content nam ben trai */}
                         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
                             <Grid item xs={6} >
-                                <ImgMediaCard img={image} name={name} price={price} size={size} width={width} />
+                                <ImgMediaCard img={image} name={name} price={price} size={size}/>
                             </Grid>
                         </Grid>
                     </Grid>
@@ -127,11 +125,11 @@ export default function Product() {
                         <Grid item xs={6}>
                             <BoxSize getDataSize={(size) => getDataSize(size)} />
                         </Grid>
-                        <Grid item xs={6}>
+                        {/* <Grid item xs={6}>
                             <BoxWidth getDataWidth={(width) => getDataWidth(width)} />
-                        </Grid>
+                        </Grid> */}
                         <Grid item xs={6}>
-                            <Button onClick={() => getProductToCardPage(image, size, width, name, price)}>
+                            <Button onClick={() => getProductToCardPage(image, size, name, price)}>
                                 <ContainedButtons />
                             </Button>
                         </Grid>

@@ -41,9 +41,10 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "bootstrap-icons": "^1.8.1",
-    "query-string": "^7.1.1",
     "notistack": "^2.0.5",
+    "query-string": "^7.1.1",
     "react": "^18.0.0",
+    "react-chat-engine": "^1.11.22",
     "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^18.0.0",
     "react-redux": "^8.0.1",
@@ -54,6 +55,7 @@
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
     "save": "^2.5.0",
+    "sendbird-uikit": "^2.7.1",
     "styled-components": "^5.3.5",
     "uuid": "^8.3.2",
     "web-vitals": "^2.1.4"
@@ -77,6 +79,8 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.16.12"
+    "@babel/core": "^7.16.12",
+    "webpack": "^5.72.1",
+    "webpack-dev-server": "^4.9.0"
   }
 }
