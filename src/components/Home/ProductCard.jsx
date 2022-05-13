@@ -9,43 +9,55 @@ import {
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import usePostData from "../../customHooks/usePostData";
 import { useSnackbar } from "notistack";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import { stateMiniCart, miniCartItem } from '../../redux/selectors';
 import miniCartSlice from '../MiniCart/miniCartSlice';
+import axios from "axios";
+import {productCardSliceAction} from './ProductCardSlice'
 
 const ProductCard = ({ id, title, image, price, maxWidth }) => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  var cartID = 0; 
   const { enqueueSnackbar } = useSnackbar();
   const handleAddToCart = (variant) => () => {
     if (!localStorage.getItem("currentuser")) {
       navigate("/Login");
     } else {
-      usePostData("http://localhost:1337/api/carts?populate=*", {
-        quantity: 1,
-        size: "38",
-        products: id,
-        image: image,
-        price: price,
-        title: title,
-        email: JSON.parse(localStorage.getItem("currentuser")).email,
-        account: JSON.parse(localStorage.getItem("currentuser")).id,
-      });
-      dispatch(miniCartSlice.actions.addItem({
-        quantity: 1,
-        size: "38",
-        products: id,
-        image: image,
-        price: price,
-        title: title,
-        email: JSON.parse(localStorage.getItem("currentuser")).email,
-        account: JSON.parse(localStorage.getItem("currentuser")).id,
-      }));
-      enqueueSnackbar("Thêm vào giỏ hàng thành công!", {variant});
+      axios
+        .post("http://localhost:1337/api/carts?populate=*", {
+          data: {
+            quantity: 1,
+            size: "38",
+            products: id,
+            image: image,
+            price: price,
+            title: title,
+            email: JSON.parse(localStorage.getItem("currentuser")).email,
+            account: JSON.parse(localStorage.getItem("currentuser")).id,
+          }
+        })
+        .then((response) => {
+          console.log(response);
+          cartID=response.data.data.id;
+          dispatch(miniCartSlice.actions.addItem({
+            id:cartID,
+            quantity: 1,
+            size: "38",
+            products: id,
+            image: image,
+            price: price,
+            title: title,
+            email: JSON.parse(localStorage.getItem("currentuser")).email,
+            account: JSON.parse(localStorage.getItem("currentuser")).id,
+          }));
+        })
+      enqueueSnackbar("Thêm vào giỏ hàng thành công!", { variant });
     }
   };
   const handleClick = () => {
+    dispatch(productCardSliceAction(image))
     navigate(`/${title}/${price}`)
   }
   return (

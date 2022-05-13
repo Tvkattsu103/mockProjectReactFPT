@@ -9,7 +9,7 @@ export default function ContainedButtons() {
         <div>
             <br />
             <Stack direction="row" spacing={2}>
-                <Link to="/CardPage">
+                <Link to="/CardPage2">
                     <Button variant="contained">Add to cart</Button>
                 </Link>
             </Stack>

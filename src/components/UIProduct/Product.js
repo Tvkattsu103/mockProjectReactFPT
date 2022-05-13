@@ -8,7 +8,7 @@ import BoxSize from './BoxSize';
 import BoxWidth from './BoxWidth';
 import ContainedButtons from './Button';
 import { Button } from '@mui/material';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import Header from '../UI/Header';
 import { addToCartPage } from './ProductSlice'
 import productApi from '../../api/productApi';
@@ -17,6 +17,8 @@ import { ChevronLeftSharp } from '@mui/icons-material';
 import { useParams } from 'react-router-dom'
 export default function Product() {
     const { title, gia } = useParams();
+    const data = useSelector((state) => state.productCardSlice.img)
+    console.log(data)
     // console.log(JSON.stringify(title))
     // console.log(JSON.stringify(img))
     const [product, setProduct] = React.useState([])
@@ -54,7 +56,7 @@ export default function Product() {
     //     }
     //     fetchProductList();
     // }, []);
-    const [image, setImage] = React.useState()
+    const [image, setImage] = React.useState(data)
     const [size, setSize] = React.useState()
     const [width, setWidth] = React.useState()
     const [price, setPrice] = React.useState(gia)

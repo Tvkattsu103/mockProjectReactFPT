@@ -14,19 +14,21 @@ import {
   Typography,
   IconButton
 } from '@mui/material';
-import { Delete, AddCircle, RemoveCircle, Close, RemoveShoppingCart } from '@mui/icons-material'
+import { Delete, AddCircle, RemoveCircle, Close } from '@mui/icons-material'
 import { useSelector, useDispatch } from 'react-redux';
-import { stateMiniCart, miniCartItem } from '../../redux/selectors';
+import { stateMiniCart, miniCartItem, subtotal } from '../../redux/selectors';
 import miniCartSlice from './miniCartSlice';
 import axios from 'axios';
 import { Scrollbars } from 'react-custom-scrollbars';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 export default function MiniCart({ toggleMiniCart }) {
   const dispatch = useDispatch();
   const open = useSelector(stateMiniCart)
   const items = useSelector(miniCartItem)
+  const sum = useSelector(subtotal);
+  const navigate = useNavigate();
 
   const currentUser = JSON.parse(localStorage.getItem('currentuser'));
   const idCurrentUser = currentUser.id;
@@ -54,6 +56,11 @@ export default function MiniCart({ toggleMiniCart }) {
         console.log(res);
         dispatch(miniCartSlice.actions.deleteItem(id))
       })
+  }
+
+  const goToCartPage = () => {
+    dispatch(miniCartSlice.actions.changeState(false));
+    navigate("/CardPage");
   }
 
   const list = () => (
@@ -160,21 +167,21 @@ export default function MiniCart({ toggleMiniCart }) {
                   Subtotal
                 </Typography>
                 <Typography variant="h6" component="div" sx={{ display: 'inline-block' }}>
-                  (2 items)
+                  ({items?items.length:0} items)
                 </Typography>
               </Grid>
               <Grid item>
                 <Typography variant="h7" component="div" sx={{ fontWeight: 'bold' }}>
-                  $25
+                  ${sum}
                 </Typography>
 
               </Grid>
             </Grid>
-            <Link to="/CardPage">
-              <ListItem button key="1" style={{ textAlign: 'center', backgroundColor: 'black', color: 'white', borderRadius: '15px' }}>
+            <Box onClick={()=>goToCartPage()}>
+              <ListItem button key="1" style={{ textAlign: 'center', backgroundColor: 'black', color: 'white', borderRadius: '15px' }} >
                 <ListItemText primary="Continue To Checkout" />
               </ListItem>
-            </Link>
+              </Box>
           </CardContent>
         </List>
       </Box>
