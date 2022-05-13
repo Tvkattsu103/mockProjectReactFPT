@@ -27,7 +27,7 @@ import useFetchData from '../../customHooks/useFetchData';
 import { listAddress } from '../../redux/selectors';
 import axios from 'axios';
 function Address() {
-  const list = useSelector(listAddress);
+  const list = useSelector(listAddress);g
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const handleAdd = () => setOpen(true);
