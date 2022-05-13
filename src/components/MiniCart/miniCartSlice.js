@@ -9,9 +9,11 @@ export default createSlice({
     },
     reducers: {
         initCart: (state, action) => {
+            console.log(action.payload.length);
             action.payload.map((p) => {
-                return state.items.push({...p.attributes, id:p.id});
-              })
+                state.items.push({...p.attributes, id:p.id})
+             } )
+              state.items
         },
         addItem: (state, action) => {
             state.items.push(action.payload);
