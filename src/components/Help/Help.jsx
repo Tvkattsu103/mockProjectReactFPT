@@ -70,7 +70,7 @@ function Help() {
         </Box>
         <Box sx={{padding:'20px'}}>  
             <Typography variant='h5' align='center' padding='20px' fontFamily='monospace'>You can leave information here. We will response to you soon.<br></br> Thanh you!</Typography>
-            <Container style={{padding:'20px',border:'2px solid black',borderRadius:'10px'}} maxWidth="sm" align="center">
+            <Container style={{padding:'20px',border:'2px solid black',borderRadius:'10px',backgroundColor:'white'}} maxWidth="sm" align="center">
                 <TextField value={question} placeholder='What can we help you?' fullWidth style={{marginTop:'20px'}} required onChange={handleQuestion}></TextField>
                 <TextField value={contact} placeholder='Your phone' fullWidth style={{marginTop:'20px'}} required onChange={handleContact}></TextField>
                 <Button style={{height:'50px',border:'1px solid white',backgroundColor:'black',color:'white',marginTop:'20px'}} 
