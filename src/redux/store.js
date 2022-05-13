@@ -10,6 +10,7 @@ import orderConfirmSlide from "../components/OrderConfirmation/orderConfirmSlide
 import paymentMethodSlide from "../components/PaymentMethods/paymentMethodSlice";
 import cartPageSlice from "../components/UICartPage/CartPageSlice";
 import listSlide from "../components/Search/listSlide";
+import productCardSlice from "../components/Home/ProductCardSlice";
 
 const store = configureStore({
   reducer: {
@@ -24,6 +25,7 @@ const store = configureStore({
     paymentMethod: paymentMethodSlide.reducer,
     cartpage: cartPageSlice.reducer,
     list: listSlide.reducer,
+    productCardSlice: productCardSlice.reducer,
   },
 });
 

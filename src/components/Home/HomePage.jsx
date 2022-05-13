@@ -6,16 +6,13 @@ import Carousel from "./Carousel";
 import Newest from "./Newest";
 import MonthBest from "./MonthBest";
 import EmailSignUp from "../EmailSignUp/EmailSignUp";
-import { Link } from "react-router-dom";
 import useFetchData from "../../customHooks/useFetchData";
 import { useNavigate } from 'react-router-dom'
 import Footer from "../UI/Footer";
 
 const HomePage = () => {
   const navigate = useNavigate();
-
   const categories = useFetchData("http://localhost:1337/api/categories");
-
   const handleCategoryClick = (e) => {
     navigate("/categoryoverview")
   }

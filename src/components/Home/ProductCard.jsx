@@ -9,6 +9,7 @@ import {
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import usePostData from "../../customHooks/usePostData";
 import { useSnackbar } from "notistack";
+<<<<<<< HEAD
 import {useNavigate} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import { stateMiniCart, miniCartItem } from '../../redux/selectors';
@@ -16,7 +17,14 @@ import miniCartSlice from '../MiniCart/miniCartSlice';
 
 const ProductCard = ({ id, title, image, price, maxWidth }) => {
   const dispatch = useDispatch();
+=======
+import { useNavigate } from 'react-router-dom'
+import { useDispatch,useSelector } from "react-redux";
+import {productCardSliceAction} from './ProductCardSlice'
+const ProductCard = ({ id, title, image, price, maxWidth }) => {
+>>>>>>> TuanDM21
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
   const handleAddToCart = (variant) => () => {
     if (!localStorage.getItem("currentuser")) {
@@ -46,6 +54,7 @@ const ProductCard = ({ id, title, image, price, maxWidth }) => {
     }
   };
   const handleClick = () => {
+    dispatch(productCardSliceAction(image))
     navigate(`/${title}/${price}`)
   }
   return (
