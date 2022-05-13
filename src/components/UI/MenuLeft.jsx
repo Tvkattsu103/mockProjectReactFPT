@@ -21,7 +21,6 @@ const MenuLeft = () => {
 
   const currentUser = JSON.parse(localStorage.getItem('currentuser'));
   const nameAva = currentUser.name.split(" ");
-  console.log("currentUser",currentUser.id) 
   return (
     <>
       <Grid item xs={4}>

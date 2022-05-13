@@ -20,6 +20,7 @@ import { stateMiniCart, miniCartItem } from '../../redux/selectors';
 import miniCartSlice from './miniCartSlice';
 import axios from 'axios';
 import { Scrollbars } from 'react-custom-scrollbars';
+import { Link } from 'react-router-dom';
 
 
 export default function MiniCart({ toggleMiniCart }) {
@@ -27,15 +28,16 @@ export default function MiniCart({ toggleMiniCart }) {
   const open = useSelector(stateMiniCart)
   const items = useSelector(miniCartItem)
 
-  const [cart, setCart] = useState([]);
-
   const currentUser = JSON.parse(localStorage.getItem('currentuser'));
   const idCurrentUser = currentUser.id;
 
-  const addQuantity = (e) => {
-    e.preventDefault();
-    dispatch(miniCartSlice.actions.addQuantity(1))
+  const addQuantity = (id, quantity) => {
+    dispatch(miniCartSlice.actions.addQuantity(id))
   }
+  const removeQuantity = (id, quantity) => {
+    dispatch(miniCartSlice.actions.removeQuantity(id))
+  }
+
   useEffect(() => {
     axios.get('http://localhost:1337/api/accounts/' + idCurrentUser + '?populate=*')
       .then(res =>
@@ -46,8 +48,12 @@ export default function MiniCart({ toggleMiniCart }) {
       })
   }, []);
 
-  const RemoveCartItem = () => {
-    dispatch(miniCartSlice.actions.initCart(data))
+  const RemoveCartItem = (id) => {
+    axios.delete('http://localhost:1337/api/carts/' + id)
+      .then(res => {
+        console.log(res);
+        dispatch(miniCartSlice.actions.deleteItem(id))
+      })
   }
 
   const list = () => (
@@ -94,7 +100,7 @@ export default function MiniCart({ toggleMiniCart }) {
                         </Grid>
                         <Grid item>
                           <div>
-                            <IconButton>
+                            <IconButton onClick={() => RemoveCartItem(item.id)}>
                               <Delete />
                             </IconButton>
                           </div>
@@ -120,13 +126,13 @@ export default function MiniCart({ toggleMiniCart }) {
                           </Grid>
                           <Grid item>
                             <div >
-                              <Button variant="contained" size="small" style={{ minWidth: '0px' }} onClick={() => RemoveCartItem()}>
+                              <Button variant="contained" size="small" style={{ minWidth: '0px' }} disabled={item.quantity === 1 && true} onClick={() => removeQuantity(item.id, item.quantity)}>
                                 <RemoveCircle />
                               </Button>
                               <Button variant="outlined" size="small" style={{ minWidth: '30px', paddingTop: '4px', paddingBottom: '4px' }}>
                                 {item.quantity}
                               </Button>
-                              <Button variant="contained" size="small" style={{ minWidth: '0px' }} onClick={() => addQuantity(item.name)}>
+                              <Button variant="contained" size="small" style={{ minWidth: '0px' }} onClick={() => addQuantity(item.id, item.quantity)}>
                                 <AddCircle />
                               </Button>
                             </div>
@@ -164,9 +170,11 @@ export default function MiniCart({ toggleMiniCart }) {
 
               </Grid>
             </Grid>
-            <ListItem button key="1" style={{ textAlign: 'center', backgroundColor: 'black', color: 'white', borderRadius: '15px' }}>
-              <ListItemText primary="Continue To Checkout" />
-            </ListItem>
+            <Link to="/CardPage">
+              <ListItem button key="1" style={{ textAlign: 'center', backgroundColor: 'black', color: 'white', borderRadius: '15px' }}>
+                <ListItemText primary="Continue To Checkout" />
+              </ListItem>
+            </Link>
           </CardContent>
         </List>
       </Box>

@@ -21,12 +21,23 @@ export default createSlice({
             state.open = action.payload;
         },
         deleteItem: (state, action) => {
-            state.items.filter((p)=> p.id != action.payload)
+            state.items = state.items.filter((p) => p.id !== action.payload)
         },
         addQuantity: (state, action) => {
-            // state.items.quantity = state.items.quantity + action.payload;
-            // state.items.find((item) => )
-            // console.log("action",state.items.quantity);
+            state.items.map((p) => {
+                console.log(p.id === action.payload);
+                if (p.id === action.payload) {
+                    p.quantity ++;
+                }
+            })
+        },
+        removeQuantity: (state, action) => {
+            state.items.map((p) => {
+                console.log(p.id === action.payload);
+                if (p.id === action.payload) {
+                    p.quantity --;
+                }
+            })
         },
     }
 })

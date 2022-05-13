@@ -81,7 +81,8 @@ const Header = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [keyword, setKeyword] = React.useState("");
-
+  const [email, setEmail] = React.useState("");
+  const [cart, setCart] = React.useState([]);
   const isMenuOpen = anchorEl;
   const isMobileMenuOpen = mobileMoreAnchorEl;
 
@@ -252,7 +253,10 @@ const Header = () => {
                   mr={1}
                 >
                   {/*số sản phẩm trong giỏ hàng */}
-                  <Badge badgeContent={items ? items.length : 0} color="error">
+                  <Badge
+                    badgeContent={items ? items.length : 0}
+                    color="error"
+                  >
                     <ShoppingCartIcon />
                   </Badge>
                 </IconButton>
