@@ -5,7 +5,6 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import MyBox from './MyBox';
 
-
 export default function BasicGridReturn() {
     return (<>
         <Box >

@@ -1,4 +1,29 @@
 {
+  "standard": {
+    "parser": "babel-eslint",
+    "ignore": [
+      "src/utils/epubjs/**/*.js"
+    ],
+    "globals": [
+      "jest",
+      "expect",
+      "test",
+      "describe",
+      "it",
+      "beforeEach",
+      "beforeAll",
+      "afterAll",
+      "shallow",
+      "snapshot",
+      "localStorage",
+      "FileReader",
+      "FormData",
+      "location",
+      "all",
+      "history",
+      "mount"
+    ]
+  },
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
@@ -16,6 +41,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "bootstrap-icons": "^1.8.1",
+    "query-string": "^7.1.1",
     "notistack": "^2.0.5",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
@@ -26,6 +52,7 @@
     "react-swipeable-views-utils": "^0.14.0",
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
+    "save": "^2.5.0",
     "styled-components": "^5.3.5",
     "uuid": "^8.3.2",
     "web-vitals": "^2.1.4"

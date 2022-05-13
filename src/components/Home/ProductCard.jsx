@@ -9,12 +9,10 @@ import {
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import usePostData from "../../customHooks/usePostData";
 import { useSnackbar } from "notistack";
-import {useNavigate} from 'react-router-dom'
-
-const ProductCard = ({ id, title, image, price, maxWidth }) => {
+import { useNavigate } from 'react-router-dom'
+const ProductCard = ({ id, title, image, price, maxWidth}) => {
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
-
   const handleAddToCart = (variant) => () => {
     if (!localStorage.getItem("currentuser")) {
       navigate("/Login");
@@ -29,10 +27,12 @@ const ProductCard = ({ id, title, image, price, maxWidth }) => {
         email: JSON.parse(localStorage.getItem("currentuser")).email,
         account: JSON.parse(localStorage.getItem("currentuser")).id,
       });
-      enqueueSnackbar("Thêm vào giỏ hàng thành công!", {variant});
-    }  
+    }
+    enqueueSnackbar("Thêm vào giỏ hàng thành công!", { variant });
   };
-
+  const handleClick = () => {
+    navigate(`/${title}/${price}`)
+  }
   return (
     <>
       <Card sx={{ maxWidth: maxWidth }}>
@@ -53,6 +53,8 @@ const ProductCard = ({ id, title, image, price, maxWidth }) => {
             <AddShoppingCartIcon />
           </Button>
           <Button size="small">Buy now</Button>
+          <Button size="small" onClick={ handleClick}>
+            Xem chi tiết sản phẩm</Button>
         </CardActions>
       </Card>
     </>
