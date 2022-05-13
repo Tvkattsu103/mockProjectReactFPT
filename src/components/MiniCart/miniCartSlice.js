@@ -9,17 +9,19 @@ export default createSlice({
     },
     reducers: {
         initCart: (state, action) => {
-            console.log(action.payload.length);
             action.payload.map((p) => {
-                state.items.push({...p.attributes, id:p.id})
-             } )
-              state.items
+                state.items.push({ ...p.attributes, id: p.id })
+            })
+            state.items.splice(action.payload.length);
         },
         addItem: (state, action) => {
             state.items.push(action.payload);
         },
         changeState: (state, action) => {
             state.open = action.payload;
+        },
+        deleteItem: (state, action) => {
+            state.items.filter((p)=> p.id != action.payload)
         },
         addQuantity: (state, action) => {
             // state.items.quantity = state.items.quantity + action.payload;

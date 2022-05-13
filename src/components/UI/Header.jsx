@@ -25,12 +25,13 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LoginIcon from "@mui/icons-material/Login";
 import { Link, useNavigate } from "react-router-dom";
 import { Login } from "@mui/icons-material";
-import miniCartSlice from "../MiniCart/miniCartSlice";
 import LogoutIcon from "@mui/icons-material/Logout";
 import searchSlide from "../Search/searchSlide";
 import { checkUserSelector } from "../../redux/selectors";
 import userSlice from "../Login/userSlice";
 import useFetchData from "../../customHooks/useFetchData";
+import { stateMiniCart, miniCartItem } from '../../redux/selectors';
+import miniCartSlice from '../MiniCart/miniCartSlice';
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -84,9 +85,11 @@ const Header = () => {
   const isMenuOpen = anchorEl;
   const isMobileMenuOpen = mobileMoreAnchorEl;
 
-  const cartItems = useFetchData(
-    "http://localhost:1337/api/carts?filters[email][$eq]=voanhtuan103@gmail.com"
-  );
+  const items = useSelector(miniCartItem)
+
+  // const cartItems = useFetchData(
+  //   "http://localhost:1337/api/carts?filters[email][$eq]=voanhtuan103@gmail.com"
+  // );
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -166,7 +169,7 @@ const Header = () => {
             onClick={toggleMiniCart(true)}
           >
             <Badge
-              badgeContent={cartItems ? cartItems.length : 0}
+              badgeContent={items ? items.length : 0}
               color="error"
             >
               <ShoppingCartIcon />
@@ -249,7 +252,7 @@ const Header = () => {
                   mr={1}
                 >
                   {/*số sản phẩm trong giỏ hàng */}
-                  <Badge badgeContent={cartItems ? cartItems.length : 0} color="error">
+                  <Badge badgeContent={items ? items.length : 0} color="error">
                     <ShoppingCartIcon />
                   </Badge>
                 </IconButton>
