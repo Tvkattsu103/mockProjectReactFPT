@@ -200,6 +200,7 @@ const OrderConfirmation = () => {
                   sx={{
                     backgroundColor: "#4fc3f7",
                     display: "flex",
+                    border: 2
                   }}
                 >
                   <Grid
