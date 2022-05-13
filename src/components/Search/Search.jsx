@@ -1,4 +1,5 @@
 import {
+  Box,
   Container,
   Grid,
 } from "@mui/material";
@@ -27,7 +28,7 @@ const Search = () => {
   return (
     <>
       <Header></Header>
-      <Box sx={{minHeight:'100vh', mb:3}}>
+      <Box sx={{mb:3}}>
         <Container maxWidth="" sx={{ marginTop: 3 }} >
           <Grid container spacing={2}>
             {listProductSearch.map((p) => {

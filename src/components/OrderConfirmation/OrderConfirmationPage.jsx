@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { currentOrderConfirmSelector } from "../../redux/selectors";
 import OrderItem from "./OrderItem";
+import Footer from "../UI/Footer";
 
 const OrderConfirmation = () => {
   
@@ -16,7 +17,7 @@ const OrderConfirmation = () => {
   return (
     <>
       <Header></Header>
-      <Container maxWidth="lg" sx={{ marginTop: 2 }}>
+      <Container maxWidth="lg" sx={{ marginTop: 2 , mb: 2}}>
         <Grid container spacing={1}>
           <Grid item xs={8}>
             <Grid container spacing={1}>
@@ -117,21 +118,14 @@ const OrderConfirmation = () => {
                         <Grid item xs={12}>
                           <Grid container rowSpacing={3}>
                             <Grid item xs={12}>
-                              <Link to={"#"} sx={{ TextDecoder: "none" }}>
-                                <Typography variant="body1" color="black">
-                                  Cancel this order
-                                </Typography>
-                              </Link>
-                            </Grid>
-                            <Grid item xs={12}>
-                              <Link to={"#"} sx={{ TextDecoder: "none" }}>
+                              <Link to={"/PaymentMethods"} sx={{ TextDecoder: "none" }}>
                                 <Typography variant="body1" color="black">
                                   My account
                                 </Typography>
                               </Link>
                             </Grid>
                             <Grid item xs={12}>
-                              <Link to={"#"} sx={{ TextDecoder: "none" }}>
+                              <Link to={"/MainReturn"} sx={{ TextDecoder: "none" }}>
                                 <Typography variant="body1" color="black">
                                   Return Policy
                                 </Typography>
@@ -263,6 +257,7 @@ const OrderConfirmation = () => {
           </Grid>
         </Grid>
       </Container>
+      <Footer />
     </>
   );
 };
