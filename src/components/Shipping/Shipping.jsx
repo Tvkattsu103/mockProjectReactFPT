@@ -2,7 +2,7 @@ import { Avatar, AvatarGroup, Box, Button, Card, CardActions, CardContent, CardM
 import { deepOrange } from '@mui/material/colors';
 import { border, flexbox, margin } from '@mui/system';
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Header from '../UI/Header';
 import RadioLabel from './RadioLabel';
 import AddIcon from '@mui/icons-material/Add';
@@ -12,13 +12,21 @@ import Footer from '../UI/Footer';
 function Shipping() {
     const data = useSelector((state) => state.cartpage.dataShipping)
     const [valueRadio,setValueRadio] = useState(5);
+    const currentUser = JSON.parse(localStorage.getItem('currentuser'));
+    let navigate = useNavigate();
     const handleChangeRadio = (e) => {
         setValueRadio(e.target.value);
+    };
+    const handleBack =()=>{
+        navigate('/CardPage');
     };
     return (
         <div>
             <Header />
             <Container maxWidth="md">
+                <Button onClick={handleBack}>
+                    Back
+                </Button>
                 <Grid container spacing={2}>
                     <Grid container item xs={12} sx={{ minHeight: 100 }}>
                         <Grid item xs={7}>
@@ -41,7 +49,7 @@ function Shipping() {
                                         <b>Email Address</b>
                                     </Typography>
                                     <Typography variant="h5" component="div">
-                                        thehuy.2pro@gmail.com
+                                        {currentUser.email}
                                     </Typography>
                                 </CardContent>
                             </Card>

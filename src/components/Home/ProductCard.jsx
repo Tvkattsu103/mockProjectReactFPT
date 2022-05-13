@@ -23,7 +23,11 @@ const ProductCard = ({ id, title, image, price, maxWidth }) => {
         quantity: 1,
         size: "38",
         products: id,
+        image: image,
+        price: price,
+        title: title,
         email: JSON.parse(localStorage.getItem("currentuser")).email,
+        account: JSON.parse(localStorage.getItem("currentuser")).id,
       });
       enqueueSnackbar("Thêm vào giỏ hàng thành công!", {variant});
     }  
