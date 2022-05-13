@@ -35,15 +35,6 @@ export default function MiniCart({ toggleMiniCart }) {
     e.preventDefault();
     dispatch(miniCartSlice.actions.addQuantity(1))
   }
-  // const getCart = () => {
-  //   axios.get('http://localhost:1337/api/accounts/2?populate=*')
-  //     .then(res =>
-  //       res.data.data
-  //     )
-  //     .then(data => 
-  //       dispatch(miniCartSlice.actions.initCart({data}))
-  //     )
-  // }
   useEffect(() => {
     axios.get('http://localhost:1337/api/accounts/'+idCurrentUser+'?populate=*')
         .then(res => 
