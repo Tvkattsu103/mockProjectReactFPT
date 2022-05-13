@@ -2,9 +2,10 @@ import * as React from "react";
 import Grid from "@mui/material/Grid";
 import ProductCard from "./ProductCard";
 import useFetchData from "../../customHooks/useFetchData";
+import { useDispatch } from "react-redux";
 
 export default function MonthBest() {
-
+  const dispatch = useDispatch();
   const bests = useFetchData(
     "http://localhost:1337/api/products?populate=*&pagination[page]=1&pagination[pageSize]=5"
   );

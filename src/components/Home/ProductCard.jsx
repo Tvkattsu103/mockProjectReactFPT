@@ -15,8 +15,8 @@ import { stateMiniCart, miniCartItem } from '../../redux/selectors';
 import miniCartSlice from '../MiniCart/miniCartSlice';
 
 const ProductCard = ({ id, title, image, price, maxWidth }) => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
   const handleAddToCart = (variant) => () => {
     if (!localStorage.getItem("currentuser")) {
@@ -44,9 +44,9 @@ const ProductCard = ({ id, title, image, price, maxWidth }) => {
       }));
       enqueueSnackbar("Thêm vào giỏ hàng thành công!", {variant});
     }
-    
   };
   const handleClick = () => {
+    dispatch(productCardSliceAction(image))
     navigate(`/${title}/${price}`)
   }
   return (
@@ -68,7 +68,6 @@ const ProductCard = ({ id, title, image, price, maxWidth }) => {
           <Button size="small" onClick={handleAddToCart('success')}>
             <AddShoppingCartIcon />
           </Button>
-          <Button size="small">Buy now</Button>
           <Button size="small" onClick={ handleClick}>
             Xem chi tiết sản phẩm</Button>
         </CardActions>
