@@ -22,6 +22,7 @@ function Category() {
                 setCategory(data);
             })
     }
+    console.log(category)
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [itemHover, setItemHover] = React.useState(null);
@@ -57,7 +58,7 @@ function Category() {
     const open = Boolean(anchorEl);
     return (
         <>
-            <Header></Header>
+            {/* <Header></Header> */}
             <Grid container spacing={2}>
                 <Grid item xs={12} >
                     <Box sx={{ backgroundColor: "#81d4fa" }}>

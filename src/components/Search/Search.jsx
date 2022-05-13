@@ -27,27 +27,29 @@ const Search = () => {
   return (
     <>
       <Header></Header>
-      <Container maxWidth="" sx={{ marginTop: 3 }}>
-        <Grid container spacing={2}>
-          {listProductSearch.map((p) => {
-            return (
-              <Grid item xs={3} key={p.id}>
-                <ProductCard
-                  id={p.id}
-                  title={p.attributes.title}
-                  image={
-                    "http://localhost:1337" +
-                    p.attributes.image.data[0].attributes.url
-                  }
-                  price={p.attributes.price}
+      <Box sx={{minHeight:'100vh', mb:3}}>
+        <Container maxWidth="" sx={{ marginTop: 3 }} >
+          <Grid container spacing={2}>
+            {listProductSearch.map((p) => {
+              return (
+                <Grid item xs={3} key={p.id}>
+                  <ProductCard
+                    id={p.id}
+                    title={p.attributes.title}
+                    image={
+                      "http://localhost:1337" +
+                      p.attributes.image.data[0].attributes.url
+                    }
+                    price={p.attributes.price}
                   // maxWidth={400}
-                />
-              </Grid>
-            );
-          })}
-        </Grid>
-      </Container>
-      <Footer/>
+                  />
+                </Grid>
+              );
+            })}
+          </Grid>
+        </Container>
+      </Box>
+      <Footer />
     </>
   );
 };

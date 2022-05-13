@@ -86,12 +86,11 @@ const Header = () => {
   const isMenuOpen = anchorEl;
   const isMobileMenuOpen = mobileMoreAnchorEl;
 
-  const items = useSelector(miniCartItem);
-  // useEffect(() => {
-  //   if (localStorage.getItem("currentuser")) {
-  //     setEmail(JSON.parse(localStorage.getItem("currentuser")).email);
-  //   }
-  // }, [localStorage.getItem("currentuser")]);
+  const items = useSelector(miniCartItem)
+
+  // const cartItems = useFetchData(
+  //   "http://localhost:1337/api/carts?filters[email][$eq]=voanhtuan103@gmail.com"
+  // );
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);

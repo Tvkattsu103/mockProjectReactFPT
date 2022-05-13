@@ -10,11 +10,14 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import usePostData from "../../customHooks/usePostData";
 import { useSnackbar } from "notistack";
 import {useNavigate} from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux';
+import { stateMiniCart, miniCartItem } from '../../redux/selectors';
+import miniCartSlice from '../MiniCart/miniCartSlice';
 
 const ProductCard = ({ id, title, image, price, maxWidth }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
-
   const handleAddToCart = (variant) => () => {
     if (!localStorage.getItem("currentuser")) {
       navigate("/Login");
@@ -29,10 +32,22 @@ const ProductCard = ({ id, title, image, price, maxWidth }) => {
         email: JSON.parse(localStorage.getItem("currentuser")).email,
         account: JSON.parse(localStorage.getItem("currentuser")).id,
       });
+      dispatch(miniCartSlice.actions.addItem({
+        quantity: 1,
+        size: "38",
+        products: id,
+        image: image,
+        price: price,
+        title: title,
+        email: JSON.parse(localStorage.getItem("currentuser")).email,
+        account: JSON.parse(localStorage.getItem("currentuser")).id,
+      }));
       enqueueSnackbar("Thêm vào giỏ hàng thành công!", {variant});
-    }  
+    }
   };
-
+  const handleClick = () => {
+    navigate(`/${title}/${price}`)
+  }
   return (
     <>
       <Card sx={{ maxWidth: maxWidth }}>
@@ -53,6 +68,8 @@ const ProductCard = ({ id, title, image, price, maxWidth }) => {
             <AddShoppingCartIcon />
           </Button>
           <Button size="small">Buy now</Button>
+          <Button size="small" onClick={ handleClick}>
+            Xem chi tiết sản phẩm</Button>
         </CardActions>
       </Card>
     </>
