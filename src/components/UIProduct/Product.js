@@ -14,11 +14,11 @@ import { addToCartPage } from './ProductSlice'
 import productApi from '../../api/productApi';
 import axios from 'axios'
 import { ChevronLeftSharp } from '@mui/icons-material';
-import {useParams} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 export default function Product() {
-    const { title,img } = useParams();
-    console.log(JSON.stringify(id))
-    console.log(JSON.stringify(img))
+    const { title, gia } = useParams();
+    // console.log(JSON.stringify(title))
+    // console.log(JSON.stringify(img))
     const [product, setProduct] = React.useState([])
     const dispatch = useDispatch();
     // React.useEffect(() => {
@@ -57,9 +57,8 @@ export default function Product() {
     const [image, setImage] = React.useState()
     const [size, setSize] = React.useState()
     const [width, setWidth] = React.useState()
-    const [price, setPrice] = React.useState()
+    const [price, setPrice] = React.useState(gia)
     const [name, setName] = React.useState(title)
-    console.log(name)
     const getDataType = (Type) => (
         setImage(Type)
     )
@@ -97,7 +96,7 @@ export default function Product() {
         //     }
         // }
         // addToCart();
-        axios.post('http://localhost:1337/api/carts',product).then(res=>console.log(res))
+        axios.post('http://localhost:1337/api/carts', product).then(res => console.log(res))
     }
     return (
         <>
@@ -111,9 +110,9 @@ export default function Product() {
                     <Grid item xs={6}>
                         {/* Content nam ben trai */}
                         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
-                                <Grid item xs={6} >
-                                    <ImgMediaCard img={image} name={name} price={price} size={size} width={width} />
-                                </Grid>
+                            <Grid item xs={6} >
+                                <ImgMediaCard img={image} name={name} price={price} size={size} width={width} />
+                            </Grid>
                         </Grid>
                     </Grid>
                     <Grid item xs={5}>

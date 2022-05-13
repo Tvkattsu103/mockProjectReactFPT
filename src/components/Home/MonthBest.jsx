@@ -30,7 +30,6 @@ export default function MonthBest() {
                   }
                   price={p.attributes.price}
                   maxWidth={250}
-      
                 />
               </Grid>
             ))}

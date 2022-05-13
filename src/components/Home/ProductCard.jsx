@@ -10,11 +10,9 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import usePostData from "../../customHooks/usePostData";
 import { useSnackbar } from "notistack";
 import { useNavigate } from 'react-router-dom'
-
-const ProductCard = ({ id, title, image, price, maxWidth }) => {
+const ProductCard = ({ id, title, image, price, maxWidth}) => {
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
-
   const handleAddToCart = (variant) => () => {
     if (!localStorage.getItem("currentuser")) {
       navigate("/Login");
@@ -23,13 +21,17 @@ const ProductCard = ({ id, title, image, price, maxWidth }) => {
         quantity: 1,
         size: "38",
         products: id,
+        image: image,
+        price: price,
+        title: title,
         email: JSON.parse(localStorage.getItem("currentuser")).email,
+        account: JSON.parse(localStorage.getItem("currentuser")).id,
       });
     }
     enqueueSnackbar("Thêm vào giỏ hàng thành công!", { variant });
   };
   const handleClick = () => {
-    navigate(`/${title}/${image}`)
+    navigate(`/${title}/${price}`)
   }
   return (
     <>
