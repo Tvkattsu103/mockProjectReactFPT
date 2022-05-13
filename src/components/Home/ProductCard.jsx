@@ -32,10 +32,6 @@ const ProductCard = ({ id, title, image, price, maxWidth }) => {
         email: JSON.parse(localStorage.getItem("currentuser")).email,
         account: JSON.parse(localStorage.getItem("currentuser")).id,
       });
-<<<<<<< HEAD
-    }
-    enqueueSnackbar("Thêm vào giỏ hàng thành công!", { variant });
-=======
       dispatch(miniCartSlice.actions.addItem({
         quantity: 1,
         size: "38",
@@ -46,9 +42,8 @@ const ProductCard = ({ id, title, image, price, maxWidth }) => {
         email: JSON.parse(localStorage.getItem("currentuser")).email,
         account: JSON.parse(localStorage.getItem("currentuser")).id,
       }));
+      enqueueSnackbar("Thêm vào giỏ hàng thành công!", {variant});
     }
-    enqueueSnackbar("Thêm vào giỏ hàng thành công!", {variant});
->>>>>>> TuanVA26
   };
   const handleClick = () => {
     navigate(`/${title}/${price}`)
