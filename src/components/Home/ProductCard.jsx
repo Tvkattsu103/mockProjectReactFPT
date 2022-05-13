@@ -67,7 +67,6 @@ const ProductCard = ({ id, title, image, price, maxWidth }) => {
           <Button size="small" onClick={handleAddToCart('success')}>
             <AddShoppingCartIcon />
           </Button>
-          <Button size="small">Buy now</Button>
           <Button size="small" onClick={ handleClick}>
             Xem chi tiết sản phẩm</Button>
         </CardActions>
