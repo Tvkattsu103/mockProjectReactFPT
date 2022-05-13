@@ -14,6 +14,8 @@ const OrderConfirmation = () => {
   
   const currentOrederConfirm = useSelector(currentOrderConfirmSelector);
 
+  const items = useSelector(miniCartItem);
+
   return (
     <>
       <Header></Header>
