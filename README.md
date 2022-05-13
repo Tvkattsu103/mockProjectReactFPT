@@ -1,3 +1,8 @@
+# File agenda Team 1 
+https://docs.google.com/spreadsheets/d/1Zbnq9g5jnmHvCjKww7IoPCSSeCrB6aNv/edit#gid=973528645
+
+# Link strapi Team 1
+https://github.com/Tvkattsu103/mockProjectAPI
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
