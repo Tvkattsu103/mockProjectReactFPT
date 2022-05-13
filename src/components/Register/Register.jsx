@@ -104,9 +104,9 @@ function Register() {
     return (
         <div>
             
-            <Container style={{backgroundColor:'white',padding:'10px'}}>
+            <Container style={{backgroundColor:'white',padding:'10px', paddingBottom:'50px', marginTop:'100px', borderRadius: '25px'}}>
                 <Button onClick={handleBack}>BACK</Button>
-                <Grid container spacing={2}>
+                <Grid container spacing={2} justifyContent="center">
                     <Grid item xs={6}>
                         <form method='post' onSubmit={handleSubmit}>
                             <Grid item xs={12}>

@@ -73,7 +73,7 @@ function Login() {
     return (
         <div>
             
-            <Grid container spacing={2} style={{backgroundColor:'white',padding:'10px'}}>
+            <Grid container spacing={2} style={{backgroundColor:'white',padding:'10px', padding:'50px', width:'90%', margin: 'auto', borderRadius:'25px', marginTop:'100px'}}>
                 <Grid item xs={2}>
                     <Button onClick={handleBack}>BACK</Button>
                 </Grid>
