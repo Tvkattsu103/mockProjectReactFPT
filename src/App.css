@@ -1,5 +1,5 @@
 body {
-  background-color: #EFEFEF;
+  background-color: #81d4fa;
   min-height: 100vh;
 }
 
@@ -42,10 +42,6 @@ a {
   color: white;
 }
 
-body {
-  background-color: #efefef;
-  min-height: 100vh;
-}
 
 .Link {
   color: white;
@@ -54,6 +50,7 @@ body {
 
 .FooterItem {
   margin-top: 15px;
+  position: relative;
 }
 
 .product-title {

@@ -1,22 +1,14 @@
 import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
   Container,
   Grid,
-  Typography,
 } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Header from "../UI/Header";
 import Footer from "../UI/Footer";
 import { useDispatch, useSelector } from "react-redux";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { listProductSearchSelector } from "../../redux/selectors";
 import useFetchData from "../../customHooks/useFetchData";
 import listSlide from "../Search/listSlide";
-import { Box } from "@mui/system";
 import ProductCard from "../Home/ProductCard";
 
 const Search = () => {
