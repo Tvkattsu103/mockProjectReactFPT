@@ -10,8 +10,11 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import usePostData from "../../customHooks/usePostData";
 import { useSnackbar } from "notistack";
 import { useNavigate } from 'react-router-dom'
-const ProductCard = ({ id, title, image, price, maxWidth}) => {
+import { useDispatch,useSelector } from "react-redux";
+import {productCardSliceAction} from './ProductCardSlice'
+const ProductCard = ({ id, title, image, price, maxWidth }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
   const handleAddToCart = (variant) => () => {
     if (!localStorage.getItem("currentuser")) {
@@ -31,6 +34,7 @@ const ProductCard = ({ id, title, image, price, maxWidth}) => {
     enqueueSnackbar("Thêm vào giỏ hàng thành công!", { variant });
   };
   const handleClick = () => {
+    dispatch(productCardSliceAction(image))
     navigate(`/${title}/${price}`)
   }
   return (
@@ -53,7 +57,7 @@ const ProductCard = ({ id, title, image, price, maxWidth}) => {
             <AddShoppingCartIcon />
           </Button>
           <Button size="small">Buy now</Button>
-          <Button size="small" onClick={ handleClick}>
+          <Button size="small" onClick={handleClick}>
             Xem chi tiết sản phẩm</Button>
         </CardActions>
       </Card>
