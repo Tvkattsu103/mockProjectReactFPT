@@ -14,19 +14,20 @@ import {
   Typography,
   IconButton
 } from '@mui/material';
-import { Delete, AddCircle, RemoveCircle, Close, RemoveShoppingCart } from '@mui/icons-material'
+import { Delete, AddCircle, RemoveCircle, Close } from '@mui/icons-material'
 import { useSelector, useDispatch } from 'react-redux';
 import { stateMiniCart, miniCartItem } from '../../redux/selectors';
 import miniCartSlice from './miniCartSlice';
 import axios from 'axios';
 import { Scrollbars } from 'react-custom-scrollbars';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 export default function MiniCart({ toggleMiniCart }) {
   const dispatch = useDispatch();
   const open = useSelector(stateMiniCart)
   const items = useSelector(miniCartItem)
+  const navigate = useNavigate();
 
   const currentUser = JSON.parse(localStorage.getItem('currentuser'));
   const idCurrentUser = currentUser.id;
@@ -54,6 +55,11 @@ export default function MiniCart({ toggleMiniCart }) {
         console.log(res);
         dispatch(miniCartSlice.actions.deleteItem(id))
       })
+  }
+
+  const goToCartPage = () => {
+    dispatch(miniCartSlice.actions.changeState(false));
+    navigate("/CardPage");
   }
 
   const list = () => (
@@ -170,11 +176,11 @@ export default function MiniCart({ toggleMiniCart }) {
 
               </Grid>
             </Grid>
-            <Link to="/CardPage">
-              <ListItem button key="1" style={{ textAlign: 'center', backgroundColor: 'black', color: 'white', borderRadius: '15px' }}>
+            <Box onClick={()=>goToCartPage()}>
+              <ListItem button key="1" style={{ textAlign: 'center', backgroundColor: 'black', color: 'white', borderRadius: '15px' }} >
                 <ListItemText primary="Continue To Checkout" />
               </ListItem>
-            </Link>
+              </Box>
           </CardContent>
         </List>
       </Box>

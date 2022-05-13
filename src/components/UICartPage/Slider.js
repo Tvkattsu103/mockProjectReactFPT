@@ -23,7 +23,7 @@ function valuetext(value) {
 
 export default function DiscreteSliderMarks() {
   return (
-    <Box sx={{ width: 300 }}>
+    <Box sx={{ width: 300, marginLeft:'20px' }}>
       <Slider
         aria-label="Custom marks"
         defaultValue={20}
