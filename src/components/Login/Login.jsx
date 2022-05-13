@@ -30,7 +30,9 @@ function Login() {
 
     const checkUser = useSelector(checkUserSelector);
     let navigate = useNavigate();
-
+    const handleBack =()=>{
+        navigate('/');
+    };
     if (checkUser) {
         navigate('/');
     } else {
@@ -70,10 +72,10 @@ function Login() {
 
     return (
         <div>
-            <Header />
-            <Grid container spacing={2}>
+            
+            <Grid container spacing={2} style={{backgroundColor:'white',padding:'10px'}}>
                 <Grid item xs={2}>
-
+                    <Button onClick={handleBack}>BACK</Button>
                 </Grid>
                 <Grid item xs={3}>
                     <form action='#' method='post' onSubmit={handleSubmit}>

@@ -88,7 +88,9 @@ function Register() {
             }
         }
     }
-
+    const handleBack =()=>{
+        navigate('/');
+    };
     const registerAccount = (acc) => {
         console.log({data: {...acc}})
         axios.post('http://localhost:1337/api/accounts',{data: {...acc}})
@@ -101,8 +103,9 @@ function Register() {
 
     return (
         <div>
-            <Header />
-            <Container >
+            
+            <Container style={{backgroundColor:'white',padding:'10px'}}>
+                <Button onClick={handleBack}>BACK</Button>
                 <Grid container spacing={2}>
                     <Grid item xs={6}>
                         <form method='post' onSubmit={handleSubmit}>

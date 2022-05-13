@@ -1,4 +1,4 @@
-body {
+body{
   background-color: #81d4fa;
   min-height: 100vh;
 }
@@ -41,7 +41,6 @@ a {
   background-color: rgb(62, 62, 62) !important;
   color: white;
 }
-
 
 .Link {
   color: white;
