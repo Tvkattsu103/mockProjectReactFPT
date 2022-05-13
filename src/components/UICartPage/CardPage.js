@@ -27,35 +27,22 @@ import { addToShipping } from './CartPageSlice';
 import { useEffect } from 'react';
 // import { useSelector, useDispatch } from 'react-redux';
 import { Delete, AddCircle, RemoveCircle, Close } from '@mui/icons-material'
-import { stateMiniCart, miniCartItem } from '../../redux/selectors';
+import { miniCartItem, subtotal, totaldiscount } from '../../redux/selectors';
 import miniCartSlice from '../MiniCart/miniCartSlice';
 import IconButton from '@mui/material/IconButton';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function CardPage() {
+    const sum = useSelector(subtotal);
+    const discount = useSelector(totaldiscount);
+
     const [quantity, setQuantity] = React.useState(1);
-    // const data = useSelector((state) => state.product.product)
-    // const [image, setImage] = React.useState(data.type)
-    // const [size, setSize] = React.useState(data.size)
-    // const [width, setWidth] = React.useState(data.width)
-    // const [price, setPrice] = React.useState(45)
-    // const [name, setName] = React.useState(data.name)
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const getQuantity = (quantity) => {
         setQuantity(quantity)
     }
-    // const getProductToShipping = (type, size, width, name, price) => {
-    //     let product = {}
-    //     product.type = type;
-    //     product.size = size;
-    //     product.width = width;
-    //     product.name = name;
-    //     product.price = price;
-    //     dispatch(addToShipping(product))
-    // }
-    // useEffect(() => {
-    //     setPrice(parseInt(data.price * quantity) - (parseInt(data.price * quantity) * 1) / 10)
-    // });
 
     const items = useSelector(miniCartItem);
 
@@ -69,10 +56,14 @@ export default function CardPage() {
 
     const addQuantity = (id, quantity) => {
         dispatch(miniCartSlice.actions.addQuantity(id))
-      }
-      const removeQuantity = (id, quantity) => {
+    }
+    const removeQuantity = (id, quantity) => {
         dispatch(miniCartSlice.actions.removeQuantity(id))
-      }
+    }
+
+    const getProductToShipping = () => {
+        navigate("/Shipping")
+    }
     // console.log(price);
     return (
         <>
@@ -218,49 +209,49 @@ export default function CardPage() {
                             <DiscreteSliderLabel />
                             <CardContent>
                                 <Grid container spacing={30}>
-                                    <Grid item xs={6}>
-                                        <Typography gutterBottom variant="h5" component="div">
+                                    <Grid item xs={4}>
+                                        <Typography gutterBottom variant="h6" component="div">
                                             Subtotal
                                         </Typography>
                                     </Grid>
-                                    <Grid item xs={6}>
-                                        <Typography gutterBottom variant="h5" component="div">
-                                            {data.price * quantity}$
+                                    <Grid item xs={3}>
+                                        <Typography gutterBottom variant="h6" component="div">
+                                            {sum}$
                                         </Typography>
                                     </Grid>
                                 </Grid>
                                 <Grid container spacing={30}>
-                                    <Grid item xs={6}>
-                                        <Typography gutterBottom variant="h5" component="div" >
+                                    <Grid item xs={4}>
+                                        <Typography gutterBottom variant="h6" component="div" >
                                             Discount(10%)
                                         </Typography>
                                     </Grid>
-                                    <Grid item xs={6}>
-                                        <Typography gutterBottom variant="h5" component="div">
-                                            {(parseInt(data.price * quantity) * 1) / 10}$
+                                    <Grid item xs={3}>
+                                        <Typography gutterBottom variant="h6" component="div">
+                                            {(parseInt(sum * quantity) * 1) / 10}$
                                         </Typography>
                                     </Grid>
 
                                 </Grid>
                                 <Grid container spacing={30}>
-                                    <Grid item xs={6}>
+                                    <Grid item xs={4}>
                                         <Typography gutterBottom variant="h5" component="div" >
-                                            Estimated total
+                                            Total
                                         </Typography>
                                     </Grid>
-                                    <Grid item xs={6}>
+                                    <Grid item xs={3}>
                                         <Typography gutterBottom variant="h5" component="div">
-                                            {parseInt(data.price * quantity) - (parseInt(data.price * quantity) * 1) / 10}$
+                                            {discount}$
                                         </Typography>
                                     </Grid>
                                 </Grid>
                             </CardContent>
                             <CardActions sx={{ p: 0 }}>
-                                <Link to="/Shipping">
-                                    <Button onClick={() => getProductToShipping(image, size, width, name, price)}
+                                {/* <Link to="/Shipping"> */}
+                                    <Button onClick={() => getProductToShipping()}
                                         variant="contained" sx={{ width: 350, height: 50 }}
                                     >Check out</Button>
-                                </Link>
+                                {/* </Link> */}
                             </CardActions>
                             <div style={{ textAlign: 'center' }}>
                                 <CardActions >

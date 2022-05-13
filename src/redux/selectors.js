@@ -19,12 +19,22 @@ export const listProductSearchSelector = createSelector(
 //miniCart
 export const stateMiniCart = (state) => state.miniCart.open;
 export const miniCartItem = (state) => state.miniCart.items;
+export const shipCount = (state) => state.miniCart.ship;
 
 export const subtotal = createSelector(miniCartItem, (items) => {
   let sum = 0;
   items.map((item) => {
     sum = sum + item.price*item.quantity;
   });
+  return Math.round(sum*100)/100;
+});
+
+export const totaldiscount = createSelector(miniCartItem, (items) => {
+  let sum = 0;
+  items.map((item) => {
+    sum = sum + item.price*item.quantity;
+  });
+  // sum = sum-sum*10/100;
   return Math.round(sum*100)/100;
 });
 

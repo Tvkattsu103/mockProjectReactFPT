@@ -30,6 +30,7 @@ export default function MiniCart({ toggleMiniCart }) {
   const sum = useSelector(subtotal);
   const navigate = useNavigate();
 
+
   const currentUser = JSON.parse(localStorage.getItem('currentuser'));
   const idCurrentUser = currentUser.id;
 
