@@ -8,11 +8,11 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import OrderItem from "./OrderItem";
 import Footer from "../UI/Footer";
-import { miniCartItem, subtotal } from "../../redux/selectors";
+import { listOldCart, oldCartMoney } from "../../redux/selectors";
 
 const OrderConfirmation = () => {
-  const items = useSelector(miniCartItem);
-  const sum = useSelector(subtotal);
+  const items = useSelector(listOldCart);
+  const money = useSelector(oldCartMoney);
 
   const [date, setDate] = useState("");
   useEffect(() => {
@@ -52,7 +52,7 @@ const OrderConfirmation = () => {
                       </Typography>
                     </Grid>
                     <Grid item xs={8}>
-                      <Typography variant="body1">${sum}</Typography>
+                      <Typography variant="body1">${money}</Typography>
                     </Grid>
                     <Grid item xs={4}>
                       <Typography variant="body1" color={"#757575"}>

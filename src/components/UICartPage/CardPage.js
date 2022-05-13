@@ -228,7 +228,7 @@ export default function CardPage() {
                                     </Grid>
                                     <Grid item xs={3}>
                                         <Typography gutterBottom variant="h6" component="div">
-                                            {(parseInt(sum * quantity) * 1) / 10}$
+                                            {Math.round(((sum) * 10) )/ 100}$
                                         </Typography>
                                     </Grid>
 

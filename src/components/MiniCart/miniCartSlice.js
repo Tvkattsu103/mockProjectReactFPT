@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import axios from 'axios';
 
 export default createSlice({
     name: 'miniCart',
@@ -6,7 +7,7 @@ export default createSlice({
         open: false,
         items: [
         ],
-        ship:0
+        ship:0,
     },
     reducers: {
         initCart: (state, action) => {
@@ -42,6 +43,11 @@ export default createSlice({
         },
         addShip: (state, action) => {
             state.ship = action.payload;
+        },
+        deleteAll: (state, action) => {
+            state.items.map((p)=>{
+                axios.delete('http://localhost:1337/api/carts/'+p.id).then(res=> console.log(res));
+            })
         }
     }
 })

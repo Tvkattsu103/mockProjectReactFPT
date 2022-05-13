@@ -217,7 +217,7 @@ function Shipping() {
                                                 <b>Total</b>
                                             </Grid>
                                             <Grid item xs={2} align="right">
-                                                $ {parseInt(discount) + parseInt(valueRadio)}
+                                                $ {Math.round((parseFloat(discount)+parseFloat(valueRadio))*100)/100}
                                             </Grid>
                                         </Grid>
                                     </Typography>

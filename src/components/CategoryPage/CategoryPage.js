@@ -14,6 +14,7 @@ import Carousel from './../Home/Carousel';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import ProductCard from "../Home/ProductCard";
 import miniCartSlice from '../MiniCart/miniCartSlice';
 
 
@@ -35,12 +36,12 @@ export default function CategoryPage() {
 
   const [products, setProducts] = useState([]);
 
-  const addToCard = (e, product) => {
-    e.preventDefault();
-    console.log(product.attributes);
-    const img = "http://localhost:1337" + product.attributes.Image.data[0].attributes.url;
-    dispatch(miniCartSlice.actions.addItem({title:product.attributes.Title, image:img, price:product.attributes.Price, quantity:1}))
-  }
+  // const addToCard = (e, product) => {
+  //   e.preventDefault();
+  //   console.log(product.attributes);
+  //   const img = "http://localhost:1337" + product.attributes.image.data[0].attributes.url;
+  //   dispatch(miniCartSlice.actions.addItem({title:product.attributes.title, image:img, price:product.attributes.price, quantity:1}))
+  // }
 
   const getCategoryPage = () => {
     axios
@@ -65,16 +66,16 @@ export default function CategoryPage() {
             bgcolor: 'background.paper',
           }}
         >
-          <Container maxWidth="">
+          <Container maxWidth="lg">
             <Carousel />
           </Container>
         </Box>
         <Container sx={{ py: 8 }} maxWidth="lg">
           <Grid container spacing={2}>
             
-            {products.map((product) => (
-              <Grid item key={product.id} xs={12} sm={6} md={3}>
-                <Link color="inherit" to="/Product">
+            {products.map((p) => (
+              <Grid item key={p.id} xs={12} sm={6} md={3}>
+                {/* <Link color="inherit" to="/Product">
                   <Card
                     sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                   >
@@ -85,22 +86,32 @@ export default function CategoryPage() {
                         height: '350px',
                         width: '100%'
                       }}
-                      image={"http://localhost:1337" + product.attributes.Image.data[0].attributes.url}
+                      image={"http://localhost:1337" + product.attributes.image.data[0].attributes.url}
                       alt="random"
                     />
                     <CardContent sx={{ flexGrow: 1 }}>
                       <Typography>
-                        {product.attributes.Title}
+                        {product.attributes.title}
                       </Typography>
                       <Typography variant='h7'>
-                        ${product.attributes.Price}
+                        ${product.attributes.price}
                       </Typography>
                     </CardContent>
                     <CardActions>
                       <Button onClick={(e)=>addToCard(e,product)} className="Button" size="small" sx={{ margin: 'auto', bgcolor: 'black', color: 'white', pl: 2, pr: 2 }}>Add To Cart</Button>
                     </CardActions>
                   </Card>
-                </Link>
+                </Link> */}
+                <ProductCard
+                  id={p.id}
+                  title={p.attributes.title}
+                  image={
+                    "http://localhost:1337" +
+                    p.attributes.image.data[0].attributes.url
+                  }
+                  price={p.attributes.price}
+                  maxWidth={450}
+                />
               </Grid>
             ))}
           </Grid>

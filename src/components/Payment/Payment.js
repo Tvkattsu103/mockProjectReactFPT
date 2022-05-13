@@ -11,8 +11,13 @@ import { Link } from 'react-router-dom';
 import { CardContent } from '@mui/material';
 import { Card } from '@mui/material';
 import { CardMedia } from '@mui/material';
-import { totaldiscount, shipCount } from '../../redux/selectors';
+import { miniCartItem, totaldiscount, shipCount } from '../../redux/selectors';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import miniCartSlice from '../MiniCart/miniCartSlice';
+import orderConfirm from '../OrderConfirmation/orderConfirmSlide';
+
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -54,8 +59,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 function Payment() {
+    // const items = useSelector(miniCartItem);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const discount = useSelector(totaldiscount);
     const ship = useSelector(shipCount);
+    const items = useSelector(miniCartItem);
     const currentUser = JSON.parse(localStorage.getItem('currentuser'));
     const [open, setOpen] = React.useState(true);
     const handleClick = () => {
@@ -63,6 +72,13 @@ function Payment() {
     };
     function createData(label, info, canChange) {
         return { label, info, canChange };
+    }
+
+    const deleteAllItem = () => {
+        dispatch(orderConfirm.actions.addOldCart(items));
+        dispatch(orderConfirm.actions.addMoney(Math.round((parseFloat(discount)+parseFloat(ship))*100)/100));
+        dispatch(miniCartSlice.actions.deleteAll([]));
+        navigate("/CheckoutReview")
     }
 
     const rows = [
@@ -136,9 +152,9 @@ function Payment() {
                             <Typography variant="h7" sx={{ color: '#9bdbb9' }}>Return to shipping</Typography>
                         </Grid>
                         <Grid item>
-                            <Link to="/CheckoutReview" className="Button">
+                            <Box onClick={()=>deleteAllItem()} className="Button">
                                 <Button sx={{ padding: 2, bgcolor: 'black', color: 'white' }} >Pay now</Button>
-                            </Link>
+                            </Box>
                         </Grid>
                     </Grid>
                     <Divider sx={{ mt: 7 }} />
@@ -218,7 +234,7 @@ function Payment() {
                                 USD
                             </Typography>
                             <Typography component="span" variant="h5">
-                                ${discount+ship}
+                                ${Math.round((parseFloat(discount)+parseFloat(ship))*100)/100}
                             </Typography>
                         </Grid>
                     </Grid>
