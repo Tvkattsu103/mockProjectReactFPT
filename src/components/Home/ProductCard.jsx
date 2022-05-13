@@ -25,8 +25,8 @@ const ProductCard = ({ id, title, image, price, maxWidth }) => {
         products: id,
         email: JSON.parse(localStorage.getItem("currentuser")).email,
       });
-    }
-    enqueueSnackbar("Thêm vào giỏ hàng thành công!", {variant});
+      enqueueSnackbar("Thêm vào giỏ hàng thành công!", {variant});
+    }  
   };
 
   return (

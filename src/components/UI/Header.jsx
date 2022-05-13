@@ -95,6 +95,8 @@ const Header = () => {
     "http://localhost:1337/api/carts?filters[email][$eq]=" + email
   );
 
+  console.log(cartItems);
+
   useEffect(() => {
     setCart(cartItems);
   },[cartItems])
