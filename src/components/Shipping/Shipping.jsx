@@ -1,25 +1,38 @@
 import { Avatar, AvatarGroup, Box, Button, Card, CardActions, CardContent, CardMedia, Checkbox, Container, FormControlLabel, Grid, Paper, Radio, RadioGroup, Typography } from '@mui/material';
 import { deepOrange } from '@mui/material/colors';
 import { border, flexbox, margin } from '@mui/system';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import Header from '../UI/Header';
 import RadioLabel from './RadioLabel';
 import AddIcon from '@mui/icons-material/Add';
 import { useSelector } from 'react-redux';
 import Footer from '../UI/Footer';
+import { totaldiscount } from '../../redux/selectors';
+import miniCartSlice from '../MiniCart/miniCartSlice';
+import { useDispatch } from 'react-redux';
 
 function Shipping() {
+    const dispatch = useDispatch();
+    const discount = useSelector(totaldiscount);
     const data = useSelector((state) => state.cartpage.dataShipping)
-    const [valueRadio,setValueRadio] = useState(5);
+    const [valueRadio, setValueRadio] = useState(5);
     const currentUser = JSON.parse(localStorage.getItem('currentuser'));
     let navigate = useNavigate();
     const handleChangeRadio = (e) => {
         setValueRadio(e.target.value);
     };
-    const handleBack =()=>{
+    const handleBack = () => {
         navigate('/CardPage');
     };
+
+    const gotoPayment = () => {
+        dispatch(miniCartSlice.actions.addShip(valueRadio));
+        navigate('/payment');
+    }
+    // useEffect(()=>{
+    //     dispatch(miniCartSlice.actions.addShip(valueRadio));
+    // },[valueRadio])
     return (
         <div>
             <Header />
@@ -66,9 +79,9 @@ function Shipping() {
                                         aria-labelledby="demo-controlled-radio-buttons-group"
                                         name="controlled-radio-buttons-group"
                                         value={valueRadio}
-                                        onChange={handleChangeRadio}  
+                                        onChange={handleChangeRadio}
                                     >
-                                        <FormControlLabel value="5" sx={{ display: 'block', paddingLeft: '20px' }} control={<Radio />} label={<RadioLabel day="Thursday, Jul 29" time="Standard 3-5 business days" money="$5" />}/>
+                                        <FormControlLabel value="5" sx={{ display: 'block', paddingLeft: '20px' }} control={<Radio />} label={<RadioLabel day="Thursday, Jul 29" time="Standard 3-5 business days" money="$5" />} />
 
                                         <FormControlLabel value="17" sx={{ display: 'block', paddingLeft: '20px' }} control={<Radio />} label={<RadioLabel day="Tuesday, Jul 27" time="Express 2-3 business days" money="$17" />} />
 
@@ -228,11 +241,11 @@ function Shipping() {
                                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
 
                                         <Grid container>
-                                            <Grid item xs={10}>
+                                            <Grid item xs={9}>
                                                 Sub Total:
                                             </Grid>
-                                            <Grid item xs={2} align="right">
-                                                $ {data.price}
+                                            <Grid item xs={3} align="right">
+                                                $ {discount}
                                             </Grid>
                                         </Grid>
                                     </Typography>
@@ -276,18 +289,21 @@ function Shipping() {
                                                 <b>Total</b>
                                             </Grid>
                                             <Grid item xs={2} align="right">
-                                                $ {parseInt(data.price) + parseInt(valueRadio)}
+                                                $ {parseInt(discount) + parseInt(valueRadio)}
                                             </Grid>
-                                            {console.log(data.price)}
                                         </Grid>
                                     </Typography>
                                 </CardContent>
+
                             </Card>
+                            <Button onClick={() => gotoPayment()}
+                                variant="contained" sx={{ width: 350, height: 50, mt: 2 }}
+                            >Payment</Button>
                         </Grid>
                     </Grid>
                 </Grid>
             </Container>
-            <Footer/>
+            <Footer />
         </div>
     )
 }

@@ -11,7 +11,8 @@ import { Link } from 'react-router-dom';
 import { CardContent } from '@mui/material';
 import { Card } from '@mui/material';
 import { CardMedia } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
+import { totaldiscount, shipCount } from '../../redux/selectors';
+import { useSelector } from 'react-redux';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -53,6 +54,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 function Payment() {
+    const discount = useSelector(totaldiscount);
+    const ship = useSelector(shipCount);
+    const currentUser = JSON.parse(localStorage.getItem('currentuser'));
     const [open, setOpen] = React.useState(true);
     const handleClick = () => {
         setOpen(!open);
@@ -62,9 +66,9 @@ function Payment() {
     }
 
     const rows = [
-        createData('Contact', 'voanhtuan103@gmail.com', true),
-        createData('Ship to', '208, Washington DC 20036, United States', true),
-        createData('Method', 'Free Shipping (5 to 8 business days) · Free', false)
+        createData('Contact', currentUser.email, true),
+        createData('Ship to', currentUser.address+", "+currentUser.province+", "+currentUser.city, true),
+        createData('Method', 'Shipping (5 to 8 business days) · $'+ship, false)
     ];
     return (
         <Grid container >
@@ -126,38 +130,13 @@ function Payment() {
                             </Grid>
                         </Grid>
                     </ListItem>
-                    <Typography variant="h6" sx={{ fontWeight: 'bold', flex: 'start', mt: 4 }}>BILLING ADDRESS</Typography>
-                    <Typography variant="subtitle2" sx={{ mb: 2 }}>Select the address that matches your card or payment method.</Typography>
-                    <ListItem button onClick={handleClick} style={{}} sx={{ border: 1, borderTopLeftRadius: '10px', borderTopRightRadius: '10px', borderColor: '#ccc' }}>
-                        <Typography variant="h7">Same as shipping address</Typography>
-                    </ListItem>
-                    <Collapse in={open} timeout="auto" unmountOnExit sx={{ border: 1, borderColor: '#ccc' }}>
-                        <List component="div" disablePadding>
-                            <ListItem button>
-                                <ListItemText primary="Whatever" />
-                            </ListItem>
-                        </List>
-                    </Collapse>
-                    <ListItem button onClick={handleClick} style={{}} sx={{ border: 1, borderBottomLeftRadius: '10px', borderBottomRightRadius: '10px', borderColor: '#ccc' }}>
-                        <Typography variant="h7">Use a different billing address</Typography>
-                    </ListItem>
-                    <Typography variant="h6" sx={{ fontWeight: 'bold', flex: 'start', mt: 4 }}>REMEMBER ME</Typography>
-                    <ListItem button onClick={handleClick} style={{}} sx={{ border: 1, borderRadius: '10px', borderColor: '#ccc' }}>
-                        <Typography variant="h7">Save my information for a faster checkout</Typography>
-                    </ListItem>
-                    <Collapse in={open} timeout="auto" unmountOnExit sx={{ border: 1, borderColor: '#ccc' }}>
-                        <List component="div" disablePadding>
-                            <ListItem button>
-                                <ListItemText primary="Whatever" />
-                            </ListItem>
-                        </List>
-                    </Collapse>
+                    
                     <Grid container justifyContent="space-between" alignItems="center" sx={{ mt: 2 }}>
                         <Grid item>
                             <Typography variant="h7" sx={{ color: '#9bdbb9' }}>Return to shipping</Typography>
                         </Grid>
                         <Grid item>
-                            <Link to="" className="Button">
+                            <Link to="/CheckoutReview" className="Button">
                                 <Button sx={{ padding: 2, bgcolor: 'black', color: 'white' }} >Pay now</Button>
                             </Link>
                         </Grid>
@@ -198,29 +177,6 @@ function Payment() {
                     <Grid justifyContent="space-between"
                         alignItems="center"
                         container
-                        sx={{ mt: 3 }}
-                    >
-                        <Grid item>
-                            <Search sx={{ border: 1, borderColor: '#ccc', bgcolor: 'white', width: '335px!important', ml: '0px!important', height: '52px' }}>
-                                {/* <SearchIconWrapper>
-                                    <SearchIcon />
-                                </SearchIconWrapper> */}
-                                <StyledInputBase
-                                    placeholder="Gift card or discount code"
-                                    inputProps={{ 'aria-label': 'search' }}
-                                />
-                            </Search>
-                        </Grid>
-                        <Grid item>
-                            <Link to="" className="Button">
-                                <Button sx={{ padding: 1.5, bgcolor: 'text.disabled', color: 'white' }} >Pay now</Button>
-                            </Link>
-                        </Grid>
-                    </Grid>
-                    <Divider sx={{ mt: 3 }} />
-                    <Grid justifyContent="space-between"
-                        alignItems="center"
-                        container
                         sx={{ mt: 2 }}
                     >
                         <Grid item>
@@ -229,7 +185,7 @@ function Payment() {
                             </Typography>
                         </Grid>
                         <Grid item>
-                            $24.99
+                            ${discount}
                         </Grid>
                     </Grid>
                     <Grid justifyContent="space-between"
@@ -243,21 +199,7 @@ function Payment() {
                             </Typography>
                         </Grid>
                         <Grid item>
-                            $12.99
-                        </Grid>
-                    </Grid>
-                    <Grid justifyContent="space-between"
-                        alignItems="center"
-                        container
-                        sx={{ mt: 1 }}
-                    >
-                        <Grid item>
-                            <Typography component="div" variant="h7">
-                                Taxes
-                            </Typography>
-                        </Grid>
-                        <Grid item>
-                            $3.18
+                            ${ship}
                         </Grid>
                     </Grid>
                     <Divider sx={{ mt: 3 }} />
@@ -276,7 +218,7 @@ function Payment() {
                                 USD
                             </Typography>
                             <Typography component="span" variant="h5">
-                                $41.16
+                                ${discount+ship}
                             </Typography>
                         </Grid>
                     </Grid>

@@ -5,7 +5,8 @@ export default createSlice({
     initialState: {
         open: false,
         items: [
-        ]
+        ],
+        ship:0
     },
     reducers: {
         initCart: (state, action) => {
@@ -39,5 +40,8 @@ export default createSlice({
                 }
             })
         },
+        addShip: (state, action) => {
+            state.ship = action.payload;
+        }
     }
 })
